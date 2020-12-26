@@ -18,3 +18,7 @@ img {
 .mySlides {
   display: none;
 }
+
+.w3-bar {
+  padding: 10px;
+}

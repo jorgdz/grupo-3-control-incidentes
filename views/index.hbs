@@ -1,7 +1,8 @@
+{{> landing/navbar}}
 {{> landing/header}}
 
 <!-- The App Section -->
-<div class="w3-padding-64 w3-white">
+<div class="w3-padding-64 w3-white" id="about">
     <div class="w3-row-padding">
         <div class="w3-col l8 m6">
             <h1 class="w3-jumbo"><b>The App</b></h1>
@@ -38,15 +39,18 @@
 <div id="download" class="w3-modal w3-animate-opacity">
     <div class="w3-modal-content" style="padding:32px">
         <div class="w3-container w3-white">
-            <i onclick="document.getElementById('download').style.display='none'"
-                class="fa fa-remove w3-xlarge w3-button w3-transparent w3-right w3-xlarge"></i>
-            <h2 class="w3-wide">DOWNLOAD</h2>
-            <p>Download the app in AppStore, Google Play or Microsoft Store.</p>
-            <i class="fa fa-android w3-large"></i> <i class="fa fa-apple w3-large"></i> <i
-                class="fa fa-windows w3-large"></i>
-            <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail"></p>
-            <button type="button" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom"
-                onclick="document.getElementById('download').style.display='none'">Fake Download</button>
+            <form action="#" method="post">
+                <i onclick="document.getElementById('download').style.display='none'"
+                    class="fa fa-remove w3-xlarge w3-button w3-transparent w3-right w3-xlarge"></i>
+                <h2 class="w3-wide">Login</h2>
+                <p>Bienvenido a Mishap Web, donde tu seguridad es nuestra prioridad.</p>
+                <i class="fa fa-shield w3-large"></i> <i class="fa fa-lock w3-large"></i> <i
+                    class="fa fa-registered w3-large"></i>
+                <p><input class="w3-input w3-border" type="text" placeholder="E-mail"></p>
+                <p><input class="w3-input w3-border" type="password" placeholder="Contraseña"></p>
+                <button type="button" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom"
+                    onclick="document.getElementById('download').style.display='none'">Login</button>
+            </form>
         </div>
     </div>
 </div>
