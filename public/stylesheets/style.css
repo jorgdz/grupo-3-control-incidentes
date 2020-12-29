@@ -22,3 +22,33 @@ img {
 .w3-bar {
   padding: 10px;
 }
+
+.valle_logo {
+  width: 70px;
+}
+
+.w3-right {
+  padding-top: 10px;
+}
+
+.paragraph-valle {
+  font-size: 22px;
+}
+
+.contact_custom {
+  /* background-color: #dff3e3;
+  box-shadow: 1px 2px 3px #dff3e3; */
+  padding: 1em;
+  margin: 0px auto;
+  width: 50%;
+}
+
+.footer_custom {
+  background-color: black;
+  color: white;
+}
+
+.w3-padding-32 {
+  padding-top: 110px !important;
+  height: 320px;
+}

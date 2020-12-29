@@ -1,0 +1,134 @@
+{{> landing/navbar}}
+{{> landing/header}}
+
+<!-- The App Section -->
+<div class="w3-padding-64 w3-white" id="about">
+    <div class="w3-row-padding">
+        <div class="w3-col l8 m6">
+            <h1 class="w3-xxxlarge w3-text-green"><b>¿Quienes somos?</b></h1>
+            <p class="paragraph-valle">Urbanización Valle Verde posee una amplia experiencia en el ámbito de la obra
+                pública y desarrollos
+                habitacionales. Operando con los
+                más altos estándares tecnológicos, proveedores y atendiendo la necesidad de vivienda con el personal
+                calificado, con la
+                finalidad de brindarle a cada uno de nuestros clientes comodidad, seguridad, plusvalía y calidad de
+                vida.</p>
+        </div>
+        <div class="w3-col l4 m6">
+            <img src="/images/security.jpg" class="w3-image w3-right w3-hide-small" width="335" height="471">
+
+            <div class="w3-center w3-hide-large w3-hide-medium">
+                <img src="/images/security.jpg" class="w3-image w3-margin-top" width="335" height="471">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="download" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content" style="padding:32px">
+        <div class="w3-container w3-white">
+            <form action="#" method="post">
+                <i onclick="document.getElementById('download').style.display='none'"
+                    class="fa fa-remove w3-xlarge w3-button w3-transparent w3-right w3-xlarge"></i>
+                <h2 class="w3-wide">Login</h2>
+                <p>Bienvenido a Mishap Web, donde tu seguridad es nuestra prioridad.</p>
+                <i class="fa fa-shield w3-large"></i> <i class="fa fa-lock w3-large"></i> <i
+                    class="fa fa-registered w3-large"></i>
+                <p><input class="w3-input w3-border" type="text" placeholder="E-mail"></p>
+                <p><input class="w3-input w3-border" type="password" placeholder="Contraseña"></p>
+                <button type="button" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom"
+                    onclick="document.getElementById('download').style.display='none'">Login</button>
+                <a href="#"
+                    onclick="document.getElementById('forget_password').style.display='block'; document.getElementById('download').style.display='none'">¿Olvidó
+                    su
+                    contraseña?</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="forget_password" class="w3-modal w3-animate-opacity">
+    <div class="w3-modal-content" style="padding:32px">
+        <div class="w3-container w3-white">
+            <form action="#" method="post">
+                <i onclick="document.getElementById('forget_password').style.display='none'"
+                    class="fa fa-remove w3-xlarge w3-button w3-transparent w3-right w3-xlarge"></i>
+                <h2 class="w3-wide">Recuperar contraseña</h2>
+                <p>Para recuperar su contraseña por favor ingrese su correo electrónico.</p>
+                <i class="fa fa-shield w3-large"></i> <i class="fa fa-lock w3-large"></i> <i
+                    class="fa fa-registered w3-large"></i>
+                <p><input class="w3-input w3-border" type="text" placeholder="E-mail"></p>
+                <button type="button" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom"
+                    onclick="document.getElementById('forget_password').style.display='none'">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!--End Modal -->
+
+<!-- Clarity Section -->
+<div class="w3-padding-64 w3-light-grey">
+    <div class="w3-row-padding">
+        <div class="w3-col l4 m6">
+            <img class="w3-image w3-round-large w3-hide-small w3-grayscale"
+                src="https://www.w3schools.com/w3images/app5.jpg" alt="App" width="335" height="471">
+        </div>
+        <div class="w3-col l8 m6">
+            <h1 class="w3-jumbo"><b>Seguridad Valle Verde</b></h1>
+            <h1 class="w3-xxxlarge w3-text-red"><b>¿Qué ofrecemos?</b></h1>
+            <p class="paragraph-valle">Contamos con un servicio de protección interna para nuestros residentes, donde
+                usted podrá estar
+                constantemente informado de todos los incidentes que ocurren en la urbanización. Si usted es víctima de
+                algún infortunio suceso, puede comunicarse con los miembros de seguridad o publicar a través del sitio
+                su problemática, su petición será atendida tan pronto como sea posible.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="w3-container w3-padding-64 w3-dark-grey w3-center" id="services">
+    <h1 class="w3-jumbo"><b>Servicios</b></h1>
+    <!--<p>La plataforme le ofrece:</p>-->
+
+    <div class="w3-row" style="margin-top:64px">
+        <div class="w3-col s6">
+            <i class="fa fa-photo w3-text-amber w3-jumbo"></i>
+            <p>Añadir imágenes al reportar incidentes</p>
+        </div>
+        <div class="w3-col s6">
+            <i class="fa fa-shield w3-text-red w3-jumbo"></i>
+            <p>Asistencia inmediata del personal de seguridad</p>
+        </div>
+    </div>
+
+    <div class="w3-row" style="margin-top:64px">
+        <div class="w3-col s12">
+            <i class="fa fa-binoculars w3-text-cyan w3-jumbo"></i>
+            <p>Monitoreo constante</p>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Section -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+    <h3 class="w3-center">Contacto</h3>
+    <div style="margin-top:48px" class="contact_custom">
+        <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Babahoyo</p>
+        <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Teléfono: +593 99 685 5409</p>
+        <br>
+        <form action="#" target="_blank">
+            <p><input class="w3-input w3-border" type="text" placeholder="Nombre" required name="Nombre"></p>
+            <p><input class="w3-input w3-border" type="text" placeholder="Correo" required name="Correo"></p>
+            <p><input class="w3-input w3-border" type="text" placeholder="Asunto" required name="Asunto"></p>
+            <p><input class="w3-input w3-border" type="text" placeholder="Mensaje" required name="Mensaje"></p>
+            <p>
+                <button class="w3-button w3-black" type="submit">
+                    <i class="fa fa-paper-plane"></i> ENVIAR MENSAJE
+                </button>
+            </p>
+        </form>
+    </div>
+</div>
+
+{{> landing/footer}}
