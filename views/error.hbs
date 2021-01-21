@@ -1,3 +1,13 @@
+{{#extend "head"}}
+{{> title title="Error"}}
+{{/extend}}
+
+{{#extend "header"}}
 <h1>{{message}}</h1>
 <h2>{{error.status}}</h2>
+{{/extend}}
+
 <pre>{{error.stack}}</pre>
+
+{{#extend "scripts"}}
+{{/extend}}

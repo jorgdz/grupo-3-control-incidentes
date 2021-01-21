@@ -1,7 +1,8 @@
+{{#extend "header"}}
 {{> landing/navbar}}
 {{> landing/header}}
+{{/extend}}
 
-<!-- The App Section -->
 <div class="w3-padding-64 w3-white" id="about">
     <div class="w3-row-padding">
         <div class="w3-col l8 m6">
@@ -24,50 +25,63 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div id="download" class="w3-modal w3-animate-opacity">
+<div id="download" class="w3-modal w3-animate-opacity" style="{{display_login error success}}">
     <div class="w3-modal-content" style="padding:32px">
         <div class="w3-container w3-white">
-            <form action="#" method="post">
+            <form action="/login" method="post">
                 <i onclick="document.getElementById('download').style.display='none'"
                     class="fa fa-remove w3-xlarge w3-button w3-transparent w3-right w3-xlarge"></i>
                 <h2 class="w3-wide">Login</h2>
-                <p>Bienvenido a Mishap Web, donde tu seguridad es nuestra prioridad.</p>
+                <p>Bienvenido a {{ app_name }} donde tu seguridad es nuestra prioridad.</p>
+                
+                {{#if error}}
+                <p style="color: crimson; font-weight: bold; font-size: 20px;">{{ error }}</p>
+                {{/if}}
+                {{#if success}}
+                <p style="color: rgb(16, 150, 83); font-weight: bold; font-size: 20px;">{{ success }}</p>
+                {{/if}}
+
                 <i class="fa fa-shield w3-large"></i> <i class="fa fa-lock w3-large"></i> <i
                     class="fa fa-registered w3-large"></i>
-                <p><input class="w3-input w3-border" type="text" placeholder="E-mail"></p>
-                <p><input class="w3-input w3-border" type="password" placeholder="Contraseña"></p>
-                <button type="button" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom"
+                <p><input class="w3-input w3-border" name="username" type="text" placeholder="Correo o nombre de usuario"></p>
+                <p><input class="w3-input w3-border" name="password" type="password" placeholder="Contraseña"></p>
+                <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom"
                     onclick="document.getElementById('download').style.display='none'">Login</button>
-                <a href="#"
-                    onclick="document.getElementById('forget_password').style.display='block'; document.getElementById('download').style.display='none'">¿Olvidó
-                    su
-                    contraseña?</a>
+                <a href="#" onclick="document.getElementById('forget_password').style.display='block'; document.getElementById('download').style.display='none'">¿Olvidó su contraseña?</a>
             </form>
         </div>
     </div>
 </div>
 
-<div id="forget_password" class="w3-modal w3-animate-opacity">
+<div id="forget_password" class="w3-modal w3-animate-opacity" style="{{display_forgot errorsValidator message}}">
     <div class="w3-modal-content" style="padding:32px">
         <div class="w3-container w3-white">
-            <form action="#" method="post">
+            <form action="/password/reset" method="post">
                 <i onclick="document.getElementById('forget_password').style.display='none'"
                     class="fa fa-remove w3-xlarge w3-button w3-transparent w3-right w3-xlarge"></i>
                 <h2 class="w3-wide">Recuperar contraseña</h2>
                 <p>Para recuperar su contraseña por favor ingrese su correo electrónico.</p>
+                
+                {{#if errorsValidator}}
+                    {{#each errorsValidator}}
+                    <p style="color: crimson; font-weight: bold; font-size: 20px;">{{ msg }}</p>
+                    {{/each}}
+                {{/if}}
+
+                {{#if message}}
+                <p style="color: rgb(37, 128, 156); font-weight: bold; font-size: 20px;">{{ message }}</p>
+                {{/if}}
+
                 <i class="fa fa-shield w3-large"></i> <i class="fa fa-lock w3-large"></i> <i
                     class="fa fa-registered w3-large"></i>
-                <p><input class="w3-input w3-border" type="text" placeholder="E-mail"></p>
-                <button type="button" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom"
+                <p><input class="w3-input w3-border" type="text" type="email" name="email" placeholder="E-mail"></p>
+                <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom"
                     onclick="document.getElementById('forget_password').style.display='none'">Enviar</button>
             </form>
         </div>
     </div>
 </div>
-<!--End Modal -->
 
-<!-- Clarity Section -->
 <div class="w3-padding-64 w3-light-grey">
     <div class="w3-row-padding">
         <div class="w3-col l4 m6">
@@ -86,10 +100,8 @@
     </div>
 </div>
 
-<!-- Features Section -->
 <div class="w3-container w3-padding-64 w3-dark-grey w3-center" id="services">
     <h1 class="w3-jumbo"><b>Servicios</b></h1>
-    <!--<p>La plataforme le ofrece:</p>-->
 
     <div class="w3-row" style="margin-top:64px">
         <div class="w3-col s6">
@@ -110,7 +122,6 @@
     </div>
 </div>
 
-<!-- Contact Section -->
 <div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
     <h3 class="w3-center">Contacto</h3>
     <div style="margin-top:48px" class="contact_custom">
@@ -131,4 +142,6 @@
     </div>
 </div>
 
+{{#extend "footer"}}
 {{> landing/footer}}
+{{/extend}}

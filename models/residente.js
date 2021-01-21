@@ -8,14 +8,15 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true,
         },
-        verificado: {
-            type: Sequelize.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
-        },
         user_id: {
             type: Sequelize.INTEGER,
             allowNull: false
+        },
+        verification_code: {
+            type: Sequelize.STRING,
+        },
+        password_reset_code: {
+            type: Sequelize.STRING,
         }
     }, {
         timestamps: false

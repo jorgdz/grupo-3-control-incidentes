@@ -16,9 +16,18 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING(10),
             allowNull: false
         },
+        nombres: {
+            type: Sequelize.STRING
+        },
+        apellidos: {
+            type: Sequelize.STRING
+        },
         email: {
             type: Sequelize.STRING,
             allowNull: false
+        },
+        fecha_nacimiento: {
+            type: Sequelize.DATEONLY
         },
         username: {
             type: Sequelize.STRING,
@@ -33,7 +42,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         url_imagen: {
             type: Sequelize.STRING,
-        },
+        },     
         estado: {
             type: Sequelize.BOOLEAN,
         }
