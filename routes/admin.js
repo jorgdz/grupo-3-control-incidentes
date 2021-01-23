@@ -2,23 +2,16 @@
 
 const express = require('express')
 const router = express.Router()
-const staticFiles = require('../lib/static-files-routes')
+const { auth } = require('../middleware/auth')
 
 /* GET admin page. */
-router.get('/', function (req, res, next) {
-	res.render('admin/index', {
-		title: 'Admin - Mishap Web',
-		styles: staticFiles.cssAdmin,
-		javascripts: staticFiles.jsAdmin
-	})
+router.get('/', auth, function (req, res, next) {
+	res.render('incidentes/index')
 })
 
-router.get('/profile', function (req, res, next) {
-	res.render('profile/index', {
-		title: 'Perfil - Mishap Web',
-		styles: staticFiles.cssProfile,
-		javascripts: staticFiles.jsProfile
-	})
+/* GET profile user. */
+router.get('/perfil', auth, function (req, res, next) {
+	res.render('profile/index')
 })
 
 module.exports = router

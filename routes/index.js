@@ -2,15 +2,11 @@
 
 const express = require('express')
 const router = express.Router()
-const staticFiles = require('../lib/static-files-routes')
+const { guest } = require('../middleware/guest')
 
 /* GET landing page. */
-router.get('/', function (req, res, next) {
-	res.render('landing/index', {
-		title: 'Mishap Web',
-		styles: staticFiles.cssLanding,
-		javascripts: staticFiles.jsLanding
-	})
+router.get('/', guest, function (req, res, next) {
+	res.render('landing/index', { layout: 'app' })
 })
 
 module.exports = router
