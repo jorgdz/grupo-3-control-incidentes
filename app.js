@@ -12,6 +12,7 @@ const myHbsHelpers = require('./lib/helper-hbs')
 
 var indexRouter = require('./routes/index')
 var adminRouter = require('./routes/admin')
+var profileRouter = require('./routes/profile')
 var loginRouter = require('./routes/auth/login')
 var resetPassRouter = require('./routes/auth/reset-password')
 var verificationRouter = require('./routes/auth/verification')
@@ -76,6 +77,7 @@ app.use('/login', loginRouter)
 app.use('/confirm', verificationRouter)
 app.use('/password', resetPassRouter)
 app.use('/valle-verde', adminRouter)
+app.use('/perfil', profileRouter)
 
 app.post('/logout', function (req, res) {
   req.logOut()

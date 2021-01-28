@@ -9,9 +9,4 @@ router.get('/', auth, function (req, res, next) {
 	res.render('incidentes/index')
 })
 
-/* GET profile user. */
-router.get('/perfil', auth, function (req, res, next) {
-	res.render('profile/index')
-})
-
 module.exports = router

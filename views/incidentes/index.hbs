@@ -17,12 +17,12 @@
                                     <div class="user-profile">
                                         <div class="username-dt">
                                             <div class="usr-pic">
-                                                <img src="/images/resources/user-pic.png" alt="">
+                                                <img src="{{ user.dataValues.url_imagen }}" alt="">
                                             </div>
                                         </div>
                                         <div class="user-specs">
-                                            <h3>John Doe</h3>
-                                            <span>Graphic Designer at Self Employed</span>
+                                            <h3>{{ user.dataValues.nombres }} {{ user.dataValues.apellidos }}</h3>
+                                            <span>{{ user.dataValues.role.dataValues.name }}</span>
                                         </div>
                                     </div>
                                     <ul class="user-fw-status">
