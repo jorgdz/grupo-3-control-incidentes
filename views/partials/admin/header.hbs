@@ -2,7 +2,9 @@
         <div class="container">
             <div class="header-data">
                 <div class="logo">
-                    <a href="index.html" title=""><img src="/images/logo.png" alt=""></a>
+                    <a href="/valle-verde" title="">
+                        <img src="/images/valle verde.png" alt="">
+                    </a>
                 </div>
                 <div class="search-bar">
                     <form>
@@ -158,7 +160,7 @@
                 </div>
                 <div class="user-account">
                     <div class="user-info">
-                        <img src="/images/resources/user.png" alt="">
+                        <img src="{{ user.dataValues.url_imagen }}" class="img_profile" width="30px" height="30px" alt="">
                         <a href="#" title="">{{ user.dataValues.username }}</a>
                         <i class="la la-sort-down"></i>
                     </div>
@@ -186,7 +188,7 @@
                         </ul>
                         <h3>Setting</h3>
                         <ul class="us-links">
-                            <li><a href="/valle-verde/perfil" title="">Account Setting</a></li>
+                            <li><a href="/perfil" title="">Account Setting</a></li>
                             <li><a href="#" title="">Privacy</a></li>
                             <li><a href="#" title="">Faqs</a></li>
                             <li><a href="#" title="">Terms & Conditions</a></li>

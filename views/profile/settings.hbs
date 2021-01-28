@@ -1,0 +1,168 @@
+{{#extend "head"}}
+{{> title title="Ajustes de Perfil"}}
+{{/extend}}
+
+    {{#extend "header"}}
+    {{> admin/header}}
+    {{/extend}}
+
+    <section class="profile-account-setting">
+      <div class="container">
+        <div class="account-tabs-setting">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="acc-leftbar">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link active" id="nav-acc-tab" data-toggle="tab" href="#nav-acc" role="tab" aria-controls="nav-acc" aria-selected="true"><i class="la la-cogs"></i>Personal</a>
+                  <a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab" href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false"><i class="fa fa-lock"></i>Cambiar contraseña</a>
+                  <a class="nav-item nav-link" id="nav-deactivate-tab" data-toggle="tab" href="#nav-deactivate" role="tab" aria-controls="nav-deactivate" aria-selected="false"><i class="fa fa-random"></i>Desactivar cuenta</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-9">
+              {{#if errorsValidator}}
+                <ul style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+                  {{#each errorsValidator}}
+                    <li>{{ msg }}</li>
+                  {{/each}}
+                </ul>
+              {{/if}}
+
+              {{#if success}}
+                <div style="color: rgb(46, 136, 61); font-weight: bold; font-size: 20px; padding:1em;">
+                  <span>{{ success }}</span>
+                </div>
+              {{/if}}
+              
+              {{#if error}}
+                <div style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+                  <span>{{ error }}</span>
+                </div>
+              {{/if}}
+              
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-acc" role="tabpanel" aria-labelledby="nav-acc-tab">
+                  <div class="acc-setting">
+                    <h3>Ajustes</h3>
+                    <form action="/perfil/ajustes" method="POST">
+                      <div class="cp-field">
+                        <h5>Nombres</h5>
+                        <div class="cpp-fiel">
+                          <input type="text" name="nombres" value="{{ user.dataValues.nombres }}" placeholder="Nombres">
+                          <i class="fa fa-user"></i>
+                        </div>
+                      </div>
+                      <div class="cp-field">
+                        <h5>Apellidos</h5>
+                        <div class="cpp-fiel">
+                          <input type="text" name="apellidos" value="{{ user.dataValues.apellidos }}" placeholder="Apellidos">
+                          <i class="fa fa-user-plus"></i>
+                        </div>
+                      </div>
+                      <div class="cp-field">
+                        <h5>Nombre de usuario</h5>
+                        <div class="cpp-fiel">
+                          <input type="text" name="username" value="{{ user.dataValues.username }}" placeholder="Nombre de usuario">
+                          <i class="fa fa-user-circle"></i>
+                        </div>
+                      </div>
+                      <div class="cp-field">
+                        <h5>Fecha de nacimiento</h5>
+                        <div class="cpp-fiel">
+                          <input type="date" name="fecha_nacimiento" value="{{ user.dataValues.fecha_nacimiento }}" placeholder="Fecha de nacimiento" />
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                      </div>
+                      <div class="save-stngs pd2">
+                      <ul>
+                      <li><button type="submit">Guardar</button></li>
+                      </ul>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              
+                <div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
+                <div class="acc-setting">
+                <h3>Cambio de contraseña</h3>
+                  <form action="/perfil/contrasena" method="POST">
+                    <div class="cp-field">
+                      <h5>Antigua contraseña</h5>
+                      <div class="cpp-fiel">
+                        <input type="password" name="old_password" placeholder="Antigua contraseña">
+                        <i class="fa fa-lock"></i>
+                      </div>
+                    </div>
+                    <div class="cp-field">
+                      <h5>Nueva contraseña</h5>
+                      <div class="cpp-fiel">
+                        <input type="password" name="new_password" placeholder="Nueva contraseña">
+                        <i class="fa fa-lock"></i>
+                      </div>
+                    </div>
+                    <div class="cp-field">
+                      <h5>Repetir contraseña</h5>
+                      <div class="cpp-fiel">
+                        <input type="password" name="repeat_password" placeholder="Repita la contraseña">
+                        <i class="fa fa-lock"></i>
+                      </div>
+                    </div>
+                    <div class="save-stngs pd2">
+                    <ul>
+                    <li><button type="submit">Guardar</button></li>
+                    </ul>
+                    </div>
+                  </form>
+                </div>
+                </div>
+                
+                <div class="tab-pane fade" id="nav-deactivate" role="tabpanel" aria-labelledby="nav-deactivate-tab">
+                  <div class="acc-setting">
+                  <h3>Desactivar cuenta</h3>
+                    <form action="/perfil/desactive" method="POST">
+                      <div class="cp-field">
+                        <h5>Correo</h5>
+                        <div class="cpp-fiel">
+                          <input type="text" name="email" placeholder="Email">
+                          <i class="fa fa-envelope"></i>
+                        </div>
+                      </div>
+                      <div class="cp-field">
+                        <h5>Contraseña</h5>
+                        <div class="cpp-fiel">
+                          <input type="password" name="password" placeholder="Password">
+                          <i class="fa fa-lock"></i>
+                        </div>
+                      </div>
+                      <div class="cp-field">
+                        <h5>Explicanos por que te vas por favor.</h5>
+                        <textarea></textarea>
+                      </div>
+                      <div class="cp-field">
+                        <div class="fgt-sec">
+                          <input type="checkbox" name="cc" id="c4">                 
+                        </div>
+                      </div>
+                      <div class="save-stngs pd3">
+                        <ul>
+                          <li><button type="submit">Desactivar</button></li>
+                        </ul>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    {{> admin/footer}}
+
+{{#extend "scripts"}}
+<script src="/javascripts/flatpickr.min.js"></script>
+<script src="/stylesheets/lib/slick/slick.min.js"></script>
+<script src="/javascripts/script.js"></script>
+<script src="/javascripts/profile.js"></script>
+{{/extend}}

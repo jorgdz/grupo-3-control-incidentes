@@ -28,42 +28,20 @@
                             <div class="main-left-sidebar">
                                 <div class="user_profile">
                                     <div class="user-pro-img">
-                                        <img src="/images/resources/user-pro-img.png" alt="">
+                                        <img src="{{ user.dataValues.url_imagen }}" class="img_profile" width="180px" height="180px" alt="">
                                         <div class="add-dp" id="OpenImgUpload">
-                                            <input type="file" id="file">
-                                            <label for="file"><i class="fa fa-camera"></i></label>
+                                            <input type="file" id="file_picture_user" />
+                                            <label for="file_picture_user"><i class="fa fa-camera"></i></label>
                                         </div>
                                     </div>
                                     <div class="user_pro_status">
                                         <ul class="flw-status">
                                             <li>
-                                                <span>Following</span>
-                                                <b>34</b>
-                                            </li>
-                                            <li>
-                                                <span>Followers</span>
-                                                <b>155</b>
-                                            </li>
+                                                <span>Fecha de nacimiento</span>
+                                                <b>{{ user.dataValues.fecha_nacimiento }}</b>
+                                            </li>                            
                                         </ul>
-                                    </div>
-                                    <ul class="social_links">
-                                        <li><a href="#" title=""><i class="la la-globe"></i> www.example.com</a>
-                                        </li>
-                                        <li><a href="#" title=""><i class="fa fa-facebook-square"></i>
-                                                Http://www.facebook.com/john...</a></li>
-                                        <li><a href="#" title=""><i class="fa fa-twitter"></i>
-                                                Http://www.Twitter.com/john...</a></li>
-                                        <li><a href="#" title=""><i class="fa fa-google-plus-square"></i>
-                                                Http://www.googleplus.com/john...</a></li>
-                                        <li><a href="#" title=""><i class="fa fa-behance-square"></i>
-                                                Http://www.behance.com/john...</a></li>
-                                        <li><a href="#" title=""><i class="fa fa-pinterest"></i>
-                                                Http://www.pinterest.com/john...</a></li>
-                                        <li><a href="#" title=""><i class="fa fa-instagram"></i>
-                                                Http://www.instagram.com/john...</a></li>
-                                        <li><a href="#" title=""><i class="fa fa-youtube"></i>
-                                                Http://www.youtube.com/john...</a></li>
-                                    </ul>
+                                    </div>                             
                                 </div>
                                 <div class="suggestions full-width">
                                     <div class="sd-title">
@@ -129,60 +107,28 @@
                         <div class="col-lg-6">
                             <div class="main-ws-sec">
                                 <div class="user-tab-sec rewivew">
-                                    <h3>John Doe</h3>
+                                    <h3>{{ user.dataValues.nombres }} {{user.dataValues.apellidos}}</h3>
                                     <div class="star-descp">
-                                        <span>Graphic Designer at Self Employed</span>
-                                        <ul>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star-half-o"></i></li>
-                                        </ul>
-                                        <a href="#" title="">Status</a>
+                                        <span>{{ user.dataValues.role.dataValues.name }}</span>                                
                                     </div>
                                     <div class="tab-feed st2 settingjb">
                                         <ul>
                                             <li data-tab="feed-dd" class="active">
                                                 <a href="#" title="">
                                                     <img src="/images/ic1.png" alt="">
-                                                    <span>Feed</span>
-                                                </a>
-                                            </li>
-                                            <li data-tab="info-dd">
-                                                <a href="#" title="">
-                                                    <img src="/images/ic2.png" alt="">
-                                                    <span>Info</span>
-                                                </a>
-                                            </li>
-                                            <li data-tab="saved-jobs">
-                                                <a href="#" title="">
-                                                    <img src="/images/ic4.png" alt="">
-                                                    <span>Jobs</span>
-                                                </a>
-                                            </li>
-                                            <li data-tab="my-bids">
-                                                <a href="#" title="">
-                                                    <img src="/images/ic5.png" alt="">
-                                                    <span>Bids</span>
-                                                </a>
-                                            </li>
-                                            <li data-tab="portfolio-dd">
-                                                <a href="#" title="">
-                                                    <img src="/images/ic3.png" alt="">
-                                                    <span>Portfolio</span>
+                                                    <span>Mis incidentes</span>
                                                 </a>
                                             </li>
                                             <li data-tab="rewivewdata">
                                                 <a href="#" title="">
                                                     <img src="/images/review.png" alt="">
-                                                    <span>Reviews</span>
+                                                    <span>Comentarios</span>
                                                 </a>
                                             </li>
-                                            <li data-tab="payment-dd">
+                                            <li data-tab="info-dd">
                                                 <a href="#" title="">
-                                                    <img src="/images/ic6.png" alt="">
-                                                    <span>Payment</span>
+                                                    <img src="/images/ic2.png" alt="">
+                                                    <span>Sobre mi</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -2185,8 +2131,8 @@
                         <div class="col-lg-3">
                             <div class="right-sidebar">
                                 <div class="message-btn">
-                                    <a href="profile-account-setting.html" title=""><i class="fa fa-cog"></i>
-                                        Setting</a>
+                                    <a href="/perfil/ajustes" title=""><i class="fa fa-cog"></i>
+                                        Ajustes</a>
                                 </div>
                                 <div class="widget widget-portfolio">
                                     <div class="wd-heady">
@@ -2361,4 +2307,5 @@
 <script src="/javascripts/flatpickr.min.js"></script>
 <script src="/stylesheets/lib/slick/slick.min.js"></script>
 <script src="/javascripts/script.js"></script>
+<script src="/javascripts/profile.js"></script>
 {{/extend}}
