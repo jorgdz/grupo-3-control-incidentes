@@ -1,0 +1,95 @@
+{{#extend "head"}}
+{{> title title="Editar usuario" }}
+{{/extend}}
+
+    {{#extend "header"}}
+    {{> admin/header}}
+    {{/extend}}
+
+    <section class="profile-account-setting">
+      <hr>
+      <div class="container">
+        <div class="post-project-fields">
+          {{#if success}}
+            <div style="color: rgb(46, 136, 61); font-weight: bold; font-size: 20px; padding:1em;">
+              <span>{{ success }}</span>
+            </div>
+            <hr>
+          {{/if}}
+          
+          {{#if error}}
+            <div style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+              <span>{{ error }}</span>
+            </div>
+            <hr>
+          {{/if}}
+          
+          {{#if message}}
+            <div style="color: rgb(16, 92, 143); font-weight: bold; font-size: 20px;">
+              <span>{{ message }}</span>
+            </div>
+            <hr>
+          {{/if}}
+
+          {{#if errorsValidator}}
+            <ul style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+              {{#each errorsValidator}}
+                <li>{{ msg }}</li>
+              {{/each}}
+            </ul>
+            <hr>
+          {{/if}}
+
+          <form action="/usuarios/save" method="POST">
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="">Nombres</label><br><br>
+                <input type="text" name="nombres" placeholder="Nombres">
+              </div>
+              <div class="col-lg-6">
+                <label for="">Apellidos</label><br><br>
+                <input type="text" name="apellidos" placeholder="Apellidos">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="">Cédula (*)</label><br><br>
+                <input type="text" name="cedula" placeholder="Cédula">
+              </div>
+              <div class="col-lg-6">
+                <label for="">Correo (*)</label><br><br>
+                <input type="text" name="email" placeholder="Correo">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="">Fecha de nacimiento</label><br><br>
+                <input type="date" value="1999-09-09" name="fecha_nacimiento">
+              </div>
+              <div class="col-lg-6">
+                <label for="">Rol de usuario</label><br><br>
+                <select id="inputState" name="role_id" class="form-control">
+                  <option value="0">Seleccione el rol</option>
+                  {{#each roles}}
+                    <option value="{{dataValues.id}}">{{dataValues.name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>    
+            <div class="col-lg-12">
+              <ul>
+                <li><button class="active" type="submit">Guardar</button></li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+    {{> admin/footer}}
+
+{{#extend "scripts"}}
+<script src="/javascripts/flatpickr.min.js"></script>
+<script src="/stylesheets/lib/slick/slick.min.js"></script>
+<script src="/javascripts/script.js"></script>
+{{/extend}}

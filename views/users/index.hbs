@@ -1,0 +1,144 @@
+{{#extend "head"}}
+{{> title title="Usuarios"}}
+{{/extend}}
+
+    {{#extend "header"}}
+    {{> admin/header}}
+    {{/extend}}
+
+    <section class="profile-account-setting">
+      <br><br>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            {{#if success}}
+              <div style="color: rgb(46, 136, 61); font-weight: bold; font-size: 20px; padding:1em;">
+                <span>{{ success }}</span>
+              </div>
+              <hr>
+            {{/if}}
+            
+            {{#if error}}
+              <div style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+                <span>{{ error }}</span>
+              </div>
+              <hr>
+            {{/if}}
+            
+            {{#if message}}
+              <div style="color: rgb(16, 92, 143); font-weight: bold; font-size: 20px;">
+                <span>{{ message }}</span>
+              </div>
+              <hr>
+            {{/if}}
+
+            {{#if errorsValidator}}
+              <ul style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+                {{#each errorsValidator}}
+                  <li>{{ msg }}</li>
+                {{/each}}
+              </ul>
+              <hr>
+            {{/if}}
+
+            <a href="/usuarios/create" class="btn btn-primary">Agregar usuario</a>
+            
+            <hr>
+            <form action="/usuarios?size={{size}}&page={{users.currentPage}}&search={{search}}&rol={{rol}}" method="GET">
+              <div class="col col-sm-12">
+                <div class="row">
+                  <div class="col col-sm-4">
+                    <input type="hidden" name="size" value="{{size}}" />
+                    <input type="hidden" name="page" value="{{users.currentPage}}" />
+                    <input type="text" name="search" value="{{search}}" placeholder="Buscar..." class="form-control" />
+                  </div>
+                  {{#if_cond user.dataValues.role_id 1}}
+                  <div class="col col-sm-3">
+                    <select id="inputState" name="rol" class="form-control">
+                      <option value="0">Seleccione el rol</option>
+                      {{#each roles}}
+                        {{#if_cond dataValues.id ../rol}}
+                          <option selected="selected" value="{{dataValues.id}}">{{dataValues.name}}</option>
+                        {{else}}
+                          <option value="{{dataValues.id}}">{{dataValues.name}}</option>
+                        {{/if_cond}}
+                      {{/each}}
+                    </select>
+                  </div>
+                  {{/if_cond}}
+                  <div class="col col-sm-3">
+                    <input type="submit" value="Buscar" class="btn btn-primary" />	
+                  </div>
+                </div>
+              </div>
+            </form>
+            <hr>
+
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Cédula</th>
+                  <th scope="col">Nombres</th>
+                  <th scope="col">Apellidos</th>
+                  <th scope="col">Rol</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Editar</th>
+                  <th scope="col">Borrar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each users.data}}
+                <tr>
+                  <td scope="row">{{sumTwoValue @index 1}}</td>
+                  <td>{{ dataValues.cedula }}</td>
+                  <td>{{ dataValues.nombres }}</td>
+                  <td>{{ dataValues.apellidos }}</td>
+                  <td>{{ dataValues.role.dataValues.name }}</td>
+                  <td>
+                    {{#if dataValues.estado}}
+                      <span class="badge badge-success">Activo</span>
+                    {{else}}
+                      <span class="badge badge-danger">Inactivo</span>
+                    {{/if}}
+                  </td>
+                  <td>
+                    <a href="/usuarios/{{ dataValues.id }}/editar" class="btn btn-info"><i class="fa fa-pencil"></i></a>
+                  </td>
+                  <td>
+                    <a href="/usuarios/{{ dataValues.id }}/borrar" onclick="event.preventDefault(); (confirm('¿ ESTAS SEGURO QUE DESEAS ELIMINAR ESTE USUARIO ?')) ? document.getElementById('delete-form-{{dataValues.id}}').submit() : false;" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                    <form id="delete-form-{{dataValues.id}}" action="/usuarios/{{ dataValues.id }}/borrar" method="POST" style="display: none;"></form>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+
+            <div style="width:100%;text-align: center;">
+              <div
+                class="btn-group mr-2"
+                role="group"
+                aria-label="First group"
+              >
+                <a href="?size={{size}}&page={{users.prev}}&search={{search}}&rol={{rol}}" class="btn btn-info"><span class="arrow"><i class="fa fa-chevron-left"></i></span></a>
+                {{#each users.numbersPage as | number |}}
+                  <a href="?size={{../size}}&page={{lessThan number}}&search={{../search}}&rol={{../rol}}" class="btn btn-info">{{number}}</a>
+                {{/each}}
+                <a href="?size={{size}}&page={{users.next}}&search={{search}}&rol={{rol}}" class="btn btn-info"><span class="arrow"><i class="fa fa-chevron-right"></i></span></a>
+              </div>
+            </div>
+
+            <hr>
+            <span class="badge badge-info">Total de registros: {{ users.totalElements }}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    {{> admin/footer}}
+
+{{#extend "scripts"}}
+<script src="/javascripts/flatpickr.min.js"></script>
+<script src="/stylesheets/lib/slick/slick.min.js"></script>
+<script src="/javascripts/script.js"></script>
+{{/extend}}
