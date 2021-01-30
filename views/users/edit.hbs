@@ -1,0 +1,105 @@
+{{#extend "head"}}
+{{> title title="Editar usuario" }}
+{{/extend}}
+
+    {{#extend "header"}}
+    {{> admin/header}}
+    {{/extend}}
+
+    <section class="profile-account-setting">
+      <hr>
+      <div class="container">
+        <div class="post-project-fields">
+          {{#if success}}
+            <div style="color: rgb(46, 136, 61); font-weight: bold; font-size: 20px; padding:1em;">
+              <span>{{ success }}</span>
+            </div>
+            <hr>
+          {{/if}}
+          
+          {{#if error}}
+            <div style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+              <span>{{ error }}</span>
+            </div>
+            <hr>
+          {{/if}}
+          
+          {{#if message}}
+            <div style="color: rgb(16, 92, 143); font-weight: bold; font-size: 20px;">
+              <span>{{ message }}</span>
+            </div>
+            <hr>
+          {{/if}}
+
+          {{#if errorsValidator}}
+            <ul style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+              {{#each errorsValidator}}
+                <li>{{ msg }}</li>
+              {{/each}}
+            </ul>
+            <hr>
+          {{/if}}
+
+          <form action="/usuarios/{{usuario.dataValues.id}}/editar" method="POST">
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="">Nombres</label><br><br>
+                <input type="text" name="nombres" value="{{ usuario.dataValues.nombres }}" placeholder="Nombres">
+              </div>
+              <div class="col-lg-6">
+                <label for="">Apellidos</label><br><br>
+                <input type="text" name="apellidos" value="{{ usuario.dataValues.apellidos }}" placeholder="Apellidos">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="">Cédula</label><br><br>
+                <input type="text" name="cedula" value="{{ usuario.dataValues.cedula }}" placeholder="Apellidos">
+              </div>
+              <div class="col-lg-6">
+                <label for="">Correo</label><br><br>
+                <input type="text" name="email" value="{{ usuario.dataValues.email }}" placeholder="Correo">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="">Fecha de nacimiento</label><br><br>
+                <input type="date" name="fecha_nacimiento" value="{{ usuario.dataValues.fecha_nacimiento }}">
+              </div>
+              <div class="col-lg-6">
+                <label for="">Nombre de usuario</label><br><br>
+                <input type="text" name="username" value="{{ usuario.dataValues.username }}" placeholder="Nombre de usuario">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="">Estado</label><br><br>
+                <select name="estado">
+                  <option value="true">Activo</option>
+                  <option value="false">Inactivo</option>
+                </select>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group form-check" style="padding-top: 35px;">
+                  <label for="reset">Resetear contraseña &nbsp;</label>
+                  <input type="checkbox" class="" style="width: 0%;height: 0px;" name="reset" value="false" id="reset"/>
+                </div>
+              </div>
+            </div>     
+            <div class="col-lg-12">
+              <ul>
+                <li><button class="active" type="submit">Guardar cambios</button></li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+    {{> admin/footer}}
+
+{{#extend "scripts"}}
+<script src="/javascripts/flatpickr.min.js"></script>
+<script src="/stylesheets/lib/slick/slick.min.js"></script>
+<script src="/javascripts/script.js"></script>
+{{/extend}}
