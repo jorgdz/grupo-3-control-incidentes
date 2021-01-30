@@ -6885,27 +6885,3 @@ LOADER
 .loader img {
   width: 100%;
 }
-
-#preloader {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: #fff;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity .5s ease, visibility .5s ease;
-}
-
-#preloader.close{
-  opacity: 0;
-  visibility: hidden;
-}
-#preloader > img.gif {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-}

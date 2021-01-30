@@ -3,6 +3,8 @@ filePictureUser.addEventListener('change', function(event) {
   const endpoint = '/perfil/api/foto'
   var formData = new FormData()
   formData.append('file', event.target.files[0])
+  var img1 = document.querySelector('#img_loader')
+  img1.src='/images/loader.gif'
 
   fetch(endpoint, {
     method: 'PUT',

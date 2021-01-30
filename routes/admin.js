@@ -7,7 +7,11 @@ const Atencion = require('../lib/db').atenciones
 
 /* GET admin page. */
 router.get('/', auth, async function (req, res, next) {
-	const countAtentions = await Atencion.count({ where: { empleado_id: req.user.empleado.id} })
+	let countAtentions = 0
+	if(req.user.role_id == 2) {
+		countAtentions = await Atencion.count({ where: { empleado_id: req.user.empleado.id} })
+	}
+	
 	res.render('incidentes/index', { totalAtenciones: countAtentions })
 })
 
