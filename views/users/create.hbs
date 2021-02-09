@@ -75,7 +75,18 @@
                   {{/each}}
                 </select>
               </div>
-            </div>    
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="">Villa</label><br><br>
+                <select id="inputState" name="villa_id" class="form-control">
+                  <option value="0">Seleccione la villa</option>
+                  {{#each villas}}
+                    <option value="{{dataValues.id}}">{{dataValues.numero}} - {{dataValues.bloque.dataValues.nombre}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
             <div class="col-lg-12">
               <ul>
                 <li><button class="active" type="submit">Guardar</button></li>

@@ -3,16 +3,246 @@
 const express = require('express')
 const router = express.Router()
 const { auth } = require('../middleware/auth')
+const { residenteUsuarioFinal } = require('../middleware/residente-usuario-final')
 const Atencion = require('../lib/db').atenciones
+const Incidente = require('../lib/db').incidentes
+const Adjunto = require('../lib/db').adjuntos
+const Residente = require('../lib/db').residentes
+const User = require('../lib/db').users
+const Villa = require('../lib/db').villas
+const Bloque = require('../lib/db').bloques
+const TipoIncidente = require('../lib/db').tipo_incidentes
+const Comentario = require('../lib/db').comentarios
+const SubComentario = require('../lib/db').subcomentarios
+
+const { generateFileName, uploadOneFile } = require('../lib/storage')
+const multer = require('multer')
+const storage = multer.diskStorage({
+  destination: '',
+  filename: function (req, file, cb) {
+    cb(null, generateFileName(file.originalname))
+  },
+})
+
+const upload = multer({ 
+  storage: storage,  
+  limits: {
+    fileSize: 5 * 1024 * 1024
+  } 
+})
 
 /* GET admin page. */
 router.get('/', auth, async function (req, res, next) {
 	let countAtentions = 0
 	if(req.user.role_id == 2) {
 		countAtentions = await Atencion.count({ where: { empleado_id: req.user.empleado.id} })
+		res.render('incidentes/index', { totalAtenciones: countAtentions })
+	} else if (req.user.role_id == 3) {
+		const tiposIncidentes = await TipoIncidente.findAll({ order: [['tipo', 'ASC']] })
+		res.render('incidentes/index', { tipos: tiposIncidentes })
+	} else {
+		res.render('incidentes/index')
 	}
-	
-	res.render('incidentes/index', { totalAtenciones: countAtentions })
+})
+
+/* GET incident page. */
+router.get('/:id/incidente', auth, async function (req, res, next) {
+	res.send(`hello incident ${req.params.id}`)
+})
+
+/**
+ * 
+ * Api Rest Get Incidents
+ */
+router.get('/api/incidentes', auth, async function (req, res, next) {
+	const incidentes = await Incidente.findAll({
+		include: [
+			{
+				model: Residente,
+				as: 'residente',
+				include: [
+					{
+						model: User,
+						as: 'user',
+						attributes: {
+							exclude: ['password']
+						}
+					},
+					{
+						model: Villa,
+						as: 'villa',
+						include: [{
+							model: Bloque,
+							as: 'bloque',
+						}]
+					}
+				]
+			},
+			{
+				model: Adjunto,
+				as: 'adjuntos'
+			},
+			{
+				model: Comentario,
+				as: 'comentarios',
+				include: [
+					{
+						model: SubComentario,
+						as: 'subcomentarios',
+						include: [
+							{
+								model: Residente,
+								as: 'residente',
+								include: [
+									{
+										model: User,
+										as: 'user'
+									}
+								]
+							}
+						]
+					},
+					{
+						model: Residente,
+						as: 'residente',
+						include: [
+							{
+								model: User,
+								as: 'user'
+							}
+						]
+					}
+				]
+			},
+			{
+				model: TipoIncidente,
+				as: 'tipo'
+			}
+		],
+		order: [['id', 'DESC']]
+	})
+
+	res.send(incidentes).status(200)
+})
+
+/**
+ * 
+ * Api Rest Get user auth
+ */
+router.get('/api/auth/user', auth, async function (req, res, next) {
+	res.send(req.user)
+})
+
+/**
+ * 
+ * Api Rest Post create incident
+ */
+router.post('/api/incident', auth, residenteUsuarioFinal, upload.array('file'), async function (req, res, next) {
+	let response = []
+	if (req.files.length > 0) {
+		for await (let file of req.files) {
+			response.push(await uploadOneFile(file, 'urbanizacion/'))
+		}
+	}
+
+	let body = {
+		descripcion: req.body.descripcion,
+		tipo_id: req.body.tipo_incidente_id,
+		detalles: req.body.detalles,
+		residente_id: req.user.residente.id,
+		estado: 'NO ATENDIDO'
+	}
+
+	if (response.length > 0) {
+		body = {
+			descripcion: req.body.descripcion,
+			tipo_id: req.body.tipo_incidente_id,
+			detalles: req.body.detalles,
+			residente_id: req.user.residente.id,
+			estado: 'NO ATENDIDO',
+			adjuntos: response
+		}
+	}
+
+	/**
+	 * Save incident
+	 */
+	const incidentRegister = await Incidente.create(body, {
+		include: [ {model: Adjunto, as: 'adjuntos'} ]
+	})
+
+	if (incidentRegister.id) {
+		const lastIncident = await Incidente.findAll({ where: { id: incidentRegister.id }, 
+			include: [
+				{
+					model: Residente,
+					as: 'residente',
+					include: [
+						{
+							model: User,
+							as: 'user',
+							attributes: {
+								exclude: ['password']
+							}
+						},
+						{
+							model: Villa,
+							as: 'villa',
+							include: [{
+								model: Bloque,
+								as: 'bloque',
+							}]
+						}
+					]
+				},
+				{
+					model: Adjunto,
+					as: 'adjuntos'
+				},
+				{
+					model: Comentario,
+					as: 'comentarios',
+					include: [
+						{
+							model: SubComentario,
+							as: 'subcomentarios',
+							include: [
+								{
+									model: Residente,
+									as: 'residente',
+									include: [
+										{
+											model: User,
+											as: 'user'
+										}
+									]
+								}
+							]
+						},
+						{
+							model: Residente,
+							as: 'residente',
+							include: [
+								{
+									model: User,
+									as: 'user'
+								}
+							]
+						}
+					]
+				},
+				{
+					model: TipoIncidente,
+					as: 'tipo'
+				}
+			],
+		})
+		res.send(lastIncident[0]).status(200)
+	} else {
+		res.send({
+			error: 'Ha ocurrido un error al intentar publicar el incidente.'
+		}).status(400)
+	}
 })
 
 module.exports = router

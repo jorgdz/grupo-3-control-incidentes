@@ -15,9 +15,6 @@ module.exports = (sequelize, Sequelize) => {
         empleado_id: {
             type: Sequelize.INTEGER,
             allowNull: false
-        },
-        estado: {
-            type: Sequelize.ENUM('ATENDIDO', 'NO ATENDIDO', 'ATENDIENDOSE')
         }
     })
 
