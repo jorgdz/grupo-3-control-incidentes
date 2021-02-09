@@ -22,6 +22,9 @@ module.exports = (sequelize, Sequelize) => {
         residente_id: {
             type: Sequelize.INTEGER,
             allowNull: false
+        },
+        estado: {
+            type: Sequelize.ENUM('ATENDIDO', 'NO ATENDIDO', 'ATENDIENDOSE')
         }
     })
 

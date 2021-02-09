@@ -75,8 +75,13 @@
               <div class="col-lg-6">
                 <label for="">Estado</label><br><br>
                 <select name="estado">
-                  <option value="true">Activo</option>
-                  <option value="false">Inactivo</option>
+                  {{#if_cond usuario.dataValues.estado true}}
+                    <option value="true" selected="selected">Activo</option>
+                    <option value="false">Inactivo</option>
+                  {{else}}
+                    <option value="true">Activo</option>
+                    <option value="false" selected="selected">Inactivo</option>
+                  {{/if_cond}}
                 </select>
               </div>
               <div class="col-lg-6">
@@ -85,7 +90,21 @@
                   <input type="checkbox" class="" style="width: 0%;height: 0px;" name="reset" value="false" id="reset"/>
                 </div>
               </div>
-            </div>     
+            </div>
+            {{!-- <div class="row">
+              <div class="col-lg-6">
+                <label for="">Villa</label><br><br>
+                <select name="villa_id">
+                  {{#each villas}}
+                    {{#if_cond id ../usuario.villa_id}}
+                      <option value="{{dataValues.id}}" selected="selected">{{dataValues.numero}} - {{dataValues.bloque.dataValues.nombre}}</option>
+                    {{else}}
+                      <option value="{{dataValues.id}}">{{dataValues.numero}}</option>
+                    {{/if_cond}}
+                  {{/each}}
+                </select>
+              </div>
+            </div> --}}
             <div class="col-lg-12">
               <ul>
                 <li><button class="active" type="submit">Guardar cambios</button></li>

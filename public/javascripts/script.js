@@ -28,6 +28,12 @@ $(window).on("load", function() {
         $(".wrapper").removeClass("overlay");
         return false;
     });
+    
+    $("#cancelCreateIncident").on("click", function(){
+        $(".post-popup.job_post").removeClass("active");
+        $(".wrapper").removeClass("overlay");
+        return false;
+    });
 
     //  ============= SIGNIN CONTROL FUNCTION =========
 
@@ -202,10 +208,10 @@ $(window).on("load", function() {
     //  ================== Edit Options Function =================
 
 
-    $(".ed-opts-open").on("click", function(){
-        $(this).next(".ed-options").toggleClass("active");
-        return false;
-    });
+    // $(".ed-opts-open").on("click", function(){
+    //     $(this).next(".ed-options").toggleClass("active");
+    //     return false;
+    // });
 
 
     // ============== Menu Script =============

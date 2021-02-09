@@ -11,6 +11,8 @@ const { auth } = require('../middleware/auth')
 const { adminEmpleado }  = require('../middleware/admin-empleado')
 const User = require('../lib/db').users
 const Role = require('../lib/db').role
+const Villa = require('../lib/db').villas
+const Bloque = require('../lib/db').bloques
 const Empleado = require('../lib/db').empleados
 const Residente = require('../lib/db').residentes
 const validateUpdateUser = require('../lib/validator/update-user')
@@ -133,8 +135,13 @@ router.get('/', auth, adminEmpleado, async function (req, res, next) {
 /* GET edit users page. */
 router.get('/:id/editar', auth, adminEmpleado, async function (req, res, next) {
   const user = await User.findAll({ where: {id: req.params.id }})
+  const villas = await Villa.findAll({include: [{
+    model: Bloque,
+    as: 'bloque'
+  }]})
+
   if (user.length > 0) {
-    res.render('users/edit', {usuario: user[0]})
+    res.render('users/edit', {usuario: user[0], villas: villas})
   } else {
     req.flash('error', 'Usuario no encontrado.')
     res.redirect('/usuarios')
@@ -158,7 +165,13 @@ router.get('/create', auth, adminEmpleado, async function (req, res, next) {
   }
 
   const roles = await Role.findAll({ where: where})
-  res.render('users/create', { roles })
+
+  const villas = await Villa.findAll({include: [{
+    model: Bloque,
+    as: 'bloque'
+  }]})
+
+  res.render('users/create', { roles, villas })
 })
 
 /* POST delete users page. */
@@ -196,7 +209,7 @@ router.post('/:id/editar', auth, adminEmpleado, validateUpdateUser, async functi
       }
 
       const userUpdated = await User.update(body, { where: { id: req.params.id }})
-
+      
       if (userUpdated) {
         req.flash('success', 'Usuario modificado.')
         res.redirect('/usuarios')
@@ -254,7 +267,7 @@ router.post('/save', auth, adminEmpleado, validateSaveUser, async function (req,
         }
       } else if (userRegister.role_id == 3) {
         const code = randomToken.generate(30)
-        const residenteRegister = await Residente.create({ user_id: userRegister.id, verification_code: code })
+        const residenteRegister = await Residente.create({ user_id: userRegister.id, verification_code: code, villa_id: parseInt(req.body.villa_id)})
 
         const userCreate = await User.findAll({ where: { id: userRegister.id }, 
           include: [{

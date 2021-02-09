@@ -1,4 +1,5 @@
-var filePictureUser = document.querySelector('#file_picture_user')
+var filePictureUser = document.getElementById('file_picture_user')
+
 filePictureUser.addEventListener('change', function(event) {
   const endpoint = '/perfil/api/foto'
   var formData = new FormData()

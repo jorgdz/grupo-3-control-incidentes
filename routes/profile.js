@@ -8,6 +8,8 @@ const db = require('../lib/db')
 const validatorUpdateProfile = require('../lib/validator/update-profile')
 const validatorChangePass = require('../lib/validator/change-password')
 const User = db.users
+const Empleado = db.empleados
+const Residente = db.residentes
 
 const bcrypt = require('bcrypt')
 
@@ -36,6 +38,23 @@ router.get('/', auth, function (req, res, next) {
 /* GET settings profile user. */
 router.get('/ajustes', auth, function (req, res, next) {
 	res.render('profile/settings')
+})
+
+/* GET user profile. */
+router.get('/usuario/:username', auth, async function (req, res, next) {
+  const user = await User.findAll({ where: { username: req.params.username }, 
+    include: [
+      {
+        model: Residente,
+        as: 'residente'
+      },
+      {
+        model: Empleado,
+        as: 'empleado'
+      }
+    ]})
+
+	res.render('profile/user', { profileUser: user[0] })
 })
 
 /* POST settings profile user. */

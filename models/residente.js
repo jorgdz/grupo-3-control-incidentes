@@ -12,6 +12,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: false
         },
+        villa_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
         verification_code: {
             type: Sequelize.STRING,
         },

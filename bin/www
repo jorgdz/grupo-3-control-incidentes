@@ -15,19 +15,28 @@ var app = require('../app')
 var debug = require('debug')('incidentes:server')
 var http = require('http')
 
-
 /**
  * Get port from environment and store in Express.
  */
 
 var port = normalizePort(process.env.PORT || '3000')
 app.set('port', port)
+process.env.TZ = 'America/Lima'
 
 /**
  * Create HTTP server.
  */
 
 var server = http.createServer(app)
+var io = require('socket.io')(server)
+
+io.on('connection', function (socket) {
+  console.log('Conectado !!')
+
+  socket.on('data', function (obj) {
+    io.emit('data', obj)
+  })
+})
 
 /**
  * Listen on provided port, on all network interfaces.
