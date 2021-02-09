@@ -45,7 +45,7 @@ window.addEventListener('load', function () {
       drawIncidents(res).then(response => response)
     })
 
-  let socket = io('ws://incident-web.herokuapp.com', { 'forceNew': true })
+  let socket = io('https://incident-web.herokuapp.com', { 'forceNew': true })
 
   socket.on('data', async function (data) {
     if (data.success == 1) {

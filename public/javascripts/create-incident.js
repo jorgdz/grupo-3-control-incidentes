@@ -16,7 +16,7 @@ export default function create () {
   btnPub.addEventListener('click', function () {
     addIncident(tipoIncidente.value)
       .then(res => {
-        let socket = io('ws://incident-web.herokuapp.com', { 'forceNew': true })
+        let socket = io('https://incident-web.herokuapp.com', { 'forceNew': true })
         socket.on('connect', async function () {
           socket.emit('data', {
             success: '1',
