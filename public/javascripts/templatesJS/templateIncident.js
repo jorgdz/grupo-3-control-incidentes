@@ -1,5 +1,6 @@
 export default function template (obj) {
-  let createdTime = moment(obj.createdAt, "YYYYMMDD").fromNow()
+  let createdTime = moment(new Date(obj.createdAt), "YYYYMMDD").fromNow()
+
   let iconStatus = 'fa fa-check-square'
   if (obj.estado == 'NO ATENDIDO') {
     iconStatus = 'fa fa-square'
