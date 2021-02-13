@@ -14,6 +14,7 @@ const Bloque = require('../lib/db').bloques
 const TipoIncidente = require('../lib/db').tipo_incidentes
 const Comentario = require('../lib/db').comentarios
 const SubComentario = require('../lib/db').subcomentarios
+const { Op } = require('sequelize')
 
 const { generateFileName, uploadOneFile } = require('../lib/storage')
 const multer = require('multer')
@@ -48,6 +49,13 @@ router.get('/', auth, async function (req, res, next) {
 /* GET incident page. */
 router.get('/:id/incidente', auth, async function (req, res, next) {
 	res.send(`hello incident ${req.params.id}`)
+})
+
+/* POST delete incidente. */
+router.post('/incidente/:id/borrar', auth, residenteUsuarioFinal, async function (req, res, next) {
+  await Incidente.destroy({ where: { id: req.params.id } })
+  req.flash('success', 'Incidente borrado.')
+  res.redirect('/valle-verde')
 })
 
 /**
@@ -119,6 +127,81 @@ router.get('/api/incidentes', auth, async function (req, res, next) {
 				as: 'tipo'
 			}
 		],
+		order: [['id', 'DESC']]
+	})
+
+	res.send(incidentes).status(200)
+})
+/**
+ * 
+ * Api Rest Get Incidents for employee
+ */
+router.get('/api/incidentes/employee', auth, async function (req, res, next) {
+	const incidentes = await Incidente.findAll({
+		include: [
+			{
+				model: Residente,
+				as: 'residente',
+				include: [
+					{
+						model: User,
+						as: 'user',
+						attributes: {
+							exclude: ['password']
+						}
+					},
+					{
+						model: Villa,
+						as: 'villa',
+						include: [{
+							model: Bloque,
+							as: 'bloque',
+						}]
+					}
+				]
+			},
+			{
+				model: Adjunto,
+				as: 'adjuntos'
+			},
+			{
+				model: Comentario,
+				as: 'comentarios',
+				include: [
+					{
+						model: SubComentario,
+						as: 'subcomentarios',
+						include: [
+							{
+								model: Residente,
+								as: 'residente',
+								include: [
+									{
+										model: User,
+										as: 'user'
+									}
+								]
+							}
+						]
+					},
+					{
+						model: Residente,
+						as: 'residente',
+						include: [
+							{
+								model: User,
+								as: 'user'
+							}
+						]
+					}
+				]
+			},
+			{
+				model: TipoIncidente,
+				as: 'tipo'
+			}
+		],
+		where: { estado: 'NO ATENDIDO' },
 		order: [['id', 'DESC']]
 	})
 
@@ -242,6 +325,21 @@ router.post('/api/incident', auth, residenteUsuarioFinal, upload.array('file'), 
 		res.send({
 			error: 'Ha ocurrido un error al intentar publicar el incidente.'
 		}).status(400)
+	}
+})
+
+/**
+ * 
+ * Api Update incident
+ */
+router.put('/api/:id/incidentes', auth, residenteUsuarioFinal, async function (req, res, next) {
+	let body = {
+		descripcion: req.body.descripcion
+	}
+
+	const incidentUpdated = await Incidente.update(body, { where: { id: req.params.id }})
+	if (incidentUpdated) {
+		res.send(incidentUpdated)
 	}
 })
 

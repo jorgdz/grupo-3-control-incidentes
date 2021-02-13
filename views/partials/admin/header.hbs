@@ -24,7 +24,7 @@
                         <li>
                             <a href="#" title="">
                                 <span><img src="/images/icon3.png" alt=""></span>
-                                Administración
+                                Gestión de usuarios
                             </a>
                             <ul>
                                 {{#if_cond user.dataValues.role_id 1}}
@@ -34,6 +34,18 @@
                             </ul>
                         </li>
                         {{/if_not}}
+                        {{#if_cond user.dataValues.role_id 1}}
+                        <li>
+                            <a href="#" title="">
+                                <span><img src="/images/icon7.png" alt=""></span>
+                                Viviendas
+                            </a>
+                            <ul>
+                                <li><a href="/bloques" title="">Bloques</a></li>
+                                <li><a href="/villas" title="">Villas</a></li>
+                            </ul>
+                        </li>
+                        {{/if_cond}}
                         <li>
                             <a href="/perfil" title="">
                                 <span><img src="/images/icon4.png" alt=""></span>
