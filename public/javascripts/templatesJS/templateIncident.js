@@ -31,7 +31,7 @@ export default function template (obj) {
     comments = `${obj.comentarios.length} comentarios`
   }
 
-  return `<div class="post-bar animate-incident">
+  let elem = `<div class="post-bar animate-incident">
     <div class="post_topbar">
       <div class="usy-dt">
         <img src="${obj.residente.user.url_imagen}" width=40 height=40 alt="">
@@ -43,8 +43,11 @@ export default function template (obj) {
       <div class="ed-opts" id="opts-ed-incidents-${obj.id}" style="display:none;">
         <a href="#" title="" class="ed-opts-open" id="open-pots-incidents-${obj.id}"><i class="la la-ellipsis-v"></i></a>
         <ul class="ed-options" id="options-incident-${obj.id}">
-          <li><a href="#" title="">Editar</a></li>
-          <li><a href="#" title="">Borrar</a></li>
+          <li><a href="#!" id="editarInicident-${obj.id}" title="">Editar</a></li>
+          <li>
+            <a href="/valle-verde/incidente/${obj.id}/borrar" onclick="event.preventDefault(); (confirm('¿ ESTAS SEGURO QUE DESEAS BORRAR ESTE INCIDENTE ?')) ? document.getElementById('delete-form-${obj.id}').submit() : false;" title="">Borrar</a>
+            <form id="delete-form-${obj.id}" action="/valle-verde/incidente/${obj.id}/borrar" method="POST" style="display: none;"></form>
+          </li>
         </ul>
       </div>
     </div>
@@ -63,10 +66,19 @@ export default function template (obj) {
       </ul>
 
       <a href="/valle-verde/${obj.id}/incidente">
-      <p>${obj.descripcion}</p>
+        <p id="descripcion-incident-${obj.id}">${obj.descripcion}</p>
+      </a>
+      <div id="descripcion-incident-elem-${obj.id}">
+        <div class="col-lg-12">
+          <input type="text" class="form-control" id="des-input-incident-${obj.id}" value="${obj.descripcion}">
+          <br>
+          <button class="btn btn-info" type="button" id="btnEdit${obj.id}">Editar</button>
+          <button class="btn btn-danger" type="button" id="btnCancel${obj.id}">Cancelar</button>
+        </div>
+      </div>
       <br>
       ${imgIncident}
-      </a>
+     
     </div>
     <div class="job-status-bar">
       <ul class="like-com">
@@ -75,4 +87,6 @@ export default function template (obj) {
       <a href="#" class="com" id="comment_incident-${obj.id}"><i class="fa fa-comment-alt"></i> ${comments}</a>
     </div>
   </div>`
+
+  return elem
 }

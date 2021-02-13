@@ -1,0 +1,71 @@
+{{#extend "head"}}
+<link rel="stylesheet" href="/datatables/datatables.min.css">
+<link rel="stylesheet" href="/datatables/DataTables-1.10.23/css/dataTables.bootstrap4.min.css">
+{{> title title="Bloques"}}
+{{/extend}}
+
+    {{#extend "header"}}
+    {{> admin/header}}
+    {{/extend}}
+
+    <section class="profile-account-setting">
+      <hr>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            {{#if success}}
+              <div style="color: rgb(46, 136, 61); font-weight: bold; font-size: 20px; padding:1em;">
+                <span>{{ success }}</span>
+              </div>
+              <hr>
+            {{/if}}
+            
+            {{#if error}}
+              <div style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+                <span>{{ error }}</span>
+              </div>
+              <hr>
+            {{/if}}
+            
+            {{#if message}}
+              <div style="color: rgb(16, 92, 143); font-weight: bold; font-size: 20px;">
+                <span>{{ message }}</span>
+              </div>
+              <hr>
+            {{/if}}
+
+            {{#if errorsValidator}}
+              <ul style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+                {{#each errorsValidator}}
+                  <li>{{ msg }}</li>
+                {{/each}}
+              </ul>
+              <hr>
+            {{/if}}
+            <a href="/bloques/create" class="btn btn-primary">Agregar bloque</a>
+
+            <hr>
+            <table id="bloques-table" class="table table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" style="width: 190px;">#</th>
+                  <th scope="col" style="width: 690px;" >Nombre del bloque</th>
+                  <th scope="col">Editar</th>
+                  <th scope="col">Borrar</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {{> admin/footer}}
+
+{{#extend "scripts"}}
+<script src="/javascripts/flatpickr.min.js"></script>
+<script src="/stylesheets/lib/slick/slick.min.js"></script>
+<script src="/javascripts/script.js"></script>
+<script src="/datatables/datatables.min.js"></script>
+<script src="/javascripts/main-bloque-datatable.js"></script>
+{{/extend}}

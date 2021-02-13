@@ -1,0 +1,66 @@
+{{#extend "head"}}
+{{> title title="Crear bloque" }}
+{{/extend}}
+
+    {{#extend "header"}}
+    {{> admin/header}}
+    {{/extend}}
+
+    <section class="profile-account-setting">
+      <hr>
+      <div class="container">
+        <div class="post-project-fields">
+          {{#if success}}
+            <div style="color: rgb(46, 136, 61); font-weight: bold; font-size: 20px; padding:1em;">
+              <span>{{ success }}</span>
+            </div>
+            <hr>
+          {{/if}}
+          
+          {{#if error}}
+            <div style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+              <span>{{ error }}</span>
+            </div>
+            <hr>
+          {{/if}}
+          
+          {{#if message}}
+            <div style="color: rgb(16, 92, 143); font-weight: bold; font-size: 20px;">
+              <span>{{ message }}</span>
+            </div>
+            <hr>
+          {{/if}}
+
+          {{#if errorsValidator}}
+            <ul style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+              {{#each errorsValidator}}
+                <li>{{ msg }}</li>
+              {{/each}}
+            </ul>
+            <hr>
+          {{/if}}
+
+          <form action="/bloques/save" method="POST">
+            <div class="row">
+              <div class="col-lg-6">
+                <label for="">Nombre</label><br><br>
+                <input type="text" name="nombre" placeholder="Nombre del bloque">
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <ul>
+                <li><button class="active" type="submit">Guardar</button></li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+    {{> admin/footer}}
+
+{{#extend "scripts"}}
+<script src="/javascripts/flatpickr.min.js"></script>
+<script src="/stylesheets/lib/slick/slick.min.js"></script>
+<script src="/javascripts/script.js"></script>
+{{/extend}}

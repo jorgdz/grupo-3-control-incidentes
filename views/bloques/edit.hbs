@@ -1,0 +1,36 @@
+{{#extend "head"}}
+{{> title title="Editar bloque" }}
+{{/extend}}
+
+    {{#extend "header"}}
+    {{> admin/header}}
+    {{/extend}}
+
+    <section class="profile-account-setting">
+      <hr>
+      <div class="container">
+        <div class="post-project-fields">
+          <form action="/bloques/{{ bloque.dataValues.id }}/update" method="POST">
+            <div class="row">
+              <div class="col-lg-8">
+                <input type="text" name="nombre" value="{{ bloque.dataValues.nombre }}" placeholder="Nombre del bloque">
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <ul>
+                <li><button class="active" type="submit">Guardar cambios</button></li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    {{> admin/footer}}
+
+{{#extend "scripts"}}
+<script src="/javascripts/flatpickr.min.js"></script>
+<script src="/stylesheets/lib/slick/slick.min.js"></script>
+<script src="/javascripts/script.js"></script>
+{{/extend}}

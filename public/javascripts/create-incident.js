@@ -1,3 +1,34 @@
+const filesIncident = document.querySelector('#files_incident')
+const description = document.querySelector('#description')
+
+const ninoViolencia = document.querySelector('#nino_violencia')
+const hombreViolencia = document.querySelector('#hombre_violencia')
+const mujerViolencia = document.querySelector('#mujer_violencia')
+const adultoMayorViolencia = document.querySelector('#adulto_mayor_violencia')
+const otroParienteViolencia = document.querySelector('#otro_pariente_violencia')
+
+const verbalViolencia = document.querySelector('#verbal_violencia')
+const fisicaViolencia = document.querySelector('#fisica_violencia')
+const psicologicaViolencia = document.querySelector('#psicologica_violencia')
+
+const armacortopunzanteViolencia = document.querySelector('#armacortopunzante_violencia')
+const armafuegoViolencia = document.querySelector('#armafuego_violencia')
+const otraarmaViolencia = document.querySelector('#otraarma_violencia')
+
+const pelajeAnimalPerdido = document.querySelector('#pelaje_animal_perdido')
+const selectTamanioAnimal = document.querySelector('#select-tamanio-animal')
+const selectTipoMascota = document.querySelector('#select-tipo-mascota')
+const razaAnimalPerdido = document.querySelector('#raza_animal_perdido')
+
+const desSospechoso = document.querySelector('#des_sospechoso')
+const pertenenciasHurtadas = document.querySelector('#pertenencias_hurtadas')
+
+const lugarAgresion = document.querySelector('#lugar_agresion')
+
+const selectTipoDesastre = document.querySelector('#select-tipo-desastre')
+
+const selectTipoAccidente = document.querySelector('#select-tipo-accidente')
+
 export default function create () {
   const tipoIncidente = document.querySelector('#tipo_incidente_id')
   const btnPub = document.querySelector('#btnPub')
@@ -8,6 +39,100 @@ export default function create () {
       $('#persona-afectada-violencia').show(300)
       $('#tipo-agresion-violencia').show(300)
       $('#uso-armas-violencia').show(300)
+
+      $('#pelaje-animal').hide(300)
+      $('#tamanio-animal').hide(300)
+      $('#tipo_mascota').hide(300)
+      $('#raza-animal').hide(300)
+      $('#descripcion-sospechoso').hide(300)
+      $('#pertenencias-hurtadas').hide(300)
+      $('#lugar-agresion').hide(300)
+      $('#tipo-desastre').hide(300)
+      $('#tipo-accidente').hide(300)
+    } else if (tipoIncidente.value == 2) {
+      $('#pelaje-animal').show(300)
+      $('#tamanio-animal').show(300)
+      $('#tipo_mascota').show(300)
+      $('#raza-animal').show(300)
+
+      $('#persona-afectada-violencia').hide(300)
+      $('#tipo-agresion-violencia').hide(300)
+      $('#uso-armas-violencia').hide(300)
+      $('#descripcion-sospechoso').hide(300)
+      $('#pertenencias-hurtadas').hide(300)
+      $('#lugar-agresion').hide(300)
+      $('#tipo-desastre').hide(300)
+      $('#tipo-accidente').hide(300)
+    } else if (tipoIncidente.value == 3) {
+      $('#persona-afectada-violencia').show(300)
+      $('#descripcion-sospechoso').show(300)
+      $('#uso-armas-violencia').show(300)
+      $('#pertenencias-hurtadas').show(300)
+
+      $('#tipo-agresion-violencia').hide(300)
+      $('#lugar-agresion').hide(300)
+      $('#tipo-desastre').hide(300)
+      $('#tipo-accidente').hide(300)
+      $('#pelaje-animal').hide(300)
+      $('#tamanio-animal').hide(300)
+      $('#tipo_mascota').hide(300)
+      $('#raza-animal').hide(300)
+    } else if (tipoIncidente.value == 4) {
+      $('#uso-armas-violencia').show(300)
+      $('#persona-afectada-violencia').show(300)
+      $('#descripcion-sospechoso').show(300)
+      $('#lugar-agresion').show(300)
+
+      $('#tipo-agresion-violencia').hide(300)
+      $('#tipo-desastre').hide(300)
+      $('#tipo-accidente').hide(300)
+      $('#pelaje-animal').hide(300)
+      $('#tamanio-animal').hide(300)
+      $('#tipo_mascota').hide(300)
+      $('#raza-animal').hide(300)
+      $('#pertenencias-hurtadas').hide(300)
+    } else if (tipoIncidente.value == 5) {
+      $('#uso-armas-violencia').show(300)
+      $('#lugar-agresion').show(300)
+
+      $('#persona-afectada-violencia').hide(300)
+      $('#descripcion-sospechoso').hide(300)
+      $('#tipo-agresion-violencia').hide(300)
+      $('#tipo-desastre').hide(300)
+      $('#tipo-accidente').hide(300)
+      $('#pelaje-animal').hide(300)
+      $('#tamanio-animal').hide(300)
+      $('#tipo_mascota').hide(300)
+      $('#raza-animal').hide(300)
+      $('#pertenencias-hurtadas').hide(300)
+    } else if (tipoIncidente.value == 6) {
+      $('#tipo-desastre').show(300)
+
+      $('#uso-armas-violencia').hide(300)
+      $('#lugar-agresion').hide(300)
+      $('#persona-afectada-violencia').hide(300)
+      $('#descripcion-sospechoso').hide(300)
+      $('#tipo-agresion-violencia').hide(300)
+      $('#tipo-accidente').hide(300)
+      $('#pelaje-animal').hide(300)
+      $('#tamanio-animal').hide(300)
+      $('#tipo_mascota').hide(300)
+      $('#raza-animal').hide(300)
+      $('#pertenencias-hurtadas').hide(300)
+    } else if (tipoIncidente.value == 7) {
+      $('#tipo-accidente').show(300)
+
+      $('#uso-armas-violencia').hide(300)
+      $('#lugar-agresion').hide(300)
+      $('#persona-afectada-violencia').hide(300)
+      $('#descripcion-sospechoso').hide(300)
+      $('#tipo-agresion-violencia').hide(300)
+      $('#tipo-desastre').hide(300)
+      $('#pelaje-animal').hide(300)
+      $('#tamanio-animal').hide(300)
+      $('#tipo_mascota').hide(300)
+      $('#raza-animal').hide(300)
+      $('#pertenencias-hurtadas').hide(300)
     } else {
       hideAll()
     }
@@ -16,8 +141,8 @@ export default function create () {
   btnPub.addEventListener('click', function () {
     addIncident(tipoIncidente.value)
       .then(res => {
-        let socket = io('https://incident-web.herokuapp.com', { 'forceNew': true })
-        //let socket = io('http://localhost:5000', { 'forceNew': true })
+        //let socket = io('https://incident-web.herokuapp.com', { 'forceNew': true })
+        let socket = io('http://localhost:5000', { 'forceNew': true })
         socket.on('connect', async function () {
           socket.emit('data', {
             success: '1',
@@ -25,6 +150,31 @@ export default function create () {
           })
         })
 
+        tipoIncidente.value = 0
+        description.value = ''
+        ninoViolencia.checked = false
+        hombreViolencia.checked = false
+        mujerViolencia.checked = false
+        adultoMayorViolencia.checked = false
+        otroParienteViolencia.checked = false
+        verbalViolencia.checked = false
+        fisicaViolencia.checked = false
+        psicologicaViolencia.checked = false
+        armacortopunzanteViolencia.checked = false
+        armafuegoViolencia.checked =false
+        otraarmaViolencia.checked = false
+        pelajeAnimalPerdido.value = ''
+        selectTamanioAnimal.value = 'null'
+        selectTipoMascota.value = 'null'
+        razaAnimalPerdido.value = ''
+        desSospechoso.value = ''
+        pertenenciasHurtadas.value = ''
+        lugarAgresion.value = ''
+        selectTipoDesastre.value = 'null'
+        selectTipoAccidente.value = 'null'
+
+        hideAll()
+        
         socket.on('disconnect', function () {})
       })
   })
@@ -48,22 +198,6 @@ function hideAll() {
 async function addIncident (tipoIncidente) {
   let endpoint = '/valle-verde/api/incident'
   let formData = new FormData()
-  const filesIncident = document.querySelector('#files_incident')
-  const description = document.querySelector('#description')
-  
-  const ninoViolencia = document.querySelector('#nino_violencia')
-  const hombreViolencia = document.querySelector('#hombre_violencia')
-  const mujerViolencia = document.querySelector('#mujer_violencia')
-  const adultoMayorViolencia = document.querySelector('#adulto_mayor_violencia')
-  const otroParienteViolencia = document.querySelector('#otro_pariente_violencia')
-  
-  const verbalViolencia = document.querySelector('#verbal_violencia')
-  const fisicaViolencia = document.querySelector('#fisica_violencia')
-  const psicologicaViolencia = document.querySelector('#psicologica_violencia')
-  
-  const armacortopunzanteViolencia = document.querySelector('#armacortopunzante_violencia')
-  const armafuegoViolencia = document.querySelector('#armafuego_violencia')
-  const otraarmaViolencia = document.querySelector('#otraarma_violencia')
 
   let detalles = {}
 
@@ -83,7 +217,7 @@ async function addIncident (tipoIncidente) {
       personaAfectada.push(adultoMayorViolencia.value)
     } else if (otroParienteViolencia.checked) {
       personaAfectada.push(otroParienteViolencia.value)
-    } 
+    }
     
     if (verbalViolencia.checked) {
       tipoAgresion.push(verbalViolencia.value)
@@ -92,7 +226,7 @@ async function addIncident (tipoIncidente) {
     } else if (psicologicaViolencia.checked) {
       tipoAgresion.push(psicologicaViolencia.value)
     } 
-    
+
     if (armacortopunzanteViolencia.checked) {
       usoArma.push(armacortopunzanteViolencia.value)
     } else if (armafuegoViolencia.checked) {
@@ -105,6 +239,95 @@ async function addIncident (tipoIncidente) {
       persona_afectada: personaAfectada,
       tipo_agresion: tipoAgresion,
       uso_arma: usoArma
+    }
+  } else if (tipoIncidente == 2) {
+    detalles = {
+      pelaje_animal: pelajeAnimalPerdido.value,
+      tamanio_animal: selectTamanioAnimal.value,
+      tipo_mascota: selectTipoMascota.value,
+      raza_animal: razaAnimalPerdido.value
+    }
+  } else if (tipoIncidente == 3) {
+    let personaAfectada = []
+    let usoArma = []
+
+    if (ninoViolencia.checked) {
+      personaAfectada.push(ninoViolencia.value)
+    } else if (hombreViolencia.checked) {
+      personaAfectada.push(hombreViolencia.value)
+    } else if (mujerViolencia.checked) {
+      personaAfectada.push(mujerViolencia.value)
+    } else if (adultoMayorViolencia.checked) {
+      personaAfectada.push(adultoMayorViolencia.value)
+    } else if (otroParienteViolencia.checked) {
+      personaAfectada.push(otroParienteViolencia.value)
+    }
+
+    if (armacortopunzanteViolencia.checked) {
+      usoArma.push(armacortopunzanteViolencia.value)
+    } else if (armafuegoViolencia.checked) {
+      usoArma.push(armafuegoViolencia.value)
+    } else if (otraarmaViolencia.checked) {
+      usoArma.push(otraarmaViolencia.value)
+    }
+
+    detalles = {
+      persona_afectada: personaAfectada,
+      descripcion_sospechoso: desSospechoso.value,
+      uso_arma: usoArma,
+      pertenencias_hurtadas: pertenenciasHurtadas.value
+    }
+  } else if (tipoIncidente == 4) {
+    let usoArma = []
+    let personaAfectada = []
+
+    if (armacortopunzanteViolencia.checked) {
+      usoArma.push(armacortopunzanteViolencia.value)
+    } else if (armafuegoViolencia.checked) {
+      usoArma.push(armafuegoViolencia.value)
+    } else if (otraarmaViolencia.checked) {
+      usoArma.push(otraarmaViolencia.value)
+    }
+
+    if (ninoViolencia.checked) {
+      personaAfectada.push(ninoViolencia.value)
+    } else if (hombreViolencia.checked) {
+      personaAfectada.push(hombreViolencia.value)
+    } else if (mujerViolencia.checked) {
+      personaAfectada.push(mujerViolencia.value)
+    } else if (adultoMayorViolencia.checked) {
+      personaAfectada.push(adultoMayorViolencia.value)
+    } else if (otroParienteViolencia.checked) {
+      personaAfectada.push(otroParienteViolencia.value)
+    }
+
+    detalles = {
+      uso_arma: usoArma,
+      persona_afectada: personaAfectada,
+      descripcion_sospechoso: desSospechoso.value,
+      lugar_agresion: lugarAgresion.value
+    }
+  } else if (tipoIncidente == 5) {
+    let usoArma = []
+    if (armacortopunzanteViolencia.checked) {
+      usoArma.push(armacortopunzanteViolencia.value)
+    } else if (armafuegoViolencia.checked) {
+      usoArma.push(armafuegoViolencia.value)
+    } else if (otraarmaViolencia.checked) {
+      usoArma.push(otraarmaViolencia.value)
+    }
+
+    detalles = {
+      uso_arma: usoArma,
+      lugar_agresion: lugarAgresion.value
+    }
+  } else if (tipoIncidente == 6) {
+    detalles = {
+      tipo_desastre: selectTipoDesastre.value,
+    }
+  } else if (tipoIncidente == 7) {
+    detalles = {
+      tipo_accidente: selectTipoAccidente.value,
     }
   }
 
