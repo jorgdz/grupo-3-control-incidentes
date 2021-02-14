@@ -1,0 +1,30 @@
+
+#incidents-title {
+
+    font-family: "Segoe UI","Roboto","Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-weight: bolder;
+    font-size: 1.2em;
+    width: 80%;
+
+}
+
+.gravedad {
+
+    border-radius: 0px 0px 16px 0px;
+    box-shadow: 1px 2px 3px black;
+    color: white;
+    padding: 12px;
+    position: absolute;
+    text-align: center;
+    top: -4px;
+    left: -4px;
+    transition: .5s opacity;
+    width: 60%;
+  
+}
+
+.gravedad:hover {
+
+    opacity: .3;
+
+}
