@@ -1,184 +1,196 @@
 {{#extend "head"}}
+<link rel="stylesheet" href="/stylesheets/css/employees.css">
 {{> title title="Incidentes"}}
 {{/extend}}
 
-    {{#extend "header"}}
-    {{> admin/header}}
-    {{/extend}}
+{{#extend "header"}}
+{{> admin/header}}
+{{/extend}}
 
-    <main>
-        <div class="main-section">
-            <div class="container">
-                <div class="main-section-data">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 pd-left-none no-pd">
-                            <div class="main-left-sidebar no-margin">
-                                <div class="user-data full-width">
-                                    <div class="user-profile">
-                                        <div class="username-dt">
-                                            <div class="usr-pic">
-                                                <img src="{{ user.dataValues.url_imagen }}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="user-specs">
-                                            <h3>{{ user.dataValues.nombres }} {{ user.dataValues.apellidos }}</h3>
-                                            <span>{{ user.dataValues.role.dataValues.name }}</span>
+<main>
+    <div class="main-section">
+        <div class="container">
+            <div class="main-section-data">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 pd-left-none no-pd">
+                        <div class="main-left-sidebar no-margin">
+                            <div class="user-data full-width">
+                                <div class="user-profile">
+                                    <div class="username-dt">
+                                        <div class="usr-pic">
+                                            <img src="{{ user.dataValues.url_imagen }}" alt="">
                                         </div>
                                     </div>
-                                    <ul class="user-fw-status">
-                                        {{#if_cond user.dataValues.role_id 2}}
-                                        <li>
-                                            <h4>Incidentes atendidos</h4>
-                                            <span>{{ totalAtenciones }}</span>
-                                        </li>
-                                        {{/if_cond}}
-                                        <li>
-                                            <a href="/perfil" title="">Ver perfil</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="suggestions full-width">
-                                    <div class="sd-title">
-                                        <h3>Últimas publicaciones</h3>
-                                    </div>
-                                    <div class="suggestions-list">
-                                        <div class="suggestion-usd">
-                                            <img src="/images/resources/s1.png" alt="">
-                                            <div class="sgt-text">
-                                                <h4>Jessica William</h4>
-                                                <span>Graphic Designer</span>
-                                            </div>
-                                            <span><i class="la la-plus"></i></span>
-                                        </div>
-                                        <div class="suggestion-usd">
-                                            <img src="/images/resources/s2.png" alt="">
-                                            <div class="sgt-text">
-                                                <h4>John Doe</h4>
-                                                <span>PHP Developer</span>
-                                            </div>
-                                            <span><i class="la la-plus"></i></span>
-                                        </div>
-                                        <div class="suggestion-usd">
-                                            <img src="/images/resources/s3.png" alt="">
-                                            <div class="sgt-text">
-                                                <h4>Poonam</h4>
-                                                <span>Wordpress Developer</span>
-                                            </div>
-                                            <span><i class="la la-plus"></i></span>
-                                        </div>
-                                        <div class="suggestion-usd">
-                                            <img src="/images/resources/s4.png" alt="">
-                                            <div class="sgt-text">
-                                                <h4>Bill Gates</h4>
-                                                <span>C & C++ Developer</span>
-                                            </div>
-                                            <span><i class="la la-plus"></i></span>
-                                        </div>
-                                        <div class="suggestion-usd">
-                                            <img src="/images/resources/s5.png" alt="">
-                                            <div class="sgt-text">
-                                                <h4>Jessica William</h4>
-                                                <span>Graphic Designer</span>
-                                            </div>
-                                            <span><i class="la la-plus"></i></span>
-                                        </div>
-                                        <div class="suggestion-usd">
-                                            <img src="/images/resources/s6.png" alt="">
-                                            <div class="sgt-text">
-                                                <h4>John Doe</h4>
-                                                <span>PHP Developer</span>
-                                            </div>
-                                            <span><i class="la la-plus"></i></span>
-                                        </div>                                   
+                                    <div class="user-specs">
+                                        <h3>{{ user.dataValues.nombres }} {{ user.dataValues.apellidos }}</h3>
+                                        <span>{{ user.dataValues.role.dataValues.name }}</span>
                                     </div>
                                 </div>
-                                <div class="tags-sec full-width">
+                                <ul class="user-fw-status">
+                                    {{#if_cond user.dataValues.role_id 2}}
+                                    <li>
+                                        <h4>Incidentes atendidos</h4>
+                                        <span>{{ totalAtenciones }}</span>
+                                    </li>
+                                    {{/if_cond}}
+                                    <li>
+                                        <a href="/perfil" title="">Ver perfil</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="suggestions full-width">
+                                <div class="sd-title">
+                                    <h3>Últimas publicaciones</h3>
+                                </div>
+                                <div class="suggestions-list">
+                                    <div class="suggestion-usd">
+                                        <img src="/images/resources/s1.png" alt="">
+                                        <div class="sgt-text">
+                                            <h4>Jessica William</h4>
+                                            <span>Graphic Designer</span>
+                                        </div>
+                                        <span><i class="la la-plus"></i></span>
+                                    </div>
+                                    <div class="suggestion-usd">
+                                        <img src="/images/resources/s2.png" alt="">
+                                        <div class="sgt-text">
+                                            <h4>John Doe</h4>
+                                            <span>PHP Developer</span>
+                                        </div>
+                                        <span><i class="la la-plus"></i></span>
+                                    </div>
+                                    <div class="suggestion-usd">
+                                        <img src="/images/resources/s3.png" alt="">
+                                        <div class="sgt-text">
+                                            <h4>Poonam</h4>
+                                            <span>Wordpress Developer</span>
+                                        </div>
+                                        <span><i class="la la-plus"></i></span>
+                                    </div>
+                                    <div class="suggestion-usd">
+                                        <img src="/images/resources/s4.png" alt="">
+                                        <div class="sgt-text">
+                                            <h4>Bill Gates</h4>
+                                            <span>C & C++ Developer</span>
+                                        </div>
+                                        <span><i class="la la-plus"></i></span>
+                                    </div>
+                                    <div class="suggestion-usd">
+                                        <img src="/images/resources/s5.png" alt="">
+                                        <div class="sgt-text">
+                                            <h4>Jessica William</h4>
+                                            <span>Graphic Designer</span>
+                                        </div>
+                                        <span><i class="la la-plus"></i></span>
+                                    </div>
+                                    <div class="suggestion-usd">
+                                        <img src="/images/resources/s6.png" alt="">
+                                        <div class="sgt-text">
+                                            <h4>John Doe</h4>
+                                            <span>PHP Developer</span>
+                                        </div>
+                                        <span><i class="la la-plus"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tags-sec full-width">
+                                <ul>
+                                    <li><a href="#" title="">Políticas de Privacidad</a></li>
+                                    <li><a href="#" title="">Lenguaje</a></li>
+                                    <li><a href="#" title="">Copyright Políticas</a></li>
+                                </ul>
+                                <div class="cp-sec">
+                                    <img src="/images/valle verde.png" width="40" height="40" alt="">
+                                    <p><img src="/images/cp.png" alt="">Copyright 2021</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-8 no-pd">
+                        <div class="main-ws-sec">
+
+                            {{!-- Template empleado --}}
+                            {{#if_cond user.dataValues.role_id 2}}
+                            <h3 id="incidents-title" class="">
+                                Incidentes por atender
+                            </h4>
+                            <div class="incidents-container"
+                                style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                            </div>
+                            {{/if_cond}}
+
+                            {{!-- Template Resident --}}
+                            {{#if_cond user.dataValues.role_id 3}}
+                            <div class="post-topbar">
+                                <div class="user-picy">
+                                    <img src="{{user.dataValues.url_imagen}}" alt="">
+                                </div>
+                                <div class="post-st">
                                     <ul>
-                                        <li><a href="#" title="">Políticas de Privacidad</a></li>
-                                        <li><a href="#" title="">Lenguaje</a></li>
-                                        <li><a href="#" title="">Copyright Políticas</a></li>
+                                        {{!-- <li><a class="post_project" href="#" title="">Post a Project</a></li> --}}
+                                        <li><a class="post-jb active" href="#" title="">Publicar incidente</a></li>
                                     </ul>
-                                    <div class="cp-sec">
-                                        <img src="/images/valle verde.png" width="40" height="40" alt="">
-                                        <p><img src="/images/cp.png" alt="">Copyright 2021</p>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-md-8 no-pd">
-                            <div class="main-ws-sec">
-                                {{#if_cond user.dataValues.role_id 3}}
-                                <div class="post-topbar">
-                                    <div class="user-picy">
-                                        <img src="{{user.dataValues.url_imagen}}" alt="">
-                                    </div>
-                                    <div class="post-st">
-                                        <ul>
-                                            {{!-- <li><a class="post_project" href="#" title="">Post a Project</a></li> --}}
-                                            <li><a class="post-jb active" href="#" title="">Publicar incidente</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                
-                                <div class="posts-section" id="post-incident">
-                                    {{!--  
-                                    <div class="process-comm">
-                                        <div class="spinner">
-                                            <div class="bounce1"></div>
-                                            <div class="bounce2"></div>
-                                            <div class="bounce3"></div>
-                                        </div>
-                                    </div> --}}
-                                </div>
-                                {{/if_cond}}
-                            </div>
-                        </div>
 
-                        {{!-- Lateral derecho --}}
-                        <div class="col-lg-3 pd-right-none no-pd">
-                            <div class="right-sidebar">
-                                <div class="widget widget-about">
-                                    <img src="/images/valle verde.png" width="140" height="150" alt="">
-                                    <h3>{{ app_name }}</h3>
-                                    <span>Porque tu seguridad es primero.</span>
-                                </div>
-                                <div class="widget widget-jobs">
-                                    <div class="sd-title">
-                                        <h3>Incidentes de gravedad</h3>
+                            <div class="posts-section" id="post-incident">
+                                {{!--
+                                <div class="process-comm">
+                                    <div class="spinner">
+                                        <div class="bounce1"></div>
+                                        <div class="bounce2"></div>
+                                        <div class="bounce3"></div>
                                     </div>
-                                    <div class="jobs-list">
-                                        <div class="job-info">
-                                            <div class="job-details">
-                                                <a href="">
-                                                    <h3>Desastres naturales</h3>
-                                                    <p>Un terremoto arrazó con  mi vivienda.</p>
-                                                </a>
-                                            </div>
-                                            <div class="hr-rate">
-                                                <span style="text-align: right;">Hace 2 días</span>
-                                            </div>
+                                </div> --}}
+                            </div>
+                            {{/if_cond}}
+                        </div>
+                    </div>
+
+                    {{!-- Lateral derecho --}}
+                    <div class="col-lg-3 pd-right-none no-pd">
+                        <div class="right-sidebar">
+                            <div class="widget widget-about">
+                                <img src="/images/valle verde.png" width="140" height="150" alt="">
+                                <h3>{{ app_name }}</h3>
+                                <span>Porque tu seguridad es primero.</span>
+                            </div>
+                            <div class="widget widget-jobs">
+                                <div class="sd-title">
+                                    <h3>Incidentes de gravedad</h3>
+                                </div>
+                                <div class="jobs-list">
+                                    <div class="job-info">
+                                        <div class="job-details">
+                                            <a href="">
+                                                <h3>Desastres naturales</h3>
+                                                <p>Un terremoto arrazó con mi vivienda.</p>
+                                            </a>
                                         </div>
-                                        <div class="job-info">
-                                            <div class="job-details">
-                                                <a href="">
-                                                    <h3>Desastres naturales</h3>
-                                                    <p>Un terremoto arrazó con  mi vivienda.</p>
-                                                </a>
-                                            </div>
-                                            <div class="hr-rate">
-                                                <span style="text-align: right;">Hace 2 días</span>
-                                            </div>
+                                        <div class="hr-rate">
+                                            <span style="text-align: right;">Hace 2 días</span>
                                         </div>
-                                        <div class="job-info">
-                                            <div class="job-details">
-                                                <a href="">
-                                                    <h3>Desastres naturales</h3>
-                                                    <p>Un terremoto arrazó con  mi vivienda.</p>
-                                                </a>
-                                            </div>
-                                            <div class="hr-rate">
-                                                <span style="text-align: right;">Hace 2 días</span>
-                                            </div>
+                                    </div>
+                                    <div class="job-info">
+                                        <div class="job-details">
+                                            <a href="">
+                                                <h3>Desastres naturales</h3>
+                                                <p>Un terremoto arrazó con mi vivienda.</p>
+                                            </a>
+                                        </div>
+                                        <div class="hr-rate">
+                                            <span style="text-align: right;">Hace 2 días</span>
+                                        </div>
+                                    </div>
+                                    <div class="job-info">
+                                        <div class="job-details">
+                                            <a href="">
+                                                <h3>Desastres naturales</h3>
+                                                <p>Un terremoto arrazó con mi vivienda.</p>
+                                            </a>
+                                        </div>
+                                        <div class="hr-rate">
+                                            <span style="text-align: right;">Hace 2 días</span>
                                         </div>
                                     </div>
                                 </div>
@@ -187,326 +199,340 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
-
-    {{!-- Modal --}}
-    <div class="post-popup job_post">
-        <div class="post-project">
-            <h3>Incidente</h3>
-            <div class="post-project-fields">
-                <form>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="inp-field">
-                                <select name="tipo_id" id="tipo_incidente_id">
-                                    <option value="0">Seleccione el tipo de incidente</option>
-                                    {{#each tipos}}
-                                        <option value="{{dataValues.id}}">{{dataValues.tipo}} - {{dataValues.gravedad}}</option>
-                                    {{/each}}
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12" id="persona-afectada-violencia"> 
-                            <label style="font-weight: bold;">Persona afectada:</label><br><br>
-                            <div class="checkbox">
-                                <label>
-                                    Niño/a
-                                    <input type="checkbox" name="nino_violencia" value="Niño" id="nino_violencia">
-                                </label>
-                                <label>
-                                    Hombre
-                                    <input type="checkbox" name="hombre_violencia" value="Hombre" id="hombre_violencia">
-                                </label>
-                                <label>
-                                    Mujer
-                                    <input type="checkbox" name="mujer_violencia" value="Mujer" id="mujer_violencia">
-                                </label>
-                                <label>
-                                    Adulto mayor
-                                    <input type="checkbox" name="adulto_mayor_violencia" value="Adulto mayor" id="adulto_mayor_violencia">
-                                </label>
-                                <label>
-                                    Otro pariente
-                                    <input type="checkbox" name="otro_pariente_violencia" value="Otro" id="otro_pariente_violencia">
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12" id="tipo-agresion-violencia"> 
-                            <label style="font-weight: bold;">Tipo de agresión:</label><br><br>
-                            <div class="checkbox">
-                                <label>
-                                    Verbal
-                                    <input type="checkbox" name="verbal_violencia" value="Verbal" id="verbal_violencia">
-                                </label>
-                                <label>
-                                    Física
-                                    <input type="checkbox" name="fisica_violencia" value="Física" id="fisica_violencia">
-                                </label>
-                                <label>
-                                    Psicológica
-                                    <input type="checkbox" name="psicologica_violencia" value="Psicológica" id="psicologica_violencia">
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12" id="uso-armas-violencia"> 
-                            <label style="font-weight: bold;">Uso de armas:</label><br><br>
-                            <div class="checkbox">
-                                <label>
-                                    Arma cortopunzante
-                                    <input type="checkbox" name="armacortopunzante_violencia" value="Arma cortopunzante" id="armacortopunzante_violencia">
-                                </label>
-                                <label>
-                                    Arma de fuego
-                                    <input type="checkbox" name="armafuego_violencia" value="Arma de fuego" id="armafuego_violencia">
-                                </label>
-                                <label>
-                                    Otro tipo de arma
-                                    <input type="checkbox" name="otraarma_violencia" value="Otro tipo de arma" id="otraarma_violencia">
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12" id="pelaje-animal">
-                            <input type="text" name="pelaje_animal_perdido" id="pelaje_animal_perdido" placeholder="Pelaje del animal">
-                        </div>
-                        <div class="col-lg-12" id="raza-animal">
-                            <input type="text" name="raza_animal_perdido" id="raza_animal_perdido" placeholder="Raza del animal">
-                        </div>
-
-                        <div class="col-lg-6" id="tamanio-animal">
-                            <div class="inp-field">
-                                <select id="select-tamanio-animal">
-                                    <option value="null">Seleccione el tamaño.</option>
-                                    <option value="Pequeño">Pequeño</option>
-                                    <option value="Mediano">Mediano</option>
-                                    <option value="Grande">Grande</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6" id="tipo_mascota">
-                            <div class="inp-field">
-                                <select id="select-tipo-mascota">
-                                    <option value="null">Seleccione el tipo de mascota.</option>
-                                    <option value="Perros">Perros</option>
-                                    <option value="Gatos">Gatos</option>
-                                    <option value="Aves">Aves</option>
-                                    <option value="Roedores">Roedores</option>
-                                    <option value="Otro">Otro</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12" id="descripcion-sospechoso">
-                            <input type="text" name="des_sospechoso" id="des_sospechoso" placeholder="Descripción del sospechoso">
-                        </div>
-                        
-                        <div class="col-lg-12" id="pertenencias-hurtadas">
-                            <input type="text" name="pertenencias_hurtadas" id="pertenencias_hurtadas" placeholder="Pertenencias hurtadas">
-                        </div>
-                      
-                        <div class="col-lg-12" id="lugar-agresion">
-                            <textarea name="lugar_agresion" id="lugar_agresion" style="height: 80px;" placeholder="Lugar de la agresión"></textarea>
-                        </div>
-
-                        <div class="col-lg-12" id="tipo-desastre">
-                            <div class="inp-field">
-                                <select id="select-tipo-desastre">
-                                    <option value="null">Seleccione el tipo de desastre.</option>
-                                    <option value="Sismos">Sismos</option>
-                                    <option value="Lluvias">Lluvias</option>
-                                    <option value="Ceniza">Ceniza</option>
-                                    <option value="Huracanes">Huracanes</option>
-                                    <option value="Otros">Otros</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-6" id="tipo-accidente">
-                            <div class="inp-field">
-                                <select id="select-tipo-accidente">
-                                    <option value="null">Seleccione el tipo de accidente.</option>
-                                    <option value="Tránsito">Tránsito</option>
-                                    <option value="Accidente de hogar">Accidente de hogar</option>
-                                    <option value="Accidentes de campo">Accidentes de campo (ataque de animal, incendios, caídas)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-12" id="descripcion-general">
-                            <textarea name="description" id="description" style="height: 70px;" placeholder="Descripción"></textarea>
-                        </div>
-                        
-                        <div class="col-lg-12" id="adjuntos">
-                            <input type="file" name="adjunto" id="files_incident" accept="image/*" multiple="multiple">
-                        </div>
-
-                        <div class="col-lg-12">
-                            <ul>
-                                <li><button class="active" type="button" id="btnPub" value="post">Publicar</button></li>
-                                <li><a href="#" title="" id="cancelCreateIncident">Cancelar</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <a href="#" title=""><i class="la la-times-circle-o"></i></a>
         </div>
     </div>
+</main>
 
-    <div class="chatbox-list">
-        {{!-- <div class="chatbox">
-            <div class="chat-mg">
-                <a href="#" title=""><img src="/images/resources/usr-img1.png" alt=""></a>
-                <span>2</span>
-            </div>
-            <div class="conversation-box">
-                <div class="con-title mg-3">
-                    <div class="chat-user-info">
-                        <img src="/images/resources/us-img1.png" alt="">
-                        <h3>John Doe <span class="status-info"></span></h3>
+{{!-- Modal --}}
+<div class="post-popup job_post">
+    <div class="post-project">
+        <h3>Incidente</h3>
+        <div class="post-project-fields">
+            <form>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="inp-field">
+                            <select name="tipo_id" id="tipo_incidente_id">
+                                <option value="0">Seleccione el tipo de incidente</option>
+                                {{#each tipos}}
+                                <option value="{{dataValues.id}}">{{dataValues.tipo}} - {{dataValues.gravedad}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
                     </div>
-                    <div class="st-icons">
-                        <a href="#" title=""><i class="la la-cog"></i></a>
-                        <a href="#" title="" class="close-chat"><i class="la la-minus-square"></i></a>
-                        <a href="#" title="" class="close-chat"><i class="la la-close"></i></a>
+
+                    <div class="col-lg-12" id="persona-afectada-violencia">
+                        <label style="font-weight: bold;">Persona afectada:</label><br><br>
+                        <div class="checkbox">
+                            <label>
+                                Niño/a
+                                <input type="checkbox" name="nino_violencia" value="Niño" id="nino_violencia">
+                            </label>
+                            <label>
+                                Hombre
+                                <input type="checkbox" name="hombre_violencia" value="Hombre" id="hombre_violencia">
+                            </label>
+                            <label>
+                                Mujer
+                                <input type="checkbox" name="mujer_violencia" value="Mujer" id="mujer_violencia">
+                            </label>
+                            <label>
+                                Adulto mayor
+                                <input type="checkbox" name="adulto_mayor_violencia" value="Adulto mayor"
+                                    id="adulto_mayor_violencia">
+                            </label>
+                            <label>
+                                Otro pariente
+                                <input type="checkbox" name="otro_pariente_violencia" value="Otro"
+                                    id="otro_pariente_violencia">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12" id="tipo-agresion-violencia">
+                        <label style="font-weight: bold;">Tipo de agresión:</label><br><br>
+                        <div class="checkbox">
+                            <label>
+                                Verbal
+                                <input type="checkbox" name="verbal_violencia" value="Verbal" id="verbal_violencia">
+                            </label>
+                            <label>
+                                Física
+                                <input type="checkbox" name="fisica_violencia" value="Física" id="fisica_violencia">
+                            </label>
+                            <label>
+                                Psicológica
+                                <input type="checkbox" name="psicologica_violencia" value="Psicológica"
+                                    id="psicologica_violencia">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12" id="uso-armas-violencia">
+                        <label style="font-weight: bold;">Uso de armas:</label><br><br>
+                        <div class="checkbox">
+                            <label>
+                                Arma cortopunzante
+                                <input type="checkbox" name="armacortopunzante_violencia" value="Arma cortopunzante"
+                                    id="armacortopunzante_violencia">
+                            </label>
+                            <label>
+                                Arma de fuego
+                                <input type="checkbox" name="armafuego_violencia" value="Arma de fuego"
+                                    id="armafuego_violencia">
+                            </label>
+                            <label>
+                                Otro tipo de arma
+                                <input type="checkbox" name="otraarma_violencia" value="Otro tipo de arma"
+                                    id="otraarma_violencia">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12" id="pelaje-animal">
+                        <input type="text" name="pelaje_animal_perdido" id="pelaje_animal_perdido"
+                            placeholder="Pelaje del animal">
+                    </div>
+                    <div class="col-lg-12" id="raza-animal">
+                        <input type="text" name="raza_animal_perdido" id="raza_animal_perdido"
+                            placeholder="Raza del animal">
+                    </div>
+
+                    <div class="col-lg-6" id="tamanio-animal">
+                        <div class="inp-field">
+                            <select id="select-tamanio-animal">
+                                <option value="null">Seleccione el tamaño.</option>
+                                <option value="Pequeño">Pequeño</option>
+                                <option value="Mediano">Mediano</option>
+                                <option value="Grande">Grande</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6" id="tipo_mascota">
+                        <div class="inp-field">
+                            <select id="select-tipo-mascota">
+                                <option value="null">Seleccione el tipo de mascota.</option>
+                                <option value="Perros">Perros</option>
+                                <option value="Gatos">Gatos</option>
+                                <option value="Aves">Aves</option>
+                                <option value="Roedores">Roedores</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12" id="descripcion-sospechoso">
+                        <input type="text" name="des_sospechoso" id="des_sospechoso"
+                            placeholder="Descripción del sospechoso">
+                    </div>
+
+                    <div class="col-lg-12" id="pertenencias-hurtadas">
+                        <input type="text" name="pertenencias_hurtadas" id="pertenencias_hurtadas"
+                            placeholder="Pertenencias hurtadas">
+                    </div>
+
+                    <div class="col-lg-12" id="lugar-agresion">
+                        <textarea name="lugar_agresion" id="lugar_agresion" style="height: 80px;"
+                            placeholder="Lugar de la agresión"></textarea>
+                    </div>
+
+                    <div class="col-lg-12" id="tipo-desastre">
+                        <div class="inp-field">
+                            <select id="select-tipo-desastre">
+                                <option value="null">Seleccione el tipo de desastre.</option>
+                                <option value="Sismos">Sismos</option>
+                                <option value="Lluvias">Lluvias</option>
+                                <option value="Ceniza">Ceniza</option>
+                                <option value="Huracanes">Huracanes</option>
+                                <option value="Otros">Otros</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" id="tipo-accidente">
+                        <div class="inp-field">
+                            <select id="select-tipo-accidente">
+                                <option value="null">Seleccione el tipo de accidente.</option>
+                                <option value="Tránsito">Tránsito</option>
+                                <option value="Accidente de hogar">Accidente de hogar</option>
+                                <option value="Accidentes de campo">Accidentes de campo (ataque de animal, incendios,
+                                    caídas)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" id="descripcion-general">
+                        <textarea name="description" id="description" style="height: 70px;"
+                            placeholder="Descripción"></textarea>
+                    </div>
+
+                    <div class="col-lg-12" id="adjuntos">
+                        <input type="file" name="adjunto" id="files_incident" accept="image/*" multiple="multiple">
+                    </div>
+
+                    <div class="col-lg-12">
+                        <ul>
+                            <li><button class="active" type="button" id="btnPub" value="post">Publicar</button></li>
+                            <li><a href="#" title="" id="cancelCreateIncident">Cancelar</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="chat-hist mCustomScrollbar" data-mcs-theme="dark">
-                    <div class="chat-msg">
-                        <p>Hola que tal como estas</p>
-                        <span>Sat, Aug 23, 1:10 PM</span>
-                    </div>
-                    <div class="date-nd">
-                        <span>Sunday, August 24</span>
-                    </div>
-                    <div class="chat-msg st2">
-                        <p>Cras ultricies ligula.</p>
-                        <span>5 minutes ago</span>
-                    </div>
-                    <div class="chat-msg">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget
-                            malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-                        <span>Sat, Aug 23, 1:10 PM</span>
-                    </div>
-                </div>
-                <div class="typing-msg">
-                    <form>
-                        <textarea placeholder="Type a message here"></textarea>
-                        <button type="submit"><i class="fa fa-send"></i></button>
-                    </form>
-                    <ul class="ft-options">
-                        <li><a href="#" title=""><i class="la la-smile-o"></i></a></li>
-                        <li><a href="#" title=""><i class="la la-camera"></i></a></li>
-                        <li><a href="#" title=""><i class="fa fa-paperclip"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div> --}}
-        <div class="chatbox">
-            <div class="chat-mg bx">
-                <a href="#" title=""><img src="/images/chat.png" alt=""></a>
-                <span>2</span>
-            </div>
-            <div class="conversation-box">
-                <div class="con-title mg-3">
-                    <div class="chat-user-info">
-                        <img src="/images/resources/us-img1.png" alt="">
-                        <h3>John Doe <span class="status-info"></span></h3>
-                    </div>
-                    <div class="st-icons">
-                        {{!-- <a href="#" title=""><i class="la la-cog"></i></a> --}}
-                        <a href="#" title="" class="close-chat"><i class="la la-minus-square"></i></a>
-                        <a href="#" title="" class="close-chat"><i class="la la-close"></i></a>
-                    </div>
-                </div>
-                <div class="chat-hist mCustomScrollbar" data-mcs-theme="dark">
-                    <div class="chat-msg">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget
-                            malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-                        <span>Sat, Aug 23, 1:10 PM</span>
-                    </div>
-                    <div class="date-nd">
-                        <span>Sunday, August 24</span>
-                    </div>
-                    <div class="chat-msg st2">
-                        <p>Cras ultricies ligula.</p>
-                        <span>5 minutes ago</span>
-                    </div>
-                    <div class="chat-msg">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget
-                            malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-                        <span>Sat, Aug 23, 1:10 PM</span>
-                    </div>
-                </div>
-                <div class="typing-msg">
-                    <form>
-                        <textarea placeholder="Escribe tu mensaje"></textarea>
-                        <button type="submit"><i class="fa fa-send"></i></button>
-                    </form>
-                    <ul class="ft-options">
-                        {{!-- <li><a href="#" title=""><i class="la la-smile-o"></i></a></li>
-                        <li><a href="#" title=""><i class="la la-camera"></i></a></li>
-                        <li><a href="#" title=""><i class="fa fa-paperclip"></i></a></li> --}}
-                    </ul>
-                </div>
-            </div>
+            </form>
         </div>
-        {{!-- <div class="chatbox">
-            <div class="chat-mg bx">
-                <a href="#" title=""><img src="/images/chat.png" alt=""></a>
-                <span>2</span>
-            </div>
-            <div class="conversation-box">
-                <div class="con-title">
-                    <h3>Messages</h3>
+        <a href="#" title=""><i class="la la-times-circle-o"></i></a>
+    </div>
+</div>
+
+<div class="chatbox-list">
+    {{!-- <div class="chatbox">
+        <div class="chat-mg">
+            <a href="#" title=""><img src="/images/resources/usr-img1.png" alt=""></a>
+            <span>2</span>
+        </div>
+        <div class="conversation-box">
+            <div class="con-title mg-3">
+                <div class="chat-user-info">
+                    <img src="/images/resources/us-img1.png" alt="">
+                    <h3>John Doe <span class="status-info"></span></h3>
+                </div>
+                <div class="st-icons">
+                    <a href="#" title=""><i class="la la-cog"></i></a>
                     <a href="#" title="" class="close-chat"><i class="la la-minus-square"></i></a>
+                    <a href="#" title="" class="close-chat"><i class="la la-close"></i></a>
                 </div>
-                <div class="chat-list">
-                    <div class="conv-list active">
-                        <div class="usrr-pic">
-                            <img src="/images/resources/usy1.png" alt="">
-                            <span class="active-status activee"></span>
-                        </div>
-                        <div class="usy-info">
-                            <h3>John Doe</h3>
-                            <span>Lorem ipsum dolor <img src="/images/smley.png" alt=""></span>
-                        </div>
-                        <div class="ct-time">
-                            <span>1:55 PM</span>
-                        </div>
-                        <span class="msg-numbers">2</span>
+            </div>
+            <div class="chat-hist mCustomScrollbar" data-mcs-theme="dark">
+                <div class="chat-msg">
+                    <p>Hola que tal como estas</p>
+                    <span>Sat, Aug 23, 1:10 PM</span>
+                </div>
+                <div class="date-nd">
+                    <span>Sunday, August 24</span>
+                </div>
+                <div class="chat-msg st2">
+                    <p>Cras ultricies ligula.</p>
+                    <span>5 minutes ago</span>
+                </div>
+                <div class="chat-msg">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget
+                        malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
+                    <span>Sat, Aug 23, 1:10 PM</span>
+                </div>
+            </div>
+            <div class="typing-msg">
+                <form>
+                    <textarea placeholder="Type a message here"></textarea>
+                    <button type="submit"><i class="fa fa-send"></i></button>
+                </form>
+                <ul class="ft-options">
+                    <li><a href="#" title=""><i class="la la-smile-o"></i></a></li>
+                    <li><a href="#" title=""><i class="la la-camera"></i></a></li>
+                    <li><a href="#" title=""><i class="fa fa-paperclip"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div> --}}
+    <div class="chatbox">
+        <div class="chat-mg bx">
+            <a href="#" title=""><img src="/images/chat.png" alt=""></a>
+            <span>2</span>
+        </div>
+        <div class="conversation-box">
+            <div class="con-title mg-3">
+                <div class="chat-user-info">
+                    <img src="/images/resources/us-img1.png" alt="">
+                    <h3>John Doe <span class="status-info"></span></h3>
+                </div>
+                <div class="st-icons">
+                    {{!-- <a href="#" title=""><i class="la la-cog"></i></a> --}}
+                    <a href="#" title="" class="close-chat"><i class="la la-minus-square"></i></a>
+                    <a href="#" title="" class="close-chat"><i class="la la-close"></i></a>
+                </div>
+            </div>
+            <div class="chat-hist mCustomScrollbar" data-mcs-theme="dark">
+                <div class="chat-msg">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget
+                        malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
+                    <span>Sat, Aug 23, 1:10 PM</span>
+                </div>
+                <div class="date-nd">
+                    <span>Sunday, August 24</span>
+                </div>
+                <div class="chat-msg st2">
+                    <p>Cras ultricies ligula.</p>
+                    <span>5 minutes ago</span>
+                </div>
+                <div class="chat-msg">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget
+                        malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
+                    <span>Sat, Aug 23, 1:10 PM</span>
+                </div>
+            </div>
+            <div class="typing-msg">
+                <form>
+                    <textarea placeholder="Escribe tu mensaje"></textarea>
+                    <button type="submit"><i class="fa fa-send"></i></button>
+                </form>
+                <ul class="ft-options">
+                    {{!-- <li><a href="#" title=""><i class="la la-smile-o"></i></a></li>
+                    <li><a href="#" title=""><i class="la la-camera"></i></a></li>
+                    <li><a href="#" title=""><i class="fa fa-paperclip"></i></a></li> --}}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {{!-- <div class="chatbox">
+        <div class="chat-mg bx">
+            <a href="#" title=""><img src="/images/chat.png" alt=""></a>
+            <span>2</span>
+        </div>
+        <div class="conversation-box">
+            <div class="con-title">
+                <h3>Messages</h3>
+                <a href="#" title="" class="close-chat"><i class="la la-minus-square"></i></a>
+            </div>
+            <div class="chat-list">
+                <div class="conv-list active">
+                    <div class="usrr-pic">
+                        <img src="/images/resources/usy1.png" alt="">
+                        <span class="active-status activee"></span>
                     </div>
-                    <div class="conv-list">
-                        <div class="usrr-pic">
-                            <img src="/images/resources/usy2.png" alt="">
-                        </div>
-                        <div class="usy-info">
-                            <h3>John Doe</h3>
-                            <span>Lorem ipsum dolor <img src="/images/smley.png" alt=""></span>
-                        </div>
-                        <div class="ct-time">
-                            <span>11:39 PM</span>
-                        </div>
+                    <div class="usy-info">
+                        <h3>John Doe</h3>
+                        <span>Lorem ipsum dolor <img src="/images/smley.png" alt=""></span>
                     </div>
-                    <div class="conv-list">
-                        <div class="usrr-pic">
-                            <img src="/images/resources/usy3.png" alt="">
-                        </div>
-                        <div class="usy-info">
-                            <h3>John Doe</h3>
-                            <span>Lorem ipsum dolor <img src="/images/smley.png" alt=""></span>
-                        </div>
-                        <div class="ct-time">
-                            <span>0.28 AM</span>
-                        </div>
+                    <div class="ct-time">
+                        <span>1:55 PM</span>
+                    </div>
+                    <span class="msg-numbers">2</span>
+                </div>
+                <div class="conv-list">
+                    <div class="usrr-pic">
+                        <img src="/images/resources/usy2.png" alt="">
+                    </div>
+                    <div class="usy-info">
+                        <h3>John Doe</h3>
+                        <span>Lorem ipsum dolor <img src="/images/smley.png" alt=""></span>
+                    </div>
+                    <div class="ct-time">
+                        <span>11:39 PM</span>
+                    </div>
+                </div>
+                <div class="conv-list">
+                    <div class="usrr-pic">
+                        <img src="/images/resources/usy3.png" alt="">
+                    </div>
+                    <div class="usy-info">
+                        <h3>John Doe</h3>
+                        <span>Lorem ipsum dolor <img src="/images/smley.png" alt=""></span>
+                    </div>
+                    <div class="ct-time">
+                        <span>0.28 AM</span>
                     </div>
                 </div>
             </div>
-        </div> --}}
-    </div>
+        </div>
+    </div> --}}
+</div>
 
 {{#extend "scripts"}}
 <script src="/javascripts/jquery.mCustomScrollbar.js"></script>
