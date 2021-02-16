@@ -138,8 +138,8 @@ window.addEventListener('load', function () {
       drawIncidents(res).then(response => response)
     })
 
-  //let socket = io('https://incident-web.herokuapp.com', { 'forceNew': true })
-  let socket = io('http://localhost:5000', { 'forceNew': true })
+  let socket = io('https://incident-web.herokuapp.com', { 'forceNew': true })
+  //let socket = io('http://localhost:5000', { 'forceNew': true })
   socket.on('data', async function (data) {
     if (data.success == 1) {
       let postIncident = $('#post-incident')
