@@ -14,23 +14,23 @@ const SEVERITY = {
 
 /** Elements
 ==================================================================== */
-let incidentsContainer = document.querySelector(".incidents-container");
+let incidentContainer = $(".incidents-container");
 /** Listeners
 ==================================================================== */
 
 window.addEventListener('load', async () => {
 
   let incidents = await getIncidents();
-  let htmlIncidents = incidents.map( incident => getIncidentFromTemplate(incident) );
-  
-  incidentsContainer.innerHTML += htmlIncidents.reduce( (a, b) => a.concat(b) );
-  
+  incidents.map(incident => {
+    incidentContainer.append(getIncidentFromTemplate(incident))
+  })
+
   //let socket = io('https://incident-web.herokuapp.com', { 'forceNew': true })
   let socket = io('http://localhost:5000', { 'forceNew': true })
 
   socket.on('data', async function (data) {
     if (data.success == 1) {
-      console.log(data.response)
+      incidentContainer.prepend(getIncidentFromTemplate(data.response))
     }
   })
 
@@ -45,10 +45,6 @@ const getIncidents = async () => {
   const data = await fetch(url)
   const incidentes = data.json()
   return incidentes
-
-}
-
-const attend = () => {
 
 }
 
@@ -79,7 +75,8 @@ const getIncidentFromTemplate = (incident) => {
       </ul>
       <div class="card-body">
           <a href="/valle-verde/api/incidente/${incident.id}" class="card-link">Detalles</a>
-          <a id="attend-incident" href="/valle-verde/api/:id/incidentes/attention" class="card-link">Atender</a>
+          <a id="attend-incident" href="/valle-verde/api/${incident.id}/incidentes/attention" onclick="event.preventDefault(); (confirm('¿ ATENDER ESTE INCIDENTE ?')) ? document.getElementById('attend-form-${incident.id}').submit() : false;" class="card-link">Atender</a>
+          <form id="attend-form-${incident.id}" action="/valle-verde/api/${incident.id}/incidentes/attention" method="POST" style="display: none;"></form>
       </div>
     </div>`
     );

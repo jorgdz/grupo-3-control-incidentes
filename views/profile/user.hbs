@@ -1,0 +1,195 @@
+{{#extend "head"}}
+{{> title title="Perfil de usuario"}}
+{{/extend}}
+
+{{#extend "header"}}
+{{> admin/header}}
+<section class="cover-sec">
+    <img src="/images/resources/cover-img.jpg" alt="">
+</section>
+{{/extend}}
+
+<main>
+    <div class="main-section">
+        <div class="container">
+            <div class="main-section-data">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="main-left-sidebar">
+                            <div class="user_profile">
+
+                              <div class="user-pro-img">
+                                <img src="{{ profileUser.dataValues.url_imagen }}" id="img_loader" class="img_profile" width="180px"
+                                      height="180px" alt="">
+                              </div>
+                              <div class="user_pro_status">
+                                <ul class="flw-status">
+                                  <li>
+                                    <span>Fecha de nacimiento</span>
+                                    <b>{{ profileUser.dataValues.fecha_nacimiento }}</b>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="suggestions full-width">
+                              <div class="sd-title">
+                                <h3>People Viewed Profile</h3>
+                                <i class="la la-ellipsis-v"></i>
+                              </div>
+                              <div class="suggestions-list">
+                                <div class="suggestion-usd">
+                                  <img src="/images/resources/s1.png" alt="">
+                                  <div class="sgt-text">
+                                    <h4>Jessica William</h4>
+                                    <span>Graphic Designer</span>
+                                  </div>
+                                  <span><i class="la la-plus"></i></span>
+                                </div>
+                                <div class="suggestion-usd">
+                                    <img src="/images/resources/s2.png" alt="">
+                                    <div class="sgt-text">
+                                        <h4>John Doe</h4>
+                                        <span>PHP Developer</span>
+                                    </div>
+                                    <span><i class="la la-plus"></i></span>
+                                </div>
+                                <div class="suggestion-usd">
+                                    <img src="/images/resources/s3.png" alt="">
+                                    <div class="sgt-text">
+                                        <h4>Poonam</h4>
+                                        <span>Wordpress Developer</span>
+                                    </div>
+                                    <span><i class="la la-plus"></i></span>
+                                </div>
+                                <div class="suggestion-usd">
+                                    <img src="/images/resources/s4.png" alt="">
+                                    <div class="sgt-text">
+                                        <h4>Bill Gates</h4>
+                                        <span>C & C++ Developer</span>
+                                    </div>
+                                    <span><i class="la la-plus"></i></span>
+                                </div>
+                                <div class="suggestion-usd">
+                                    <img src="/images/resources/s5.png" alt="">
+                                    <div class="sgt-text">
+                                        <h4>Jessica William</h4>
+                                        <span>Graphic Designer</span>
+                                    </div>
+                                    <span><i class="la la-plus"></i></span>
+                                </div>
+                                <div class="suggestion-usd">
+                                    <img src="/images/resources/s6.png" alt="">
+                                    <div class="sgt-text">
+                                        <h4>John Doe</h4>
+                                        <span>PHP Developer</span>
+                                    </div>
+                                    <span><i class="la la-plus"></i></span>
+                                </div>
+                                <div class="view-more">
+                                    <a href="#" title="">View More</a>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="main-ws-sec">
+                            <div class="user-tab-sec rewivew">
+                                <h3>{{ profileUser.dataValues.nombres }} {{profileUser.dataValues.apellidos}}</h3>
+                                <div class="star-descp">
+                                    <span>{{ profileUser.dataValues.role.dataValues.name }}</span>
+                                </div>
+                                <div class="tab-feed st2 settingjb">
+                                    <ul>
+                                        <li data-tab="feed-dd" class="active">
+                                            <a href="#" title="">
+                                                <img src="/images/ic1.png" alt="">
+                                                <span>Sus incidentes</span>
+                                            </a>
+                                        </li>
+                                        {{!-- <li data-tab="rewivewdata">
+                                            <a href="#" title="">
+                                                <img src="/images/review.png" alt="">
+                                                <span>Comentarios</span>
+                                            </a>
+                                        </li>
+                                        <li data-tab="info-dd">
+                                            <a href="#" title="">
+                                                <img src="/images/ic2.png" alt="">
+                                                <span>Sobre mi</span>
+                                            </a>
+                                        </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+   
+                            <div class="product-feed-tab current" id="feed-dd">
+                                <div class="posts-section" id="post-incident">
+                                    
+                                    {{!-- <div class="process-comm">
+                                        <div class="spinner">
+                                            <div class="bounce1"></div>
+                                            <div class="bounce2"></div>
+                                            <div class="bounce3"></div>
+                                        </div>
+                                    </div> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="right-sidebar">
+                            <div class="widget widget-portfolio">
+                                <div class="wd-heady">
+                                    <h3>Portfolio</h3>
+                                    <img src="/images/photo-icon.png" alt="">
+                                </div>
+                                <div class="pf-gallery">
+                                    <ul>
+                                        <li><a href="#" title=""><img src="/images/resources/pf-gallery1.png"
+                                                    alt=""></a></li>
+                                        <li><a href="#" title=""><img src="/images/resources/pf-gallery2.png"
+                                                    alt=""></a></li>
+                                        <li><a href="#" title=""><img src="/images/resources/pf-gallery3.png"
+                                                    alt=""></a></li>
+                                        <li><a href="#" title=""><img src="/images/resources/pf-gallery4.png"
+                                                    alt=""></a></li>
+                                        <li><a href="#" title=""><img src="/images/resources/pf-gallery5.png"
+                                                    alt=""></a></li>
+                                        <li><a href="#" title=""><img src="/images/resources/pf-gallery6.png"
+                                                    alt=""></a></li>
+                                        <li><a href="#" title=""><img src="/images/resources/pf-gallery7.png"
+                                                    alt=""></a></li>
+                                        <li><a href="#" title=""><img src="/images/resources/pf-gallery8.png"
+                                                    alt=""></a></li>
+                                        <li><a href="#" title=""><img src="/images/resources/pf-gallery9.png"
+                                                    alt=""></a></li>
+                                        <li><a href="#" title=""><img src="/images/resources/pf-gallery10.png"
+                                                    alt=""></a></li>
+                                        <li><a href="#" title=""><img src="/images/resources/pf-gallery11.png"
+                                                    alt=""></a></li>
+                                        <li><a href="#" title=""><img src="/images/resources/pf-gallery12.png"
+                                                    alt=""></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{{> admin/footer}}
+
+{{#extend "scripts"}}
+<script src="/javascripts/flatpickr.min.js"></script>
+<script src="/stylesheets/lib/slick/slick.min.js"></script>
+<script src="/javascripts/script.js"></script>
+
+<script src="/javascripts/moment.min.js"></script>
+<script src="/javascripts/translateMoment.js"></script>
+<script type="module" src="/javascripts/user-incident.js"></script>
+
+{{/extend}}

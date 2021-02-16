@@ -339,6 +339,8 @@ header {
   float: left;
   width: 100%;
   background-color: #2a302f;
+  position: fixed;
+  z-index: 100;
 }
 .header-data {
   float: left;
