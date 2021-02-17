@@ -33,7 +33,7 @@
                                     {{#if_cond user.dataValues.role_id 2}}
                                     <li>
                                         <h4>Incidentes atendidos</h4>
-                                        <span>{{ totalAtenciones }}</span>
+                                        <span id ="totalAtenciones">{{ totalAtenciones }}</span>
                                     </li>
                                     {{/if_cond}}
                                     <li>
@@ -546,6 +546,7 @@
 <script src="/javascripts/moment.min.js"></script>
 <script src="/javascripts/translateMoment.js"></script>
 <script type="module" src="/javascripts/residente-incidentes.js"></script>
+<script type="module" src="/javascripts/notification-attend.js"></script>
 {{/if_cond}}
 {{#if_cond user.dataValues.role_id 2}}
 <script src="/javascripts/moment.min.js"></script>

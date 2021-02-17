@@ -46,6 +46,25 @@
                             </ul>
                         </li>
                         {{/if_cond}}
+                        {{#if_cond user.dataValues.role_id 3}}
+                        <li id="block-notify">
+                            <a href="#!" title="" class="not-box-open">
+                                <span>
+                                    <img src="/images/icon7.png" alt="">
+                                    <span id="count_notify" class="badge badge-danger d-none">0</span>
+                                </span>
+                                Notificación
+                            </a>
+                            <div class="notification-box noti" id="notification">
+                                <div class="nott-list">
+                    
+                                    {{!-- <div class="view-all-nots">
+                                        <a href="#!" title="">Ver todas</a>
+                                    </div> --}}
+                                </div>
+                            </div>
+                        </li>
+                        {{/if_cond}}
                         <li>
                             <a href="/perfil" title="">
                                 <span><img src="/images/icon4.png" alt=""></span>
