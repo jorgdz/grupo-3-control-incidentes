@@ -4,6 +4,7 @@ const express = require('express')
 const router = express.Router()
 const { auth } = require('../middleware/auth')
 const { residenteUsuarioFinal } = require('../middleware/residente-usuario-final')
+const { isEmployee } = require('../middleware/empleado')
 const Atencion = require('../lib/db').atenciones
 const Incidente = require('../lib/db').incidentes
 const Adjunto = require('../lib/db').adjuntos
@@ -132,6 +133,7 @@ router.get('/api/incidentes', auth, async function (req, res, next) {
 
 	res.send(incidentes).status(200)
 })
+
 /**
  * 
  * Api Rest Get Incidents for employee
@@ -341,6 +343,125 @@ router.put('/api/:id/incidentes', auth, residenteUsuarioFinal, async function (r
 	if (incidentUpdated) {
 		res.send(incidentUpdated)
 	}
+})
+
+/**
+ * 
+ * Api Post Comments
+ */
+router.post('/api/comment/:id/incident', auth, residenteUsuarioFinal, async function (req, res, next) {
+	let body = {
+		descripcion: req.body.descripcion,
+		incidente_id: req.params.id,
+		residente_id: req.user.residente.id
+	}
+
+	const commented = await Comentario.create(body)
+	if (commented) {
+		const lastComment = await Comentario.findAll({ where: { id: commented.id }, 
+			include: [{ 
+				model: Residente, 
+				as: 'residente',
+				include: [
+					{
+						model: User,
+						as: 'user'
+					}
+				]
+			}]
+		})
+		res.send(lastComment[0])
+	}
+})
+
+/**
+ * Change status for attemp
+ */
+router.post('/api/:id/incidentes/attention', auth, isEmployee, async function (req, res, next) {
+	await Incidente.update({ estado: 'ATENDIENDOSE' }, { where: { id: req.params.id }})
+	let bodyAttend = {
+		incidente_id : req.params.id,
+		empleado_id: req.user.empleado.id
+	}
+
+	const attentionCreated = await Atencion.create(bodyAttend)
+	if (attentionCreated) {
+		res.redirect('/valle-verde')
+	}
+})
+
+/* Get my incidents. */
+router.get('/api/my-incidents', auth, residenteUsuarioFinal , async function (req, res, next) {
+	const incidentes = await Incidente.findAll({
+		include: [
+			{
+				model: Residente,
+				as: 'residente',
+				include: [
+					{
+						model: User,
+						as: 'user',
+						attributes: {
+							exclude: ['password']
+						}
+					},
+					{
+						model: Villa,
+						as: 'villa',
+						include: [{
+							model: Bloque,
+							as: 'bloque',
+						}]
+					}
+				]
+			},
+			{
+				model: Adjunto,
+				as: 'adjuntos'
+			},
+			{
+				model: Comentario,
+				as: 'comentarios',
+				include: [
+					{
+						model: SubComentario,
+						as: 'subcomentarios',
+						include: [
+							{
+								model: Residente,
+								as: 'residente',
+								include: [
+									{
+										model: User,
+										as: 'user'
+									}
+								]
+							}
+						]
+					},
+					{
+						model: Residente,
+						as: 'residente',
+						include: [
+							{
+								model: User,
+								as: 'user'
+							}
+						]
+					}
+				]
+			},
+			{
+				model: TipoIncidente,
+				as: 'tipo'
+			}
+		],
+		where: { residente_id: req.user.residente.id },
+		order: [['id', 'DESC']]
+	})
+
+	res.send(incidentes)
+		.status(200)
 })
 
 module.exports = router

@@ -9,13 +9,22 @@ const validatorUpdateProfile = require('../lib/validator/update-profile')
 const validatorChangePass = require('../lib/validator/change-password')
 const User = db.users
 const Empleado = db.empleados
+const Incidente = db.incidentes
+const Villa = db.villas
+const Bloque = db.bloques
 const Residente = db.residentes
+const Adjunto = db.adjuntos
+const Comentario = db.comentarios
+const SubComentario = db.subcomentarios
+const TipoIncidente = db.tipo_incidentes
+const { Op } = require('sequelize')
 
 const bcrypt = require('bcrypt')
 
 const { generateFileName, uploadOneFile } = require('../lib/storage')
 
 const multer = require('multer')
+const { residenteUsuarioFinal } = require('../middleware/residente-usuario-final')
 const storage = multer.diskStorage({
   destination: '',
   filename: function (req, file, cb) {
@@ -42,20 +51,102 @@ router.get('/ajustes', auth, function (req, res, next) {
 
 /* GET user profile. */
 router.get('/usuario/:username', auth, async function (req, res, next) {
-  const user = await User.findAll({ where: { username: req.params.username }, 
-    include: [
-      {
-        model: Residente,
-        as: 'residente'
-      },
-      {
-        model: Empleado,
-        as: 'empleado'
-      }
-    ]})
+  const user = await User.findAll({ where: { username: req.params.username },
+    include: [{
+      model: Residente,
+      as: 'residente'
+    },
+    {
+      model: Empleado,
+      as: 'empleado'
+    }]
+  })
 
-	res.render('profile/user', { profileUser: user[0] })
+  if (user[0].id == req.user.id) {
+    res.redirect('/perfil')
+  }
+
+  if(user.length > 0) {
+    res.render('profile/user', { profileUser: user[0] })
+  } else  {
+    res.redirect('/valle-verde')
+  }
 })
+
+/* Api GET user's incidents. */
+router.get('/api/user-incidents/:username', auth, async function (req, res, next) {
+  const incidentes = await Incidente.findAll({
+		include: [
+			{
+				model: Residente,
+				as: 'residente',
+				include: [
+					{
+						model: User,
+						as: 'user',
+						attributes: {
+							exclude: ['password']
+						}
+					},
+					{
+						model: Villa,
+						as: 'villa',
+						include: [{
+							model: Bloque,
+							as: 'bloque',
+						}]
+					}
+				]
+			},
+			{
+				model: Adjunto,
+				as: 'adjuntos'
+			},
+			{
+				model: Comentario,
+				as: 'comentarios',
+				include: [
+					{
+						model: SubComentario,
+						as: 'subcomentarios',
+						include: [
+							{
+								model: Residente,
+								as: 'residente',
+								include: [
+									{
+										model: User,
+										as: 'user'
+									}
+								]
+							}
+						]
+					},
+					{
+						model: Residente,
+						as: 'residente',
+						include: [
+							{
+								model: User,
+								as: 'user'
+							}
+						]
+					}
+				]
+			},
+			{
+				model: TipoIncidente,
+				as: 'tipo'
+			}
+		],
+		where: { username: db.Sequelize.where(db.Sequelize.col('residente.user.username'), { [Op.eq]: req.params.username })},
+   	order: [['id', 'DESC']]
+	})
+
+	res.send(incidentes)
+		.status(200)
+})
+
 
 /* POST settings profile user. */
 router.post('/ajustes', auth, validatorUpdateProfile, async function (req, res, next) {
