@@ -27,8 +27,8 @@ window.addEventListener('load', async function () {
     attend(incident)
   })
 
-  //let socket = io('https://incident-web.herokuapp.com', { 'forceNew': true })
-  let socket = io('http://localhost:5000', { 'forceNew': true })
+  let socket = io('https://incident-web.herokuapp.com', { 'forceNew': true })
+  //let socket = io('http://localhost:5000', { 'forceNew': true })
 
   socket.on('data', async function (data) {
     if (data.success == 1) {
@@ -67,8 +67,6 @@ const attend = function (incident) {
   document.querySelector(`#attend-incident-${incident.id}`).addEventListener('click', function () {
     goAttend (incident.id)
       .then(response => {
-
-        console.log(response)
         let socket = io('https://incident-web.herokuapp.com', { 'forceNew': true })
         //let socket = io('http://localhost:5000', { 'forceNew': true })
         socket.on('connect', async function () {
