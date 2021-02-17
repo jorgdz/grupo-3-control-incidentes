@@ -165,4 +165,10 @@
 <script src="/stylesheets/lib/slick/slick.min.js"></script>
 <script src="/javascripts/script.js"></script>
 <script src="/javascripts/profile.js"></script>
+{{#if_cond user.dataValues.role_id 3}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.min.js"></script>
+<script src="/javascripts/moment.min.js"></script>
+<script src="/javascripts/translateMoment.js"></script>
+<script type="module" src="/javascripts/notification-attend.js"></script>
+{{/if_cond}}
 {{/extend}}

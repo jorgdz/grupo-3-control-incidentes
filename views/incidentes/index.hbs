@@ -33,7 +33,7 @@
                                     {{#if_cond user.dataValues.role_id 2}}
                                     <li>
                                         <h4>Incidentes atendidos</h4>
-                                        <span>{{ totalAtenciones }}</span>
+                                        <span id ="totalAtenciones">{{ totalAtenciones }}</span>
                                     </li>
                                     {{/if_cond}}
                                     <li>
@@ -442,8 +442,8 @@
         <div class="conversation-box">
             <div class="con-title mg-3">
                 <div class="chat-user-info">
-                    <img src="/images/resources/us-img1.png" alt="">
-                    <h3>John Doe <span class="status-info"></span></h3>
+                    <img src="https://storage.googleapis.com/istb-storage.appspot.com/1611597615500-user.png" width="35" height="35" alt="">
+                    <h3>Personal de seguridad </h3>
                 </div>
                 <div class="st-icons">
                     {{!-- <a href="#" title=""><i class="la la-cog"></i></a> --}}
@@ -451,16 +451,19 @@
                     <a href="#" title="" class="close-chat"><i class="la la-close"></i></a>
                 </div>
             </div>
-            <div class="chat-hist mCustomScrollbar" data-mcs-theme="dark">
-                <div class="chat-msg">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget
-                        malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
+            <div class="chat-hist mCustomScrollbar" id="chat-list-residente" data-mcs-theme="dark">
+                <div id="mCSB_1" class="mCustomScrollBox mCS-dark mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div>
+                
+                {{!--<div class="chat-msg">
+                    <p>Hola ayuda por favor</p>
                     <span>Sat, Aug 23, 1:10 PM</span>
                 </div>
-                <div class="date-nd">
-                    <span>Sunday, August 24</span>
+                <div class="chat-msg">
+                    <p>aaaaaaaaaaaa</p>
+                    <span>Sat, Aug 23, 1:10 PM</span>
                 </div>
-                <div class="chat-msg st2">
+                 <div class="chat-msg st2">
                     <p>Cras ultricies ligula.</p>
                     <span>5 minutes ago</span>
                 </div>
@@ -468,12 +471,12 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget
                         malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
                     <span>Sat, Aug 23, 1:10 PM</span>
-                </div>
+                </div> --}}
             </div>
             <div class="typing-msg">
                 <form>
-                    <textarea placeholder="Escribe tu mensaje"></textarea>
-                    <button type="submit"><i class="fa fa-send"></i></button>
+                    <textarea id="inputTextMessage" placeholder="Escribe tu mensaje"></textarea>
+                    <button type="button" id="btnSendMessage"><i class="fa fa-send"></i></button>
                 </form>
                 <ul class="ft-options">
                     {{!-- <li><a href="#" title=""><i class="la la-smile-o"></i></a></li>
@@ -546,11 +549,14 @@
 <script src="/javascripts/moment.min.js"></script>
 <script src="/javascripts/translateMoment.js"></script>
 <script type="module" src="/javascripts/residente-incidentes.js"></script>
+<script type="module" src="/javascripts/notification-attend.js"></script>
+<script type="module" src="/javascripts/chat-residente.js"></script>
 {{/if_cond}}
 {{#if_cond user.dataValues.role_id 2}}
 <script src="/javascripts/moment.min.js"></script>
 <script src="/javascripts/translateMoment.js"></script>
 <script type="module" src="/javascripts/personal-seguridad-incidentes.js"></script>
+<script type="module" src="/javascripts/chat-personal-seguridad-incidentes.js"></script>
 {{/if_cond}}
 <script src="/javascripts/script.js"></script>
 {{/extend}}

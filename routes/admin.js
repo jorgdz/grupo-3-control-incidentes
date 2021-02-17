@@ -5,13 +5,14 @@ const router = express.Router()
 const { auth } = require('../middleware/auth')
 const { residenteUsuarioFinal } = require('../middleware/residente-usuario-final')
 const { isEmployee } = require('../middleware/empleado')
+const Villa = require('../lib/db').villas
+const Bloque = require('../lib/db').bloques
 const Atencion = require('../lib/db').atenciones
 const Incidente = require('../lib/db').incidentes
 const Adjunto = require('../lib/db').adjuntos
 const Residente = require('../lib/db').residentes
 const User = require('../lib/db').users
-const Villa = require('../lib/db').villas
-const Bloque = require('../lib/db').bloques
+const Empleado = require('../lib/db').empleados
 const TipoIncidente = require('../lib/db').tipo_incidentes
 const Comentario = require('../lib/db').comentarios
 const SubComentario = require('../lib/db').subcomentarios
@@ -377,8 +378,9 @@ router.post('/api/comment/:id/incident', auth, residenteUsuarioFinal, async func
 /**
  * Change status for attemp
  */
-router.post('/api/:id/incidentes/attention', auth, isEmployee, async function (req, res, next) {
+router.put('/api/:id/incidentes/attention', auth, isEmployee, async function (req, res, next) {
 	await Incidente.update({ estado: 'ATENDIENDOSE' }, { where: { id: req.params.id }})
+	
 	let bodyAttend = {
 		incidente_id : req.params.id,
 		empleado_id: req.user.empleado.id
@@ -386,7 +388,30 @@ router.post('/api/:id/incidentes/attention', auth, isEmployee, async function (r
 
 	const attentionCreated = await Atencion.create(bodyAttend)
 	if (attentionCreated) {
-		res.redirect('/valle-verde')
+		const attendIncident = await Atencion.findAll({
+			where: { id: attentionCreated.id },
+			include: [
+				{
+					model: Incidente,
+					as: 'incidente'
+				},
+				{
+					model: Empleado,
+					as: 'empleado',
+					include: [
+						{
+							model: User,
+							as: 'user',
+							attributes: {
+								exclude: ['password']
+							}
+						}
+					]
+				}
+			]
+		})
+		
+		res.send(attendIncident[0])
 	}
 })
 
