@@ -5,6 +5,7 @@ const router = express.Router()
 const { auth } = require('../middleware/auth')
 const { residenteUsuarioFinal } = require('../middleware/residente-usuario-final')
 const { isEmployee } = require('../middleware/empleado')
+const db = require('../lib/db')
 const Villa = require('../lib/db').villas
 const Bloque = require('../lib/db').bloques
 const Atencion = require('../lib/db').atenciones
@@ -37,20 +38,135 @@ const upload = multer({
 /* GET admin page. */
 router.get('/', auth, async function (req, res, next) {
 	let countAtentions = 0
+	const lastIncidents = await Incidente.findAll({
+		include:[
+			{
+				model: Residente,
+				as: 'residente',
+				include: [
+					{
+						model: User,
+						as: 'user',
+						attributes: {
+							exclude: ['password']
+						}
+					},
+					{
+						model: Villa,
+						as: 'villa',
+						include: [{
+							model: Bloque,
+							as: 'bloque',
+						}]
+					}
+				]
+			},
+		], 
+		order: [['id', 'DESC']],
+		limit: 10
+	});
+
+	const gravityIncidents = await Incidente.findAll({
+		where: {
+			gravedad: db.Sequelize.where(db.Sequelize.col('tipo.gravedad'), { [Op.eq]: 'GRAVE' }),
+		},
+		include: [
+			{
+				model: TipoIncidente,
+				as: 'tipo'
+			}
+		],
+		order: [['id', 'DESC']],
+	});
+
 	if(req.user.role_id == 2) {
 		countAtentions = await Atencion.count({ where: { empleado_id: req.user.empleado.id} })
-		res.render('incidentes/index', { totalAtenciones: countAtentions })
+		res.render('incidentes/index', { totalAtenciones: countAtentions, lastIncidents: lastIncidents, gravityIncidents: gravityIncidents })
 	} else if (req.user.role_id == 3) {
 		const tiposIncidentes = await TipoIncidente.findAll({ order: [['tipo', 'ASC']] })
-		res.render('incidentes/index', { tipos: tiposIncidentes })
+		res.render('incidentes/index', { tipos: tiposIncidentes, lastIncidents: lastIncidents, gravityIncidents: gravityIncidents })
 	} else {
-		res.render('incidentes/index')
+		res.render('incidentes/index', { lastIncidents, gravityIncidents })
 	}
 })
 
-/* GET incident page. */
+/* GET incident page by id. */
 router.get('/:id/incidente', auth, async function (req, res, next) {
-	res.send(`hello incident ${req.params.id}`)
+	const incident = await Incidente.findAll(
+	{
+		where: { id: req.params.id },
+		include: [
+			{
+				model: Residente,
+				as: 'residente',
+				include: [
+					{
+						model: User,
+						as: 'user',
+						attributes: {
+							exclude: ['password']
+						}
+					},
+					{
+						model: Villa,
+						as: 'villa',
+						include: [{
+							model: Bloque,
+							as: 'bloque',
+						}]
+					}
+				]
+			},
+			{
+				model: Adjunto,
+				as: 'adjuntos'
+			},
+			{
+				model: Comentario,
+				as: 'comentarios',
+				include: [
+					{
+						model: SubComentario,
+						as: 'subcomentarios',
+						include: [
+							{
+								model: Residente,
+								as: 'residente',
+								include: [
+									{
+										model: User,
+										as: 'user',
+										attributes: {
+											exclude: ['password']
+										}
+									}
+								]
+							}
+						]
+					},
+					{
+						model: Residente,
+						as: 'residente',
+						include: [
+							{
+								model: User,
+								as: 'user',
+								attributes: {
+									exclude: ['password']
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				model: TipoIncidente,
+				as: 'tipo'
+			}
+		]
+	});
+
+	res.render('incidentes/detail', { incident: incident[0] })
 })
 
 /* POST delete incidente. */
