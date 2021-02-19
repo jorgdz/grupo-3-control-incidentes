@@ -6894,3 +6894,7 @@ LOADER
 .animate-incident {
   animation: opac 1.5s;
 }
+
+#pelaje_animal_perdido {
+  border: none;
+}

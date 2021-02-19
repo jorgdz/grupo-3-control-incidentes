@@ -133,6 +133,22 @@ const drawIncidents = async function (data) {
 }
 
 window.addEventListener('load', function () {
+  $('#pelaje_animal_perdido').tagEditor({
+    placeholder: 'Agregue descripciones del pelaje del animal y de enter'
+  })
+  
+  $('#raza_animal_perdido').tagEditor({
+    placeholder: 'Agregue la raza del animal'
+  })
+  
+  $('#des_sospechoso').tagEditor({
+    placeholder: 'Describa al sospechoso y de enter'
+  })
+  
+  $('#pertenencias_hurtadas').tagEditor({
+    placeholder: 'Agregue las pertenencias hurtadas y de enter'
+  })
+
   getIncidents()
     .then(res => {
       drawIncidents(res).then(response => response)

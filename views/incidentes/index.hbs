@@ -1,5 +1,7 @@
 {{#extend "head"}}
 <link rel="stylesheet" href="/stylesheets/css/employees.css">
+<link rel="stylesheet" href="/stylesheets/css/loader-screen.css">
+<link rel="stylesheet" href="/stylesheets/css/jquery.tag-editor.css">
 {{> title title="Incidentes"}}
 {{/extend}}
 
@@ -10,6 +12,7 @@
 <br>
 <br>
 <br>
+<div id="cover-spin"></div>
 <main>
     <div class="main-section">
         <div class="container">
@@ -46,54 +49,19 @@
                                     <h3>Últimas publicaciones</h3>
                                 </div>
                                 <div class="suggestions-list">
+                                    {{#each lastIncidents }}
                                     <div class="suggestion-usd">
-                                        <img src="/images/resources/s1.png" alt="">
+                                        <img src="{{ dataValues.residente.dataValues.user.dataValues.url_imagen }}" alt="" width="40" height="40" >
                                         <div class="sgt-text">
-                                            <h4>Jessica William</h4>
-                                            <span>Graphic Designer</span>
+                                            <h4>{{ dataValues.residente.dataValues.user.dataValues.nombres }} {{ dataValues.residente.dataValues.user.dataValues.apellidos }}</h4>
+                                            <span>{{ trimString dataValues.descripcion }}..</span>
                                         </div>
-                                        <span><i class="la la-plus"></i></span>
+                                        &nbsp;
+                                        <a href="/valle-verde/{{ dataValues.id }}/incidente">
+                                            <span><i class="la la-plus"></i></span>
+                                        </a>
                                     </div>
-                                    <div class="suggestion-usd">
-                                        <img src="/images/resources/s2.png" alt="">
-                                        <div class="sgt-text">
-                                            <h4>John Doe</h4>
-                                            <span>PHP Developer</span>
-                                        </div>
-                                        <span><i class="la la-plus"></i></span>
-                                    </div>
-                                    <div class="suggestion-usd">
-                                        <img src="/images/resources/s3.png" alt="">
-                                        <div class="sgt-text">
-                                            <h4>Poonam</h4>
-                                            <span>Wordpress Developer</span>
-                                        </div>
-                                        <span><i class="la la-plus"></i></span>
-                                    </div>
-                                    <div class="suggestion-usd">
-                                        <img src="/images/resources/s4.png" alt="">
-                                        <div class="sgt-text">
-                                            <h4>Bill Gates</h4>
-                                            <span>C & C++ Developer</span>
-                                        </div>
-                                        <span><i class="la la-plus"></i></span>
-                                    </div>
-                                    <div class="suggestion-usd">
-                                        <img src="/images/resources/s5.png" alt="">
-                                        <div class="sgt-text">
-                                            <h4>Jessica William</h4>
-                                            <span>Graphic Designer</span>
-                                        </div>
-                                        <span><i class="la la-plus"></i></span>
-                                    </div>
-                                    <div class="suggestion-usd">
-                                        <img src="/images/resources/s6.png" alt="">
-                                        <div class="sgt-text">
-                                            <h4>John Doe</h4>
-                                            <span>PHP Developer</span>
-                                        </div>
-                                        <span><i class="la la-plus"></i></span>
-                                    </div>
+                                    {{/each}}
                                 </div>
                             </div>
                             <div class="tags-sec full-width">
@@ -163,39 +131,19 @@
                                     <h3>Incidentes de gravedad</h3>
                                 </div>
                                 <div class="jobs-list">
-                                    <div class="job-info">
-                                        <div class="job-details">
-                                            <a href="">
-                                                <h3>Desastres naturales</h3>
-                                                <p>Un terremoto arrazó con mi vivienda.</p>
-                                            </a>
+                                    {{#each gravityIncidents}}
+                                        <div class="job-info">
+                                            <div class="job-details">
+                                                <a href="/valle-verde/{{ dataValues.id }}/incidente">
+                                                    <h3>{{ dataValues.tipo.dataValues.tipo }}</h3>
+                                                    <p>{{ trimStringGravity dataValues.descripcion }}..</p>
+                                                </a>
+                                            </div>
+                                            <div class="hr-rate">
+                                                <span style="text-align: right;" class="timePublishIncidents">{{ dataValues.createdAt }}</span>
+                                            </div>
                                         </div>
-                                        <div class="hr-rate">
-                                            <span style="text-align: right;">Hace 2 días</span>
-                                        </div>
-                                    </div>
-                                    <div class="job-info">
-                                        <div class="job-details">
-                                            <a href="">
-                                                <h3>Desastres naturales</h3>
-                                                <p>Un terremoto arrazó con mi vivienda.</p>
-                                            </a>
-                                        </div>
-                                        <div class="hr-rate">
-                                            <span style="text-align: right;">Hace 2 días</span>
-                                        </div>
-                                    </div>
-                                    <div class="job-info">
-                                        <div class="job-details">
-                                            <a href="">
-                                                <h3>Desastres naturales</h3>
-                                                <p>Un terremoto arrazó con mi vivienda.</p>
-                                            </a>
-                                        </div>
-                                        <div class="hr-rate">
-                                            <span style="text-align: right;">Hace 2 días</span>
-                                        </div>
-                                    </div>
+                                    {{/each}}
                                 </div>
                             </div>
                         </div>
@@ -294,11 +242,12 @@
 
                     <div class="col-lg-12" id="pelaje-animal">
                         <input type="text" name="pelaje_animal_perdido" id="pelaje_animal_perdido"
-                            placeholder="Pelaje del animal">
+                            placeholder="Pelaje del animal"/>
                     </div>
+
                     <div class="col-lg-12" id="raza-animal">
                         <input type="text" name="raza_animal_perdido" id="raza_animal_perdido"
-                            placeholder="Raza del animal">
+                            placeholder="Raza del animal" />
                     </div>
 
                     <div class="col-lg-6" id="tamanio-animal">
@@ -437,7 +386,7 @@
     <div class="chatbox">
         <div class="chat-mg bx">
             <a href="#" title=""><img src="/images/chat.png" alt=""></a>
-            <span>2</span>
+            <span id="count_chat_message">0</span>
         </div>
         <div class="conversation-box">
             <div class="con-title mg-3">
@@ -548,13 +497,17 @@
 {{#if_cond user.dataValues.role_id 3}}
 <script src="/javascripts/moment.min.js"></script>
 <script src="/javascripts/translateMoment.js"></script>
+<script src="/javascripts/jquery.caret.min.js"></script>
+<script src="/javascripts/jquery.tag-editor.min.js"></script>
 <script type="module" src="/javascripts/residente-incidentes.js"></script>
 <script type="module" src="/javascripts/notification-attend.js"></script>
 <script type="module" src="/javascripts/chat-residente.js"></script>
+<script src="/javascripts/timePublishAll.js"></script>
 {{/if_cond}}
 {{#if_cond user.dataValues.role_id 2}}
 <script src="/javascripts/moment.min.js"></script>
 <script src="/javascripts/translateMoment.js"></script>
+<script src="/javascripts/timePublishAll.js"></script>
 <script type="module" src="/javascripts/personal-seguridad-incidentes.js"></script>
 <script type="module" src="/javascripts/chat-personal-seguridad-incidentes.js"></script>
 {{/if_cond}}

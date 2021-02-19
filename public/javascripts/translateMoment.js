@@ -4,7 +4,7 @@ moment.updateLocale('es', {
     past: "hace %s",
     s: 'unos segundos',
     ss: '%d segundos',
-    m: "a minuto",
+    m: "un minuto",
     mm: "%d minutos",
     h: "1 hora",
     hh: "%d horas",
