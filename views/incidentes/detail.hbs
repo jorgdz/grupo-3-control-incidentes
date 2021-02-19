@@ -18,239 +18,187 @@
           <div class="col-xl-9 col-lg-9 col-md-12">
             <div class="bids-detail">
               <div class="row">
-              <div class="col-12 appliedjob">
-              <ul>
-              <li>
-              <h3>Applicants</h3>
-              <br>
-              <p>10</p>
-              </li>
-              <li>
-              <h3>Job Type</h3>
-              <br>
-              <p>Full Time</p>
-              </li>
-              <li>
-              <h3>Salary</h3>
-              <br>
-              {{!-- <p>$600 - Mannual</p> --}}
-              </li>
-              <li>
-              <h3>Views</h3>
-              <br>
-              <p>195</p>
-              </li>
-              </ul>
-              <div class="bids-time">
-              <h3>Posted : 5 Days Ago</h3>
-              <br>
-              <p>Open</p>
-              </div>
-              </div>
+                <div class="col-12 appliedjob">
+                 
+                  <div class="bids-time">
+                    <h3>Publicado : <span class="timePublishIncidents">{{ incident.dataValues.createdAt }}</span></h3>
+                    <br>
+                    <p>{{incident.dataValues.estado}}</p>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="main-ws-sec">
               <div class="posts-section">
-              <div class="post-bar">
-              <div class="post_topbar">
-              <div class="usy-dt">
-              <img src="{{ incident.dataValues.residente.dataValues.user.dataValues.url_imagen }}" width="40" height="40" alt="">
-              <div class="usy-name">
-              <h3>{{ incident.dataValues.residente.dataValues.user.dataValues.nombres }} {{ incident.dataValues.residente.dataValues.user.dataValues.apellidos }}</h3>
-              <span><img src="images/clock.png" alt=""><span id="timePublishIncident">{{ incident.dataValues.createdAt }}</span></span>
-              </div>
-              </div>
-              <div class="ed-opts">
-              <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-              <ul class="ed-options">
-              <li><a href="#" title="">Edit Post</a></li>
-              <li><a href="#" title="">Unsaved</a></li>
-              <li><a href="#" title="">Unbid</a></li>
-              <li><a href="#" title="">Close</a></li>
-              <li><a href="#" title="">Hide</a></li>
-              </ul>
-              </div>
-              </div>
-              <div class="epi-sec">
-              <ul class="descp">
-              <li><img src="images/icon8.png" alt=""><span>Epic Coder</span></li>
-              <li><img src="images/icon9.png" alt=""><span>India</span></li>
-              </ul>
-              <ul class="bk-links">
-              <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-              <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
-              </ul>
-              </div>
-              <div class="job_descp accountnone">
-              <h3>Senior Wordpress Developer</h3>
-              <ul class="job-dt">
-              <li>
-              <a href="#">Full Time</a>
-              </li>
-              <li><span>$600 / Mannual</span></li>
-              </ul>
-              <p>{{ incident.dataValues.descripcion }}</p>
-              <ul class="skill-tags">
-              <li><a href="#" title="">HTML</a></li>
-              <li><a href="#" title="">PHP</a></li>
-              <li><a href="#" title="">CSS</a></li>
-              <li><a href="#" title="">Javascript</a></li>
-              <li><a href="#" title="">Wordpress</a></li>
-              </ul>
-              </div>
-              <div class="job-status-bar btm-line">
-              <ul class="like-com">
-              <li>
-              <a href="#" class="active"><i class="fa fa-heart"></i> Like</a>
-              <img src="images/liked-img.png" alt="">
-              <span>25</span>
-              </li>
-              <li><a href="#" class="com"><i class="fa fa-comment-alt"></i> Comments 15</a></li>
-              </ul>
-              <a><i class="fa fa-eye"></i>Views 50</a>
-              </div>
-              <div class="comment-area">
-              <i class="la la-plus-circle"></i>
-              <div class="post_topbar">
-              <div class="usy-dt">
-              <img src="images/resources/bg-img1.png" alt="">
-              <div class="usy-name">
-              <h3>John Doe</h3>
-              <span><img src="images/clock.png" alt="">3 min ago</span>
-              </div>
-              </div>
-              </div>
-              <div class="reply-area">
-              <p>Lorem ipsum dolor sit amet,</p>
-              <span><i class="la la-mail-reply"></i>Reply</span> 
-              <div class="comment-area reply-rply1">
-              <div class="post_topbar">
-              <div class="usy-dt">
-              <img src="images/resources/bg-img2.png" alt="">
-              <div class="usy-name">
-              <h3>John Doe</h3>
-              <span><img src="images/clock.png" alt="">3 min ago</span>
-              </div>
-              </div>
-              </div>
-              <div class="reply-area">
-              <p>Lorem ipsum dolor sit amet,</p>
-              <p>Hi John</p>
-              <span><i class="la la-mail-reply"></i>Reply</span>
-              </div>
-              </div>
-              </div>
-              </div>
-              <div class="comment-area">
-              <div class="post_topbar">
-              <div class="usy-dt">
-              <img src="images/resources/bg-img3.png" alt="">
-              <div class="usy-name">
-              <h3>John Doe</h3>
-              <span><img src="images/clock.png" alt="">3 min ago</span>
-              </div>
-              </div>
-              </div>
-              <div class="reply-area">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at.</p>
-              <span><i class="la la-mail-reply"></i>Reply</span>
-              </div>
-              </div>
-              <div class="postcomment">
-              <div class="row">
-              <div class="col-md-2">
-              <img src="images/resources/bg-img4.png" alt="">
-              </div>
-              <div class="col-md-8">
-              <form>
-              <div class="form-group">
-              <input type="text" class="form-control" id="inputPassword" placeholder="Post a comment">
-              </div>
-              </form>
-              </div>
-              <div class="col-md-2">
-              <a href="#">Send</a>
-              </div>
-              </div>
-              </div>
-              </div>
+                <div class="post-bar">
+                  <div class="post_topbar">
+                    <div class="usy-dt">
+                      <img src="{{ incident.dataValues.residente.dataValues.user.dataValues.url_imagen }}" width="40" height="40" alt="">
+                      <div class="usy-name">
+                        <h3>{{ incident.dataValues.residente.dataValues.user.dataValues.nombres }} {{ incident.dataValues.residente.dataValues.user.dataValues.apellidos }}</h3>
+                        <span><img src="images/clock.png" alt=""><span class="timePublishIncidents">{{ incident.dataValues.createdAt }}</span></span>
+                      </div>
+                    </div>
+                  </div>
+                <div class="epi-sec">
+                  <ul class="descp">
+                    <li><img src="images/icon8.png" alt=""><span>{{ incident.dataValues.estado }}</span></li>
+                    <li><img src="images/icon9.png" alt=""><span>{{ incident.dataValues.residente.dataValues.villa.dataValues.bloque.dataValues.nombre }}: {{ incident.dataValues.residente.dataValues.villa.dataValues.numero }}</span></li>
+                  </ul>
+                  <ul class="bk-links">
+                    {{!-- <li><a href="#" title=""><i class="la la-pencil"></i></a></li> --}}
+                    <li>
+                      <a href="/valle-verde/incidente/{{incident.dataValues.id}}/borrar" title="" onclick="event.preventDefault(); (confirm('¿ ESTAS SEGURO QUE DESEAS BORRAR ESTE INCIDENTE ?')) ? document.getElementById('delete-form-{{incident.dataValues.id}}').submit() : false;"><i class="la la-trash" style="background-color: crimson;"></i></a>
+                      <form id="delete-form-{{incident.dataValues.id}}" action="/valle-verde/incidente/{{incident.dataValues.id}}/borrar" method="POST" style="display: none;"></form>
+                    </li>
+                  </ul>
+                </div>
+                <div class="job_descp accountnone">
+                  {{#if_not incident.dataValues.detalles '{}'}}
+                  <h3 id="detail_incident_json">{{ incident.dataValues.detalles }}</h3>
+                  {{/if_not}}
+                  <ul class="job-dt">
+                    <li>
+                      <a href="#">{{ incident.dataValues.tipo.dataValues.tipo }}</a>
+                    </li>
+                    <li><span>{{ incident.dataValues.tipo.dataValues.gravedad }}</span></li>
+                  </ul>
+                  <p>{{ incident.dataValues.descripcion }}</p>
+                  
+                 <div class="row justify-content-center">
+                    <div class="row">
+                      {{#checkLength incident.dataValues.adjuntos 0}}
+                        {{#each incident.dataValues.adjuntos}}
+                          <div class="col-md-3">
+                            <a href="{{dataValues.url}}" data-toggle="lightbox" data-gallery="example-gallery">
+                              <img src="{{dataValues.url}}" class="img-fluid">
+                            </a>
+                          </div>
+                        {{/each}}
+                      {{/checkLength}}
+                    </div> 
+                  </div>
+                </div>
+                <div class="job-status-bar btm-line">
+                  <ul class="like-com">
+                    <li><a href="#" class="com"><i class="fa fa-comment-alt"></i> {{ incident.dataValues.comentarios.length }} comentarios</a></li>
+                  </ul>
+                </div>
+                {{!-- <div class="comment-area">
+                  <i class="la la-plus-circle"></i> 
+                  <div class="post_topbar">
+                    <div class="usy-dt">
+                      <img src="images/resources/bg-img1.png" alt="">
+                      <div class="usy-name">
+                        <h3>John Doe</h3>
+                        <span><img src="images/clock.png" alt="">3 min ago</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="reply-area">
+                    <p>Lorem ipsum dolor sit amet,</p>
+                    <span><i class="la la-mail-reply"></i>Reply</span> 
+                    <div class="comment-area reply-rply1">
+                      <div class="post_topbar">
+                        <div class="usy-dt">
+                        <img src="images/resources/bg-img2.png" alt="">
+                          <div class="usy-name">
+                            <h3>John Doe</h3>
+                            <span><img src="images/clock.png" alt="">3 min ago</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="reply-area">
+                        <p>Lorem ipsum dolor sit amet,</p>
+                        <p>Hi John</p>
+                        <span><i class="la la-mail-reply"></i>Reply</span>
+                      </div>
+                    </div>
+                  </div>
+                </div> --}}
+                {{#checkLength incident.dataValues.comentarios 0}}
+                  {{#each incident.dataValues.comentarios}}
+                  <div class="comment-area">
+                    <div class="post_topbar">
+                      <div class="usy-dt">
+                        <img src="{{ dataValues.residente.dataValues.user.dataValues.url_imagen }}" width="40" height="40" alt="">
+                        <div class="usy-name">
+                          <h3>{{ dataValues.residente.dataValues.user.dataValues.nombres }} {{ dataValues.residente.dataValues.user.dataValues.apellidos }}</h3>
+                          <span><img src="images/clock.png" alt=""><span class="timePublishIncidents">{{ dataValues.createdAt }}</span></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="reply-area">
+                      <p>{{ dataValues.descripcion }}</p>
+                      {{!-- <span><i class="la la-mail-reply"></i>Responder</span> --}}
+                    </div>
+                  </div>
+                  <br>
+                  {{/each}}
+                {{/checkLength}}
 
+                <div class="postcomment">
+                  <div class="row" style="position: relative; margin-left: 0px; padding-top: 20px;width:100%;">
+                    <div class="col-md-1">
+                      <img src="images/resources/bg-img4.png" alt="">
+                    </div>
+                    <div class="col-md-9">
+                      <form>
+                        <div class="form-group">
+                          <input type="text" class="form-control" id="inputCommentIncident" placeholder="Escribir un comentario">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-md-2">
+                      <a href="#!">Enviar</a>
+                    </div>
+                  </div>
+                </div>
+                </div>
               </div>
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-12">
             <div class="right-sidebar">
               {{#if_cond user.dataValues.role_id 2}}
-              <div class="widget widget-about bid-place">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal" data-whatever="@mdo">Atender</button>
-              </div>
+                {{#if_cond incident.dataValues.estado 'NO ATENDIDO'}}
+                  <div class="widget widget-about bid-place">
+                    <button type="button" class="btn btn-primary" id="attend-incident-{{incident.dataValues.id}}" data-toggle="modal" data-target="#mymodal" data-whatever="@mdo">Atender</button>
+                  </div>
+                {{/if_cond}}
               {{/if_cond}}
-              <div class="widget widget-projectid">
-              <h3>Project ID : 123456789</h3>
-              <p>Report Job</p>
-              </div>
 
+              {{#checkLength incident.dataValues.atenciones 0}}
               <div class="widget widget-jobs">
-              <div class="sd-title">
-              <h3>About the Client</h3>
-              <i class="la la-ellipsis-v"></i>
+                <div class="sd-title">
+                  <h3>Personal de seguridad atendiendo.</h3>
+                </div>
+                {{#each incident.dataValues.atenciones}}
+                  <div class="sd-title paymethd">
+                    <h4>{{ dataValues.empleado.dataValues.user.dataValues.nombres }} {{ dataValues.empleado.dataValues.user.dataValues.apellidos }}</h4>
+                    <p>{{ dataValues.empleado.dataValues.user.dataValues.cedula }}</p>
+                    <ul>
+                      <li>
+                        <a href="#!">{{ dataValues.empleado.dataValues.user.dataValues.email }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                {{/each}}
+            
               </div>
-              <div class="sd-title paymethd">
-              <h4>Payment Method</h4>
-              <p>Verified</p>
-              <ul class="star">
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star-half-o"></i></li>
-              <li>
-              <a>5.00 of 5 Reviews</a>
-              </li>
-              </ul>
-              </div>
-              <div class="sd-title">
-              <h4>India</h4>
-              <p>SKS Nagar, Ludhiana 1 AM</p>
-              </div>
-              <div class="sd-title">
-              <h4>20 Projects Posted | 15 Jobs Posted</h4>
-              <p>85% Hire Rate, 15% Open Jobs</p>
-              </div>
-              <div class="sd-title">
-              <h4>Member Since</h4>
-              <p>August 24, 2017</p>
-              </div>
-              </div>
-              <div class="widget widget-jobs">
-              <div class="sd-title">
-              <h3>Project Link</h3>
-              <i class="la la-ellipsis-v"></i>
-              </div>
-              <div class="sd-title copylink">
-              <P>Http://www.workwise.com/pro...</P>
-              <span><a href="#">Copy Link</a></span>
-              </div>
-              </div>
-              <div class="widget widget-jobs">
-              <div class="sd-title">
-              <h3>Share</h3>
-              </div>
-              <div class="sd-title copylink">
-              <ul>
-              <li>
-              <img src="images/social3.png" alt="image"> </li>
-              <li>
-              <img src="images/social4.png" alt="image"></li>
-              <li>
-              <img src="images/social1.png" alt="image"></li>
-              <li>
-              <img src="images/social5.png" alt="image"></li>
-              <li>
-              <img src="images/social2.png" alt="image"></li>
-              </ul>
-              </div>
-              </div>
+              {{/checkLength}}
+              {{#checkLength incident.dataValues.atenciones 0}}
+                <div class="widget widget-jobs">
+                  <div class="sd-title">
+                    <h3>Fecha en la que se realizó la atención</h3>
+                  </div>
+                  <div class="sd-title copylink">
+                      {{#each incident.dataValues.atenciones}}
+                        <P id="timePublishIncident">{{ dataValues.createdAt }}</P>
+                      {{/each}}
+                  </div>
+                </div>
+              {{/checkLength}}
             </div>
           </div>
         </div>
@@ -265,15 +213,36 @@
 <script src="/javascripts/scrollbar.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.min.js"></script>
 <script src="/javascripts/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js" integrity="sha512-Y2IiVZeaBwXG1wSV7f13plqlmFOx8MdjuHyYFVoYzhyRr3nH/NMDjTBSswijzADdNzMyWNetbLMfOpIPl6Cv9g==" crossorigin="anonymous"></script>
+<script>
+  $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+      });
+    });
+  })
+</script>
 {{#if_cond user.dataValues.role_id 3}}
 <script src="/javascripts/moment.min.js"></script>
 <script src="/javascripts/translateMoment.js"></script>
+<script src="/javascripts/timePublishAll.js"></script>
+
+{{#checkLength incident.dataValues.atenciones 0}}
 <script src="/javascripts/timePublish.js"></script>
+{{/checkLength}}
+
 <script type="module" src="/javascripts/notification-attend.js"></script>
 {{/if_cond}}
 {{#if_cond user.dataValues.role_id 2}}
 <script src="/javascripts/moment.min.js"></script>
 <script src="/javascripts/translateMoment.js"></script>
+<script src="/javascripts/timePublishAll.js"></script>
+
+{{#checkLength incident.dataValues.atenciones 0}}
+<script src="/javascripts/timePublish.js"></script>
+{{/checkLength}}
 <script type="module" src="/javascripts/chat-personal-seguridad-incidentes.js"></script>
 {{/if_cond}}
 {{/extend}}

@@ -135,49 +135,60 @@ export default function create () {
       $('#pertenencias-hurtadas').hide(300)
     } else {
       hideAll()
+      $('#files_incident').remove()
+      $('#adjuntos').append('<input type="file" name="adjunto" id="files_incident" accept="image/*" multiple="multiple">')
     }
   }, false)
 
   btnPub.addEventListener('click', function () {
-    addIncident(tipoIncidente.value)
-      .then(res => {
-        let socket = io('https://incident-web.herokuapp.com', { 'forceNew': true })
-        //let socket = io('http://localhost:5000', { 'forceNew': true })
-        
-        socket.on('connect', async function () {
-          socket.emit('data', {
-            success: '1',
-            response: res
+    if (tipoIncidente.value == 0) {
+      alert('Seleccione un tipo de incidente')
+    } else {
+      $('#cover-spin').show(0)
+      addIncident(tipoIncidente.value)
+        .then(res => {
+          $('#cover-spin').hide(0)
+          let socket = io('https://incident-web.herokuapp.com', { 'forceNew': true })
+          //let socket = io('http://localhost:5000', { 'forceNew': true })
+          
+          socket.on('connect', async function () {
+            socket.emit('data', {
+              success: '1',
+              response: res
+            })
           })
+  
+          tipoIncidente.value = 0
+          description.value = ''
+          ninoViolencia.checked = false
+          hombreViolencia.checked = false
+          mujerViolencia.checked = false
+          adultoMayorViolencia.checked = false
+          otroParienteViolencia.checked = false
+          verbalViolencia.checked = false
+          fisicaViolencia.checked = false
+          psicologicaViolencia.checked = false
+          armacortopunzanteViolencia.checked = false
+          armafuegoViolencia.checked =false
+          otraarmaViolencia.checked = false
+          pelajeAnimalPerdido.value = ''
+          selectTamanioAnimal.value = 'null'
+          selectTipoMascota.value = 'null'
+          razaAnimalPerdido.value = ''
+          desSospechoso.value = ''
+          pertenenciasHurtadas.value = ''
+          lugarAgresion.value = ''
+          selectTipoDesastre.value = 'null'
+          selectTipoAccidente.value = 'null'
+          
+          $('#files_incident').remove()
+          $('#adjuntos').append('<input type="file" name="adjunto" id="files_incident" accept="image/*" multiple="multiple">')
+  
+          hideAll()
+          
+          socket.on('disconnect', function () {})
         })
-
-        tipoIncidente.value = 0
-        description.value = ''
-        ninoViolencia.checked = false
-        hombreViolencia.checked = false
-        mujerViolencia.checked = false
-        adultoMayorViolencia.checked = false
-        otroParienteViolencia.checked = false
-        verbalViolencia.checked = false
-        fisicaViolencia.checked = false
-        psicologicaViolencia.checked = false
-        armacortopunzanteViolencia.checked = false
-        armafuegoViolencia.checked =false
-        otraarmaViolencia.checked = false
-        pelajeAnimalPerdido.value = ''
-        selectTamanioAnimal.value = 'null'
-        selectTipoMascota.value = 'null'
-        razaAnimalPerdido.value = ''
-        desSospechoso.value = ''
-        pertenenciasHurtadas.value = ''
-        lugarAgresion.value = ''
-        selectTipoDesastre.value = 'null'
-        selectTipoAccidente.value = 'null'
-
-        hideAll()
-        
-        socket.on('disconnect', function () {})
-      })
+    }
   })
 }
 
@@ -347,6 +358,26 @@ async function addIncident (tipoIncidente) {
     body: formData
   })
   const incidentCreated = data.json()
+
+  var tags1 = $('#pelaje_animal_perdido').tagEditor('getTags')[0].tags
+  if (tags1.length > 0) {
+    for (var i = 0; i < tags1.length; i++) { $('#pelaje_animal_perdido').tagEditor('removeTag', tags1[i]); }
+  }
+  
+  var tags2 = $('#raza_animal_perdido').tagEditor('getTags')[0].tags
+  if (tags2.length > 0) {
+    for (var i = 0; i < tags2.length; i++) { $('#raza_animal_perdido').tagEditor('removeTag', tags2[i]); }
+  }
+  
+  var tags3 = $('#des_sospechoso').tagEditor('getTags')[0].tags
+  if (tags3.length > 0) {
+    for (var i = 0; i < tags3.length; i++) { $('#des_sospechoso').tagEditor('removeTag', tags3[i]); }
+  }
+  
+  var tags4 = $('#pertenencias_hurtadas').tagEditor('getTags')[0].tags
+  if (tags4.length > 0) {
+    for (var i = 0; i < tags4.length; i++) { $('#pertenencias_hurtadas').tagEditor('removeTag', tags4[i]); }
+  }
 
   $(".post-popup.job_post").removeClass("active")
   $(".wrapper").removeClass("overlay")

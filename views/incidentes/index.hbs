@@ -1,5 +1,7 @@
 {{#extend "head"}}
 <link rel="stylesheet" href="/stylesheets/css/employees.css">
+<link rel="stylesheet" href="/stylesheets/css/loader-screen.css">
+<link rel="stylesheet" href="/stylesheets/css/jquery.tag-editor.css">
 {{> title title="Incidentes"}}
 {{/extend}}
 
@@ -10,6 +12,7 @@
 <br>
 <br>
 <br>
+<div id="cover-spin"></div>
 <main>
     <div class="main-section">
         <div class="container">
@@ -131,13 +134,13 @@
                                     {{#each gravityIncidents}}
                                         <div class="job-info">
                                             <div class="job-details">
-                                                <a href="">
+                                                <a href="/valle-verde/{{ dataValues.id }}/incidente">
                                                     <h3>{{ dataValues.tipo.dataValues.tipo }}</h3>
                                                     <p>{{ trimStringGravity dataValues.descripcion }}..</p>
                                                 </a>
                                             </div>
                                             <div class="hr-rate">
-                                                <span style="text-align: right;" id="timePublishIncident">Hace 2 días</span>
+                                                <span style="text-align: right;" class="timePublishIncidents">{{ dataValues.createdAt }}</span>
                                             </div>
                                         </div>
                                     {{/each}}
@@ -239,11 +242,12 @@
 
                     <div class="col-lg-12" id="pelaje-animal">
                         <input type="text" name="pelaje_animal_perdido" id="pelaje_animal_perdido"
-                            placeholder="Pelaje del animal">
+                            placeholder="Pelaje del animal"/>
                     </div>
+
                     <div class="col-lg-12" id="raza-animal">
                         <input type="text" name="raza_animal_perdido" id="raza_animal_perdido"
-                            placeholder="Raza del animal">
+                            placeholder="Raza del animal" />
                     </div>
 
                     <div class="col-lg-6" id="tamanio-animal">
@@ -493,13 +497,17 @@
 {{#if_cond user.dataValues.role_id 3}}
 <script src="/javascripts/moment.min.js"></script>
 <script src="/javascripts/translateMoment.js"></script>
+<script src="/javascripts/jquery.caret.min.js"></script>
+<script src="/javascripts/jquery.tag-editor.min.js"></script>
 <script type="module" src="/javascripts/residente-incidentes.js"></script>
 <script type="module" src="/javascripts/notification-attend.js"></script>
 <script type="module" src="/javascripts/chat-residente.js"></script>
+<script src="/javascripts/timePublishAll.js"></script>
 {{/if_cond}}
 {{#if_cond user.dataValues.role_id 2}}
 <script src="/javascripts/moment.min.js"></script>
 <script src="/javascripts/translateMoment.js"></script>
+<script src="/javascripts/timePublishAll.js"></script>
 <script type="module" src="/javascripts/personal-seguridad-incidentes.js"></script>
 <script type="module" src="/javascripts/chat-personal-seguridad-incidentes.js"></script>
 {{/if_cond}}

@@ -32,6 +32,9 @@ $(window).on("load", function() {
     $("#cancelCreateIncident").on("click", function(){
         $(".post-popup.job_post").removeClass("active");
         $(".wrapper").removeClass("overlay");
+
+        $('#files_incident').remove()
+        $('#adjuntos').append('<input type="file" name="adjunto" id="files_incident" accept="image/*" multiple="multiple">')
         return false;
     });
 

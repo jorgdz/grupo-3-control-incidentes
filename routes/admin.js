@@ -118,6 +118,22 @@ router.get('/:id/incidente', auth, async function (req, res, next) {
 				]
 			},
 			{
+				model: Atencion,
+				as: 'atenciones',
+				include: [
+					{
+						model: Empleado,
+						as: 'empleado',
+						include: [
+							{
+								model: User,
+								as: 'user'
+							}
+						]
+					}
+				]
+			},
+			{
 				model: Adjunto,
 				as: 'adjuntos'
 			},

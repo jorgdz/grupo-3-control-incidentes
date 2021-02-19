@@ -114,7 +114,7 @@ const getIncidentFromTemplate = (incident) => {
           <li class="list-group-item">${incident.tipo.tipo}</li>
       </ul>
       <div class="card-body">
-          <a href="/valle-verde/api/incidente/${incident.id}" class="card-link">Detalles</a>
+          <a href="/valle-verde/${incident.id}/incidente" class="card-link">Detalles</a>
           ${showBtnAttend}
       </div>
   </div>`
