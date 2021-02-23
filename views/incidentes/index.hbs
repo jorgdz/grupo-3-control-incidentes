@@ -384,10 +384,10 @@
         </div>
     </div> --}}
     <div class="chatbox">
-        <div class="chat-mg bx">
+        {{!-- <div class="chat-mg bx">
             <a href="#" title=""><img src="/images/chat.png" alt=""></a>
             <span id="count_chat_message">0</span>
-        </div>
+        </div> --}}
         <div class="conversation-box">
             <div class="con-title mg-3">
                 <div class="chat-user-info">
@@ -495,21 +495,18 @@
 <script src="/javascripts/scrollbar.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.min.js"></script>
 {{#if_cond user.dataValues.role_id 3}}
-<script src="/javascripts/moment.min.js"></script>
-<script src="/javascripts/translateMoment.js"></script>
 <script src="/javascripts/jquery.caret.min.js"></script>
 <script src="/javascripts/jquery.tag-editor.min.js"></script>
 <script type="module" src="/javascripts/residente-incidentes.js"></script>
 <script type="module" src="/javascripts/notification-attend.js"></script>
 <script type="module" src="/javascripts/chat-residente.js"></script>
-<script src="/javascripts/timePublishAll.js"></script>
 {{/if_cond}}
 {{#if_cond user.dataValues.role_id 2}}
-<script src="/javascripts/moment.min.js"></script>
-<script src="/javascripts/translateMoment.js"></script>
-<script src="/javascripts/timePublishAll.js"></script>
 <script type="module" src="/javascripts/personal-seguridad-incidentes.js"></script>
 <script type="module" src="/javascripts/chat-personal-seguridad-incidentes.js"></script>
 {{/if_cond}}
+<script src="/javascripts/moment.min.js"></script>
+<script src="/javascripts/translateMoment.js"></script>
+<script src="/javascripts/timePublishAll.js"></script>
 <script src="/javascripts/script.js"></script>
 {{/extend}}
