@@ -140,6 +140,8 @@ router.get('/:id/incidente', auth, async function (req, res, next) {
 			{
 				model: Comentario,
 				as: 'comentarios',
+				separate:true,
+       	order: [['id', 'asc']],
 				include: [
 					{
 						model: SubComentario,
@@ -190,6 +192,17 @@ router.post('/incidente/:id/borrar', auth, residenteUsuarioFinal, async function
   await Incidente.destroy({ where: { id: req.params.id } })
   req.flash('success', 'Incidente borrado.')
   res.redirect('/valle-verde')
+})
+
+/* POST Atendido incidente. */
+router.post('/incidente/:id/cerrar/atencion', auth, residenteUsuarioFinal, async function (req, res, next) {
+  const updatedIncident = await Incidente.update({
+		estado: 'ATENDIDO'
+	}, { where: { id: req.params.id } })
+
+	if (updatedIncident) {
+		res.redirect(`/valle-verde/${req.params.id}/incidente`)
+	}
 })
 
 /**

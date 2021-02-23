@@ -18,6 +18,7 @@ var usersRouter = require('./routes/users')
 var bloquesRouter = require('./routes/bloques')
 var villasRouter = require('./routes/villas')
 var loginRouter = require('./routes/auth/login')
+var comentarioRouter = require('./routes/comentario')
 var resetPassRouter = require('./routes/auth/reset-password')
 var verificationRouter = require('./routes/auth/verification')
 
@@ -86,6 +87,7 @@ app.use('/roles', rolesRouter)
 app.use('/usuarios', usersRouter)
 app.use('/bloques', bloquesRouter)
 app.use('/villas', villasRouter)
+app.use('/comment', comentarioRouter)
 
 app.post('/logout', function (req, res) {
   req.logOut()

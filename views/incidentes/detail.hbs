@@ -35,7 +35,7 @@
                     <div class="usy-dt">
                       <img src="{{ incident.dataValues.residente.dataValues.user.dataValues.url_imagen }}" width="40" height="40" alt="">
                       <div class="usy-name">
-                        <h3>{{ incident.dataValues.residente.dataValues.user.dataValues.nombres }} {{ incident.dataValues.residente.dataValues.user.dataValues.apellidos }}</h3>
+                        <h3><a href="/perfil/usuario/{{incident.dataValues.residente.dataValues.user.dataValues.username}}">{{ incident.dataValues.residente.dataValues.user.dataValues.nombres }} {{ incident.dataValues.residente.dataValues.user.dataValues.apellidos }}</a></h3>
                         <span><img src="images/clock.png" alt=""><span class="timePublishIncidents">{{ incident.dataValues.createdAt }}</span></span>
                       </div>
                     </div>
@@ -47,16 +47,30 @@
                   </ul>
                   <ul class="bk-links">
                     {{!-- <li><a href="#" title=""><i class="la la-pencil"></i></a></li> --}}
+                    {{#if_cond user.dataValues.id incident.dataValues.residente.dataValues.user_id}}
                     <li>
                       <a href="/valle-verde/incidente/{{incident.dataValues.id}}/borrar" title="" onclick="event.preventDefault(); (confirm('¿ ESTAS SEGURO QUE DESEAS BORRAR ESTE INCIDENTE ?')) ? document.getElementById('delete-form-{{incident.dataValues.id}}').submit() : false;"><i class="la la-trash" style="background-color: crimson;"></i></a>
                       <form id="delete-form-{{incident.dataValues.id}}" action="/valle-verde/incidente/{{incident.dataValues.id}}/borrar" method="POST" style="display: none;"></form>
                     </li>
+                      {{#if_cond user.dataValues.role_id 3}}
+                        {{#if_cond incident.dataValues.estado 'ATENDIENDOSE'}}
+                          <li>
+                            <a href="/valle-verde/incidente/{{incident.dataValues.id}}/cerrar/atencion" title="" onclick="event.preventDefault(); (confirm('¿ TERMINAR ESTE INCIDENTE ?')) ? document.getElementById('change-form-{{incident.dataValues.id}}').submit() : false;"><i class="la la-check" style="background-color: rgb(14, 134, 54);"></i></a>
+                            <form id="change-form-{{incident.dataValues.id}}" action="/valle-verde/incidente/{{incident.dataValues.id}}/cerrar/atencion" method="POST" style="display: none;"></form>
+                          </li>
+                        {{/if_cond}}
+                      {{/if_cond}}
+                    {{/if_cond}}
+
                   </ul>
                 </div>
                 <div class="job_descp accountnone">
                   {{#if_not incident.dataValues.detalles '{}'}}
-                  <h3 id="detail_incident_json">{{ incident.dataValues.detalles }}</h3>
+                  <div id="detail_incident_json">{{ incident.dataValues.detalles }}</div>
+                  {{else}} 
+                  <div id="detail_incident_json"></div>
                   {{/if_not}}
+                  <hr>
                   <ul class="job-dt">
                     <li>
                       <a href="#">{{ incident.dataValues.tipo.dataValues.tipo }}</a>
@@ -123,35 +137,54 @@
                       <div class="usy-dt">
                         <img src="{{ dataValues.residente.dataValues.user.dataValues.url_imagen }}" width="40" height="40" alt="">
                         <div class="usy-name">
-                          <h3>{{ dataValues.residente.dataValues.user.dataValues.nombres }} {{ dataValues.residente.dataValues.user.dataValues.apellidos }}</h3>
+                          <h3><a href="/perfil/usuario/{{dataValues.residente.dataValues.user.dataValues.username}}">{{ dataValues.residente.dataValues.user.dataValues.nombres }} {{ dataValues.residente.dataValues.user.dataValues.apellidos }}</a></h3>
                           <span><img src="images/clock.png" alt=""><span class="timePublishIncidents">{{ dataValues.createdAt }}</span></span>
                         </div>
                       </div>
                     </div>
                     <div class="reply-area">
                       <p>{{ dataValues.descripcion }}</p>
-                      {{!-- <span><i class="la la-mail-reply"></i>Responder</span> --}}
+                      {{#if_cond ../user.dataValues.residente.dataValues.id dataValues.residente_id}}
+                        <span>
+                          <a href="/comment/{{dataValues.id}}/destroy/{{../incident.dataValues.id}}/incidente" onclick="event.preventDefault(); (confirm('¿ ESTAS SEGURO DE BORRAR ESTE COMENTARIO ?')) ? document.getElementById('delete-form-{{dataValues.id}}').submit() : false;"><i class="la la-trash"></i>Borrar</a>
+                          <form id="delete-form-{{dataValues.id}}" action="/comment/{{dataValues.id}}/destroy/{{../incident.dataValues.id}}/incidente" method="POST" style="display: none;"></form>
+                        </span>
+                      {{/if_cond}}
                     </div>
                   </div>
                   <br>
                   {{/each}}
                 {{/checkLength}}
 
-                <div class="postcomment">
+                <div class="postcomment" style="width: 100%; margin-left: 0px;">
                   <div class="row" style="position: relative; margin-left: 0px; padding-top: 20px;width:100%;">
+         
                     <div class="col-md-1">
-                      <img src="images/resources/bg-img4.png" alt="">
+                      <div class="usy-dt">
+                        <img src="{{ user.dataValues.url_imagen }}" width="40" height="40" alt="">
+                      </div>
                     </div>
-                    <div class="col-md-9">
-                      <form>
-                        <div class="form-group">
-                          <input type="text" class="form-control" id="inputCommentIncident" placeholder="Escribir un comentario">
+                    <div class="col-md-11" style="display: inline-block;">
+                      {{#if error}}
+                        <div style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+                          <span>{{ error }}</span>
+                        </div>
+                        <hr>
+                      {{/if}}
+                      <form action="/comment/send/{{incident.dataValues.id}}/incidente" method="POST">
+                        <div class="row">
+                          <div class="col-md-9">
+                            <div class="form-group">
+                              <input type="text" name="descripcion" required="required" class="form-control" style="width: 100%; margin-left: 0px;" id="inputCommentIncident" placeholder="Escribir un comentario">
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <button type="submit" class="btn btn-secondary">Enviar</button>
+                          </div>
                         </div>
                       </form>
                     </div>
-                    <div class="col-md-2">
-                      <a href="#!">Enviar</a>
-                    </div>
+              
                   </div>
                 </div>
                 </div>
@@ -245,4 +278,5 @@
 {{/checkLength}}
 <script type="module" src="/javascripts/chat-personal-seguridad-incidentes.js"></script>
 {{/if_cond}}
+<script src="/javascripts/details.js"></script>
 {{/extend}}
