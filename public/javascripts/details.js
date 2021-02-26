@@ -10,7 +10,6 @@ window.addEventListener('load', async function () {
 })
 
 const template = (details) => {
-  console.log(details)
   
   let personaAfectada = ''
   if (details.persona_afectada != undefined) {

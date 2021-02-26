@@ -23,7 +23,7 @@
                   <div class="bids-time">
                     <h3>Publicado : <span class="timePublishIncidents">{{ incident.dataValues.createdAt }}</span></h3>
                     <br>
-                    <p>{{incident.dataValues.estado}}</p>
+                    <p class="go-attend">{{incident.dataValues.estado}}</p>
                   </div>
                 </div>
               </div>
@@ -42,7 +42,7 @@
                   </div>
                 <div class="epi-sec">
                   <ul class="descp">
-                    <li><img src="images/icon8.png" alt=""><span>{{ incident.dataValues.estado }}</span></li>
+                    <li><img src="images/icon8.png" alt=""><span class="go-attend">{{ incident.dataValues.estado }}</span></li>
                     <li><img src="images/icon9.png" alt=""><span>{{ incident.dataValues.residente.dataValues.villa.dataValues.bloque.dataValues.nombre }}: {{ incident.dataValues.residente.dataValues.villa.dataValues.numero }}</span></li>
                   </ul>
                   <ul class="bk-links">
@@ -196,7 +196,7 @@
               {{#if_cond user.dataValues.role_id 2}}
                 {{#if_cond incident.dataValues.estado 'NO ATENDIDO'}}
                   <div class="widget widget-about bid-place">
-                    <button type="button" class="btn btn-primary" id="attend-incident-{{incident.dataValues.id}}" data-toggle="modal" data-target="#mymodal" data-whatever="@mdo">Atender</button>
+                    <button type="button" class="btn btn-primary" id="attend-incident" data-toggle="modal" data-target="#mymodal" data-whatever="@mdo">Atender</button>
                   </div>
                 {{/if_cond}}
               {{/if_cond}}
@@ -276,7 +276,7 @@
 {{#checkLength incident.dataValues.atenciones 0}}
 <script src="/javascripts/timePublish.js"></script>
 {{/checkLength}}
-<script type="module" src="/javascripts/chat-personal-seguridad-incidentes.js"></script>
+<script type="module" src="/javascripts/attend-detail-incident.js"></script>
 {{/if_cond}}
 <script src="/javascripts/details.js"></script>
 {{/extend}}
