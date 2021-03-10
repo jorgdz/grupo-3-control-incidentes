@@ -8,9 +8,7 @@ module.exports = {
         host: process.env.DB_HOST,
         dialect: 'postgres',
         timezone: process.env.TZ,
-        dialectOptions: {
-            useUTC: false,
-        },
+        ssl: true,
         pool: {
             max: 5,
             min: 0,
