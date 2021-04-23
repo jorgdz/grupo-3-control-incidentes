@@ -49,13 +49,13 @@
                     {{!-- <li><a href="#" title=""><i class="la la-pencil"></i></a></li> --}}
                     {{#if_cond user.dataValues.id incident.dataValues.residente.dataValues.user_id}}
                     <li>
-                      <a href="/valle-verde/incidente/{{incident.dataValues.id}}/borrar" title="" onclick="event.preventDefault(); (confirm('¿ ESTAS SEGURO QUE DESEAS BORRAR ESTE INCIDENTE ?')) ? document.getElementById('delete-form-{{incident.dataValues.id}}').submit() : false;"><i class="la la-trash" style="background-color: crimson;"></i></a>
+                      <a href="/valle-verde/incidente/{{incident.dataValues.id}}/borrar" title="" onclick="event.preventDefault(); (confirm('¿ ESTAS SEGURO QUE DESEAS BORRAR ESTE INCIDENTE ?')) ? document.getElementById('delete-form-{{incident.dataValues.id}}').submit() : false;"><i class="la la-trash" style="background-color: crimson;"></i> Borrar incidente</a>
                       <form id="delete-form-{{incident.dataValues.id}}" action="/valle-verde/incidente/{{incident.dataValues.id}}/borrar" method="POST" style="display: none;"></form>
                     </li>
                       {{#if_cond user.dataValues.role_id 3}}
                         {{#if_cond incident.dataValues.estado 'ATENDIENDOSE'}}
                           <li>
-                            <a href="/valle-verde/incidente/{{incident.dataValues.id}}/cerrar/atencion" title="" onclick="event.preventDefault(); (confirm('¿ TERMINAR ESTE INCIDENTE ?')) ? document.getElementById('change-form-{{incident.dataValues.id}}').submit() : false;"><i class="la la-check" style="background-color: rgb(14, 134, 54);"></i></a>
+                            <a href="/valle-verde/incidente/{{incident.dataValues.id}}/cerrar/atencion" title="" onclick="event.preventDefault(); (confirm('¿ EL INCIDENTE HA SIDO ATENDIDO CON ÉXITO ?')) ? document.getElementById('change-form-{{incident.dataValues.id}}').submit() : false;"><i class="la la-check" style="background-color: rgb(14, 134, 54);"></i> Incidente resuelto</a>
                             <form id="change-form-{{incident.dataValues.id}}" action="/valle-verde/incidente/{{incident.dataValues.id}}/cerrar/atencion" method="POST" style="display: none;"></form>
                           </li>
                         {{/if_cond}}

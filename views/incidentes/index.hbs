@@ -80,11 +80,43 @@
                     <div class="col-lg-6 col-md-8 no-pd">
                         <div class="main-ws-sec">
 
+                            {{!-- Template admin --}}
+                            {{#if_cond user.dataValues.role_id 1}}
+                            <h3 id="incidents-title" class="">
+                                Incidentes
+                            </h3>
+                            <hr>
+                            <div class="post-project-fields">
+                                <div class="row">
+                                    <div class="col-lg-4" id="estado">
+                                        <label for="select-estado" style="font-weight: bold;">Estado</label>
+                                        <select id="select-estado" class="form-control">
+                                           <!-- <option value="null">Seleccione</option>-->
+                                            <option value="NO ATENDIDO">No Atendido</option>
+                                            <option value="ATENDIDO">Atendido</option>
+                                            <option value="ATENDIENDOSE">Atendiéndose</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="fecha_inicio" style="font-weight: bold;">Fecha de inicio</label>
+                                        <input type="date" class="form-control" id="fecha_inicio">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="fecha_fin" style="font-weight: bold;">Fecha fin</label>
+                                        <input type="date" class="form-control" id="fecha_fin">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="incidents-container">
+                                
+                            </div>
+                            {{/if_cond}}
+                            
                             {{!-- Template empleado --}}
                             {{#if_cond user.dataValues.role_id 2}}
                             <h3 id="incidents-title" class="">
                                 Incidentes por atender
-                            </h4>
+                            </h3>
                             <div class="incidents-container"
                                 style="display: flex; justify-content: space-between; flex-wrap: wrap;">
                             </div>
@@ -522,5 +554,8 @@
 <script src="/javascripts/moment.min.js"></script>
 <script src="/javascripts/translateMoment.js"></script>
 <script src="/javascripts/timePublishAll.js"></script>
+{{#if_cond user.dataValues.role_id 1}}
+<script type="module" src="/javascripts/admin-incidentes.js"></script>
+{{/if_cond}}
 <script src="/javascripts/script.js"></script>
 {{/extend}}

@@ -5,18 +5,19 @@ const router = express.Router()
 const { auth } = require('../middleware/auth')
 const { residenteUsuarioFinal } = require('../middleware/residente-usuario-final')
 const { isEmployee } = require('../middleware/empleado')
+const { admin } = require('../middleware/admin')
 const db = require('../lib/db')
-const Villa = require('../lib/db').villas
-const Bloque = require('../lib/db').bloques
-const Atencion = require('../lib/db').atenciones
-const Incidente = require('../lib/db').incidentes
-const Adjunto = require('../lib/db').adjuntos
-const Residente = require('../lib/db').residentes
-const User = require('../lib/db').users
-const Empleado = require('../lib/db').empleados
-const TipoIncidente = require('../lib/db').tipo_incidentes
-const Comentario = require('../lib/db').comentarios
-const SubComentario = require('../lib/db').subcomentarios
+const Villa = db.villas
+const Bloque = db.bloques
+const Atencion = db.atenciones
+const Incidente = db.incidentes
+const Adjunto = db.adjuntos
+const Residente = db.residentes
+const User = db.users
+const Empleado = db.empleados
+const TipoIncidente = db.tipo_incidentes
+const Comentario = db.comentarios
+const SubComentario = db.subcomentarios
 const { Op } = require('sequelize')
 
 const { generateFileName, uploadOneFile } = require('../lib/storage')
@@ -632,6 +633,65 @@ router.get('/api/my-incidents', auth, residenteUsuarioFinal , async function (re
 
 	res.send(incidentes)
 		.status(200)
+})
+
+/* Api GET attentions. */
+router.get('/api/incidents/attention', auth, admin, async function (req, res, next) {
+	var estado = req.query.estado || 'NO ATENDIDO'
+
+	var whereAnd = {
+		estado: { [Op.eq]: estado },
+	}
+
+	if (req.query.fecha_inicio != '' && req.query.fecha_fin != '' && req.query.fecha_inicio != null && req.query.fecha_fin != null && req.query.fecha_inicio != undefined && req.query.fecha_fin != undefined) {
+		whereAnd = {
+			estado: { [Op.eq]: estado },
+			createdAt: { [Op.between]: [req.query.fecha_inicio, req.query.fecha_fin] },
+		}
+	}
+
+	const incidentesAtendidos = await Incidente.findAll({
+	  include: [
+		{
+			model: TipoIncidente,
+			as: 'tipo',
+		},
+		{
+			model: Comentario,
+			as: 'comentarios'
+		},
+		{
+			model: Adjunto,
+			as: 'adjuntos'
+		},
+		{
+			model: Residente,
+			as: 'residente',
+			include: [
+				{
+					model: User,
+					as: 'user'
+				},
+				{
+					model: Villa,
+					as: 'villa',
+					include: [
+						{
+							model: Bloque,
+							as: 'bloque'
+						}
+					]
+				}
+			]
+		}
+	  ],
+	  where: {
+		[Op.and]: whereAnd
+	  },
+	  order: [['id', 'DESC']]
+	})
+  
+	res.send(incidentesAtendidos).status(200)
 })
 
 module.exports = router
