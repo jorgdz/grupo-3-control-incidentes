@@ -113,6 +113,7 @@
                                 <div class="star-descp">
                                     <span>{{ user.dataValues.role.dataValues.name }}</span>
                                 </div>
+                                {{#if_cond user.dataValues.role_id 3}}
                                 <div class="tab-feed st2 settingjb">
                                     <ul>
                                         <li data-tab="feed-dd" class="active">
@@ -123,6 +124,7 @@
                                         </li>
                                     </ul>
                                 </div>
+                                {{/if_cond}}
                             </div>
                             
                             <div class="product-feed-tab current" id="feed-dd">

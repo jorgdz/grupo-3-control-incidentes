@@ -87,6 +87,9 @@
                   <th scope="col">Apellidos</th>
                   <th scope="col">Rol</th>
                   <th scope="col">Estado</th>
+                  {{#if_cond user.dataValues.role_id 1}}
+                  <th scope="col">Ver reporte</th>
+                  {{/if_cond}}
                   <th scope="col">Editar</th>
                   <th scope="col">Borrar</th>
                 </tr>
@@ -106,8 +109,15 @@
                       <span class="badge badge-danger">Inactivo</span>
                     {{/if}}
                   </td>
+                  {{#if_cond ../user.dataValues.role_id 1}}
                   <td>
-                    <a href="/usuarios/{{ dataValues.id }}/editar" class="btn btn-info"><i class="fa fa-pencil"></i></a>
+                    {{#if_cond dataValues.role_id 2}}
+                    <a href="/usuarios/{{ dataValues.id }}/report" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf"></i></a>
+                    {{/if_cond}}
+                  </td>
+                  {{/if_cond}}
+                  <td>
+                    <a href="/usuarios/{{ dataValues.id }}/editar" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
                   </td>
                   <td>
                     <a href="/usuarios/{{ dataValues.id }}/borrar" onclick="event.preventDefault(); (confirm('¿ ESTAS SEGURO QUE DESEAS ELIMINAR ESTE USUARIO ?')) ? document.getElementById('delete-form-{{dataValues.id}}').submit() : false;" class="btn btn-danger"><i class="fa fa-trash"></i></a>
