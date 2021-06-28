@@ -35,8 +35,17 @@
                                 <ul class="user-fw-status">
                                     {{#if_cond user.dataValues.role_id 2}}
                                     <li>
-                                        <h4>Incidentes atendidos</h4>
+                                        <h4>
+                                            <a href="/incidentes-atendidos">Mis incidentes</a>
+                                        </h4>
                                         <span id ="totalAtenciones">{{ totalAtenciones }}</span>
+                                    </li>
+                                    {{/if_cond}}
+                                    {{#if_cond user.dataValues.role_id 1}}
+                                    <li>
+                                        <h4>
+                                            <a href="/incidentes-por-meses">Incidentes por meses</a>
+                                        </h4>
                                     </li>
                                     {{/if_cond}}
                                     <li>

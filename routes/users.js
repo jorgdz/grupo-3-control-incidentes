@@ -4,17 +4,23 @@ const express = require('express')
 const router = express.Router()
 const { validationResult } = require('express-validator')
 const url = require('url')
+const pdf = require('html-pdf')
 const bcrypt = require('bcrypt')
 const { Op } = require('sequelize')
 const randomToken = require('rand-token')
 const { auth } = require('../middleware/auth')
+const { admin }  = require('../middleware/admin')
 const { adminEmpleado }  = require('../middleware/admin-empleado')
+const db = require('../lib/db')
+const TipoIncidente = db.tipo_incidentes
 const User = require('../lib/db').users
 const Role = require('../lib/db').role
 const Villa = require('../lib/db').villas
 const Bloque = require('../lib/db').bloques
 const Empleado = require('../lib/db').empleados
 const Residente = require('../lib/db').residentes
+const Incidente = require('../lib/db').incidentes
+const Atencion = require('../lib/db').atenciones
 const validateUpdateUser = require('../lib/validator/update-user')
 const validateSaveUser = require('../lib/validator/save-user')
 const { paginate } = require('../lib/util/paginate')
@@ -22,6 +28,7 @@ const realEmail = require('../lib/validator/real-email')
 const send = require('../lib/send-mail')
 const templateVerify = require('../lib/send-mail/templateVerify')
 const templateNewAccountEmpl = require('../lib/send-mail/templateNewAccountEmpl')
+const templateEmployeeReport = require ('../views/reports/report-empleados') 
 
 /* GET users page. */
 router.get('/', auth, adminEmpleado, async function (req, res, next) {
@@ -148,6 +155,45 @@ router.get('/:id/editar', auth, adminEmpleado, async function (req, res, next) {
   }
 })
 
+/* REPORT for users. */
+router.get('/:id/report', auth, admin, async function (req, res, next) {
+  const user = await User.findAll({ where: {id: req.params.id }})
+  if (user[0].role_id != 2) {
+    res.redirect('/usuarios')
+  } else {
+    const employee = await Empleado.findAll({ where: {user_id: req.params.id },
+      include: [{
+        model: User,
+        as: 'user'
+      }]
+    })
+
+    const atenciones = await Atencion.findAll({
+      where: { 
+        empleado_id: employee[0].id,
+        estado: db.Sequelize.where(db.Sequelize.col('incidente.estado'), { [Op.eq]: 'ATENDIDO' })
+      },
+      include: [
+        {
+          model: Incidente,
+          as: 'incidente',
+          include: [
+            {
+              model: TipoIncidente,
+              as: 'tipo'
+            }
+          ]
+        }
+      ]
+    })
+
+    pdf.create(templateEmployeeReport(employee[0], atenciones)).toStream(function (err, stream) {
+      if (err) return res.send(err);
+      res.type('pdf');
+      stream.pipe(res);
+    });
+  }
+})
 
 /* GET edit users page. */
 router.get('/create', auth, adminEmpleado, async function (req, res, next) {

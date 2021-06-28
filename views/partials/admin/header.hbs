@@ -20,6 +20,15 @@
                                 Inicio
                             </a>
                         </li>
+                        {{#if_cond user.dataValues.role_id 2}}
+                        <li>
+                            <a href="/incidentes-atendidos" title="">
+                                <span><img src="/images/icon9.png" alt=""></span>
+                                Incidentes
+                            </a>
+                        </li>
+                        {{/if_cond}}
+                        
                         {{#if_not user.dataValues.role_id 3}}
                         <li>
                             <a href="#" title="">

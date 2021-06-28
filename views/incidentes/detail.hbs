@@ -156,37 +156,38 @@
                   {{/each}}
                 {{/checkLength}}
 
-                <div class="postcomment" style="width: 100%; margin-left: 0px;">
-                  <div class="row" style="position: relative; margin-left: 0px; padding-top: 20px;width:100%;">
-         
-                    <div class="col-md-1">
-                      <div class="usy-dt">
-                        <img src="{{ user.dataValues.url_imagen }}" width="40" height="40" alt="">
-                      </div>
-                    </div>
-                    <div class="col-md-11" style="display: inline-block;">
-                      {{#if error}}
-                        <div style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
-                          <span>{{ error }}</span>
+                {{#if_cond user.role_id 3}}
+                  <div class="postcomment" style="width: 100%; margin-left: 0px;">
+                    <div class="row" style="position: relative; margin-left: 0px; padding-top: 20px;width:100%;">
+          
+                      <div class="col-md-1">
+                        <div class="usy-dt">
+                          <img src="{{ user.dataValues.url_imagen }}" width="40" height="40" alt="">
                         </div>
-                        <hr>
-                      {{/if}}
-                      <form action="/comment/send/{{incident.dataValues.id}}/incidente" method="POST">
-                        <div class="row">
-                          <div class="col-md-9">
-                            <div class="form-group">
-                              <input type="text" name="descripcion" required="required" class="form-control" style="width: 100%; margin-left: 0px;" id="inputCommentIncident" placeholder="Escribir un comentario">
+                      </div>
+                      <div class="col-md-11" style="display: inline-block;">
+                        {{#if error}}
+                          <div style="color: crimson; font-weight: bold; font-size: 20px; padding:1em;">
+                            <span>{{ error }}</span>
+                          </div>
+                          <hr>
+                        {{/if}}
+                        <form action="/comment/send/{{incident.dataValues.id}}/incidente" method="POST">
+                          <div class="row">
+                            <div class="col-md-9">
+                              <div class="form-group">
+                                <input type="text" name="descripcion" required="required" class="form-control" style="width: 100%; margin-left: 0px;" id="inputCommentIncident" placeholder="Escribir un comentario">
+                              </div>
+                            </div>
+                            <div class="col-md-2">
+                              <button type="submit" class="btn btn-secondary">Enviar</button>
                             </div>
                           </div>
-                          <div class="col-md-2">
-                            <button type="submit" class="btn btn-secondary">Enviar</button>
-                          </div>
-                        </div>
-                      </form>
+                        </form>
+                      </div>
                     </div>
-              
                   </div>
-                </div>
+                {{/if_cond}}
                 </div>
               </div>
             </div>
