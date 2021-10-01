@@ -1,0 +1,76 @@
+{{#extend "head"}}
+{{> title title="Materiales"}}
+{{/extend}}
+
+{{#extend "header"}}
+{{> admin/header}}
+{{/extend}}
+<br>
+<br>
+<br>
+<br>
+<br>
+<section class="profile-account-setting">
+  <hr>
+  <div class="container">
+    <div class="row">
+      {{#if success}}
+        <div style="color: rgb(46, 136, 61); font-weight: bold; font-size: 20px; padding:1em;">
+          <span>{{ success }}</span>
+        </div>
+        <hr>
+      {{/if}}
+      <div class="col-lg-12">
+        <a href="/materiales/create" class="btn btn-primary">Agregar material</a>
+
+        <hr>
+        <table id="bloques-table" class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" style="width: 190px; text-align: center;">#</th>
+              <th scope="col" style="width: 690px;">Nombre del Material</th>
+              <th scope="col" style="width: 690px;">Categoría</th>
+              <th scope="col" style="width: 690px; text-align: center;">Unidades restantes</th>
+              <th scope="col">Editar</th>
+              <th scope="col">Borrar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each materiales}}
+              <tr>
+                <td class="text-center">{{dataValues.id}}</td>
+                <td>{{dataValues.nombre}}</td>
+                <td>{{dataValues.categoria.dataValues.nombre}}</td>
+                <td class="text-center">{{dataValues.cantidad}}</td>
+                <td>
+                  <a href="/materiales/edit/{{dataValues.id}}" class="btn btn-info">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                </td>
+                <td>
+                  <form action="/materiales/delete/{{dataValues.id}}" method="post">
+                    <button onclick="(function(e){
+                        let res = confirm('¿Desea eliminar el material?');
+                        res ? '' : e.preventDefault();
+                        })(arguments[0])" type="submit" class="btn btn-danger">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{> admin/footer}}
+
+{{#extend "scripts"}}
+<script src="/javascripts/flatpickr.min.js"></script>
+<script src="/stylesheets/lib/slick/slick.min.js"></script>
+<script src="/javascripts/script.js"></script>
+<script src="/datatables/datatables.min.js"></script>
+{{/extend}}

@@ -1,0 +1,51 @@
+{{#extend "head"}}
+{{> title title="Editar categoría" }}
+{{/extend}}
+
+{{#extend "header"}}
+{{> admin/header}}
+{{/extend}}
+<br>
+<br>
+<br>
+<br>
+<br>
+<section class="profile-account-setting">
+    <hr>
+    <div class="container">
+        <div class="post-project-fields">
+            <form action="/categoria-materiales/edit/{{ categoria.dataValues.id }}" method="POST">
+                {{#if success}}
+                    <div style="color: rgb(46, 136, 61); font-weight: bold; font-size: 20px; padding:1em;">
+                        <span>{{ success }}</span>
+                    </div>
+                    <hr>
+                {{/if}}
+                {{#if error}}
+                    <script>alert("Ingrese un nombre valido")</script>
+                {{/if}}
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="">Nombre</label><br><br>
+                        <input type="text" name="nombre" placeholder="Nombre de la categoría"
+                            value="{{categoria.dataValues.nombre}}" required>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <ul>
+                        <li><button class="active" type="submit">Guardar cambios</button></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{{> admin/footer}}
+
+{{#extend "scripts"}}
+<script src="/javascripts/flatpickr.min.js"></script>
+<script src="/stylesheets/lib/slick/slick.min.js"></script>
+<script src="/javascripts/script.js"></script>
+</script>
+{{/extend}}
