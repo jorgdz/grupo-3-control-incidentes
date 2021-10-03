@@ -27,7 +27,7 @@ router.get('/api/:mes/all', auth, admin, async function (req, res, next) {
       }
     );
 
-	  res.send(incidentes).status(200)
+	res.send(incidentes).status(200)
 })
 
 

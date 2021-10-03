@@ -1,4 +1,6 @@
 const detailIncidentJson = $('#detail_incident_json')
+const category_id = document.querySelector('#category_id')
+const material_id = document.querySelector('#material_id')
 
 window.addEventListener('load', async function () {
   if (detailIncidentJson.text() != '') {
@@ -8,6 +10,22 @@ window.addEventListener('load', async function () {
     detailIncidentJson.append(template(details))
   }
 })
+
+category_id.addEventListener('change', async function () {
+	const materiales = await getMateriales()
+	
+	material_id.innerHTML = ''
+	for (var i = 0; i < materiales.length; i++) {
+		material_id.innerHTML = material_id.innerHTML +
+			'<option value="' + materiales[i]['id'] + '">' + materiales[i]['nombre'] + '</option>';
+	}
+})
+
+const getMateriales = async function () {
+	const data = await fetch(`/materiales/${category_id.value}`)
+	const json = data.json()
+	return json
+}
 
 const template = (details) => {
   

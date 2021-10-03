@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www -e js,hbs"
   },
   "dependencies": {
     "@google-cloud/storage": "^5.7.1",
-    "bcrypt": "^5.0.0",
+    "bcrypt": "^5.0.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -34,6 +34,7 @@
   "license": "MIT",
   "devDependencies": {
     "dotenv": "^8.2.0",
+    "ember-truth-helpers": "^3.0.0",
     "nodemon": "^2.0.6"
   }
 }

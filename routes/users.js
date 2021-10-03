@@ -29,6 +29,8 @@ const send = require('../lib/send-mail')
 const templateVerify = require('../lib/send-mail/templateVerify')
 const templateNewAccountEmpl = require('../lib/send-mail/templateNewAccountEmpl')
 const templateEmployeeReport = require ('../views/reports/report-empleados') 
+const Material = require('../lib/db').material
+const CategoriaMaterial = require('../lib/db').categoriaMaterial
 
 /* GET users page. */
 router.get('/', auth, adminEmpleado, async function (req, res, next) {
@@ -181,6 +183,16 @@ router.get('/:id/report', auth, admin, async function (req, res, next) {
             {
               model: TipoIncidente,
               as: 'tipo'
+            }
+          ]
+        },
+        {
+          model: Material,
+          as: 'material',
+		  include: [
+            {
+              model: CategoriaMaterial,
+              as: 'categoria'
             }
           ]
         }

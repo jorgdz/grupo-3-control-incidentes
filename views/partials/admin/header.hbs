@@ -33,7 +33,7 @@
                         <li>
                             <a href="#" title="">
                                 <span><img src="/images/icon3.png" alt=""></span>
-                                Gestión de usuarios
+                                Usuarios
                             </a>
                             <ul>
                                 {{#if_cond user.dataValues.role_id 1}}
@@ -47,6 +47,18 @@
                         <li>
                             <a href="#" title="">
                                 <span><img src="/images/icon7.png" alt=""></span>
+                                Materiales
+                            </a>
+                            <ul>
+                                <li><a href="/categoria-materiales" title="">Categorías</a></li>
+                                <li><a href="/materiales" title="">Lista de materiales</a></li>
+                            </ul>
+                        </li>
+                        {{/if_cond}}
+                        {{#if_cond user.dataValues.role_id 1}}
+                        <li>
+                            <a href="#" title="">
+                                <span><img src="/images/icon2.png" alt=""></span>
                                 Viviendas
                             </a>
                             <ul>

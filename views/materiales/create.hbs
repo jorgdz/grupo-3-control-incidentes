@@ -1,0 +1,65 @@
+{{#extend "head"}}
+{{> title title="Crear material" }}
+{{/extend}}
+
+{{#extend "header"}}
+{{> admin/header}}
+{{/extend}}
+<br>
+<br>
+<br>
+<br>
+<br>
+<section class="profile-account-setting">
+    <hr>
+    <div class="container">
+        <div class="post-project-fields">
+            {{#if success}}
+            <div style="color: rgb(46, 136, 61); font-weight: bold; font-size: 20px; padding:1em;">
+                <span>{{ success }}</span>
+            </div>
+            <hr>
+            {{/if}}
+            {{#if error}}
+                <script>alert("Algunos datos no son correctos")</script>
+            {{/if}}
+
+            <form action="/materiales" method="POST">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="">Categoría</label><br><br>
+                        <select name="id_categoria" id="" required>
+                            {{#each categorias}}
+                                <option value="{{dataValues.id}}">{{dataValues.nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="">Nombre</label><br><br>
+                        <input type="text" name="nombre" placeholder="Nombre del material" required pattern="^[A-z][A-z\d\s]{3,30}$">
+                    </div>
+                    <br />
+                    <div class="col-lg-6">
+                        <label for="">Cantidad</label><br><br>
+                        <input type="number" min="0" name="cantidad" placeholder="Unidades del material" required>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <ul>
+                        <li><button class="active" type="submit">Guardar</button></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{{> admin/footer}}
+
+{{#extend "scripts"}}
+<script src="/javascripts/flatpickr.min.js"></script>
+<script src="/stylesheets/lib/slick/slick.min.js"></script>
+<script src="/javascripts/script.js"></script>
+{{/extend}}

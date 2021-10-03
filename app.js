@@ -1,3 +1,4 @@
+
 'use strict'
 
 const createError = require('http-errors')
@@ -23,6 +24,8 @@ var loginRouter = require('./routes/auth/login')
 var comentarioRouter = require('./routes/comentario')
 var resetPassRouter = require('./routes/auth/reset-password')
 var verificationRouter = require('./routes/auth/verification')
+const materialesRouter = require('./routes/materiales');
+const categoriaMaterialesRouter = require('./routes/categoriasMaterial');
 
 const session = require('express-session')
 const flash = require('connect-flash')
@@ -92,6 +95,8 @@ app.use('/incidentes-por-meses', incidentesPorMes)
 app.use('/bloques', bloquesRouter)
 app.use('/villas', villasRouter)
 app.use('/comment', comentarioRouter)
+app.use('/materiales', materialesRouter);
+app.use('/categoria-materiales', categoriaMaterialesRouter);
 
 app.post('/logout', function (req, res) {
   req.logOut()
@@ -103,13 +108,15 @@ app.use(function (req, res, next) { next(createError(404)) })
 
 // error handler
 app.use(function (err, req, res, next) {
-	// set locals, only providing error in development
+
+  // set locals, only providing error in development
 	res.locals.message = err.message
 	res.locals.error = req.app.get('env') === 'development' ? err : {}
 
 	// render the error page
 	res.status(err.status || 500)
 	res.render('error')
-})
+
+});
 
 module.exports = app
