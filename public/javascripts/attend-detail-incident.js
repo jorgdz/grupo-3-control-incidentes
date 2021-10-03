@@ -1,10 +1,17 @@
 const goAttend = async (id) => {
   let url = `/valle-verde/api/${id}/incidentes/attention`
+  const material_id = document.querySelector('#material_id')
+
   const data = await fetch(url, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
+	body: JSON.stringify({
+		material_id: (material_id == undefined || 
+			material_id.value == undefined) 
+			? 1 : material_id.value
+	})
   })
 
   const attend = data.json()
@@ -24,6 +31,7 @@ const attend = function (id) {
       })
       socket.on('disconnect', function () {})
 
+      $('#material_select').hide(300)
       $('#attend-incident').hide(300)
     })
 }

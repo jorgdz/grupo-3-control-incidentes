@@ -15,6 +15,10 @@ module.exports = (sequelize, Sequelize) => {
         empleado_id: {
             type: Sequelize.INTEGER,
             allowNull: false
+        },
+        material_id: {
+            type: Sequelize.INTEGER,
+            allowNull: false
         }
     })
 

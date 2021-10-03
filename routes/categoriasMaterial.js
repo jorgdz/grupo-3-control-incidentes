@@ -22,7 +22,7 @@ categoriaMaterialRouter.get("/create", auth, admin, async function(req, res) {
 
 });
 
-categoriaMaterialRouter.get("/create", auth, admin, async function(req, res) {
+categoriaMaterialRouter.get("/edit/:id", auth, admin, async function(req, res) {
 // categoriaMaterialRouter.get("/edit/:id", async function(req, res) {
 
     let categoria = await CategoriaMaterial.findByPk( parseInt(req.params.id) );

@@ -6,9 +6,10 @@ const { admin } = require('../middleware/admin')
 
 const Material = require('../lib/db').material;
 const CategoriaMaterial = require('../lib/db').categoriaMaterial;
+const { Op } = require('sequelize')
 
-// materialRouter.get("/", auth, admin, async function(req, res) {
-materialRouter.get("/", async function (req, res) {
+materialRouter.get("/", auth, admin, async function(req, res) {
+//materialRouter.get("/", async function (req, res) {
 
     let materiales = await Material.findAll({
         order: [['id', 'desc']],
@@ -23,8 +24,8 @@ materialRouter.get("/", async function (req, res) {
 
 });
 
-// materialRouter.get("/create", auth, admin, async function(req, res) {
-materialRouter.get("/create", async function (req, res) {
+materialRouter.get("/create", auth, admin, async function(req, res) {
+//materialRouter.get("/create", async function (req, res) {
 
     let categorias = await CategoriaMaterial.findAll({
         order: [['nombre']]
@@ -34,8 +35,21 @@ materialRouter.get("/create", async function (req, res) {
 
 });
 
-// materialRouter.get("/create", auth, admin, async function(req, res) {
-materialRouter.get("/edit/:id", async function (req, res) {
+materialRouter.get("/:id", auth, async function (req, res) {
+    let materiales = await Material.findAll({
+		where: { id_categoria: parseInt(req.params.id), 
+			cantidad: {
+				[Op.gt]: 0
+			}
+		},
+		order: [['id', 'desc']]
+    });
+    
+	res.send(materiales).status(200)
+});
+
+materialRouter.get("/edit/:id", auth, admin, async function(req, res) {
+//materialRouter.get("/edit/:id", async function (req, res) {
 
     let datos = await Promise.all([
         CategoriaMaterial.findAll({ order: [['nombre']] }),
@@ -56,8 +70,8 @@ materialRouter.get("/edit/:id", async function (req, res) {
 
 });
 
-// materialRouter.post("/", auth, admin, async function(req, res) {
-materialRouter.post("/", async function (req, res) {
+materialRouter.post("/", auth, admin, async function(req, res) {
+//materialRouter.post("/", async function (req, res) {
 
     try {
 
@@ -75,8 +89,8 @@ materialRouter.post("/", async function (req, res) {
 
 });
 
-// materialRouter.post("/edit/:id", auth, admin, async function(req, res) {
-materialRouter.post("/edit/:id", async function (req, res) {
+materialRouter.post("/edit/:id", auth, admin, async function(req, res) {
+//materialRouter.post("/edit/:id", async function (req, res) {
 
     try {
 
@@ -94,8 +108,8 @@ materialRouter.post("/edit/:id", async function (req, res) {
 
 });
 
-// materialRouter.post("/delete/:id", auth, admin, async function(req, res) {
-materialRouter.post("/delete/:id", async function (req, res) {
+materialRouter.post("/delete/:id", auth, admin, async function(req, res) {
+//materialRouter.post("/delete/:id", async function (req, res) {
 
     try {
 

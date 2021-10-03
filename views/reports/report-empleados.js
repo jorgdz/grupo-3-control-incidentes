@@ -9,7 +9,7 @@ module.exports = function template (employee, atendidos) {
             <td>${atendido.incidente.descripcion}</td>
             <td>${atendido.incidente.tipo.tipo}</td>
             <td>${atendido.incidente.estado}</td>
-            <td>${atendido.createdAt}</td>
+            <td>${atendido.material.categoria.nombre} - ${atendido.material.nombre}</td>
             <td>${atendido.incidente.createdAt}</td>
         </tr>
         `
@@ -115,7 +115,7 @@ module.exports = function template (employee, atendidos) {
                         <th>Descripción</th>
                         <th>Tipo</th>
                         <th>Estado</th>
-                        <th>Fecha de atencion</th>
+                        <th>Material</th>
                         <th>Fecha del incidente</th>
                     </tr>
                 <thead>

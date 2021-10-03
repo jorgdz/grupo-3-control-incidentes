@@ -18,10 +18,13 @@ const Empleado = db.empleados
 const TipoIncidente = db.tipo_incidentes
 const Comentario = db.comentarios
 const SubComentario = db.subcomentarios
+const CategoriaMaterial = db.categoriaMaterial
 const { Op } = require('sequelize')
 
 const { generateFileName, uploadOneFile } = require('../lib/storage')
 const multer = require('multer')
+const Material = db.material
+
 const storage = multer.diskStorage({
   destination: '',
   filename: function (req, file, cb) {
@@ -185,7 +188,8 @@ router.get('/:id/incidente', auth, async function (req, res, next) {
 		]
 	});
 
-	res.render('incidentes/detail', { incident: incident[0] })
+	const categorias = await CategoriaMaterial.findAll({ order: [['id', 'asc']] })
+	res.render('incidentes/detail', { incident: incident[0], categorias: categorias })
 })
 
 /* POST delete incidente. */
@@ -529,7 +533,22 @@ router.put('/api/:id/incidentes/attention', auth, isEmployee, async function (re
 	
 	let bodyAttend = {
 		incidente_id : req.params.id,
-		empleado_id: req.user.empleado.id
+		empleado_id: req.user.empleado.id,
+		material_id: req.body.material_id || 1,
+	}
+
+	const material = await Material.findOne({
+		where: { id: parseInt(bodyAttend.material_id), 
+			cantidad: {
+				[Op.gt]: 0
+			}
+		}
+    });
+
+	if (material != null) {
+		await Material.update({ cantidad: material.cantidad - 1 }, {
+			where: { id: parseInt(material.id) }
+		})
 	}
 
 	const attentionCreated = await Atencion.create(bodyAttend)

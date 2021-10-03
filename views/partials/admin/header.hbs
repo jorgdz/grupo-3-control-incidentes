@@ -33,7 +33,7 @@
                         <li>
                             <a href="#" title="">
                                 <span><img src="/images/icon3.png" alt=""></span>
-                                Gestión de usuarios
+                                Usuarios
                             </a>
                             <ul>
                                 {{#if_cond user.dataValues.role_id 1}}
@@ -43,7 +43,7 @@
                             </ul>
                         </li>
                         {{/if_not}}
-                        {{!-- {{#if_cond user.dataValues.role_id 1}} --}}
+                        {{#if_cond user.dataValues.role_id 1}}
                         <li>
                             <a href="#" title="">
                                 <span><img src="/images/icon7.png" alt=""></span>
@@ -54,7 +54,7 @@
                                 <li><a href="/materiales" title="">Lista de materiales</a></li>
                             </ul>
                         </li>
-                        {{!-- {{/if_cond}} --}}
+                        {{/if_cond}}
                         {{#if_cond user.dataValues.role_id 1}}
                         <li>
                             <a href="#" title="">
